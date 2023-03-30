@@ -7,5 +7,6 @@
     ./packages
     ./greetd
     ./unbound
+    ./wayland
   ];
 }
