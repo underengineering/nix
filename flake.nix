@@ -34,6 +34,7 @@
         mika = user.mkHMUser {
           username = "mika";
           userConfig = {
+            wayland.enable = true;
             git.enable = true;
             hyprland.enable = true;
           };
