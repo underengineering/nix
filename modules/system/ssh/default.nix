@@ -2,7 +2,8 @@
 with lib;
 let
   cfg = config.jd.ssh;
-in {
+in
+{
   options.jd.ssh = {
     enable = mkOption {
       description = "Whether to enable ssh";
@@ -11,7 +12,7 @@ in {
     };
     type = mkOption {
       description = "Whether is ssh client or server";
-      type = types.enum ["client" "server"];
+      type = types.enum [ "client" "server" ];
       default = "client";
     };
   };
