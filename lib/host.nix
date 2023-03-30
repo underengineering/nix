@@ -1,5 +1,5 @@
-{ inputs, user, lib, system, pkgs, ... }:
-with builtins;
+{ inputs, user, lib, utils, system, pkgs, ... }:
+with builtins; with utils;
 {
   mkHost =
     { name
@@ -11,11 +11,14 @@ with builtins;
     , systemConfig
     , cpuCores
     , users
+    , quirk ? null
     , wifi ? [ ]
     , gpuTempSensor ? null
     , cpuTempSensor ? null
     }:
     let
+      systemEnableModule = enableModule systemConfig;
+
       networkCfg = listToAttrs (map
         (iface: {
           name = "${iface}";
@@ -68,6 +71,7 @@ with builtins;
 
           system.stateVersion = "23.05";
         }
-      ];
+      ]
+      ++ (if quirk != null then [ quirk ] else [ ]);
     };
 }
