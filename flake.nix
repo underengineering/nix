@@ -58,6 +58,7 @@
               #  cpuVendor = "intel";
               #  disableMitigations = true;
               #};
+              pipewire.enable = true;
               wayland.enable = true;
               greetd = {
                 enable = true;

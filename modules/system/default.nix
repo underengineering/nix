@@ -8,5 +8,6 @@
     ./greetd
     ./unbound
     ./wayland
+    ./pipewire
   ];
 }
