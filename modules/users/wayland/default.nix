@@ -15,7 +15,7 @@ in
     home.packages = with pkgs; [
       rofi-wayland
       kitty
-      firefox
+      firefox-bin
       wireshark
       krita
 
