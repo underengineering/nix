@@ -6,5 +6,6 @@
     ./ssh
     ./packages
     ./greetd
+    ./unbound
   ];
 }

@@ -59,6 +59,16 @@
               enable = true;
               command = "${pkgs.greetd.greetd}/bin/agreety -c sh";
             };
+            unbound = {
+              enable = true;
+              forward-zone = [
+                {
+                  name = ".";
+                  forward-addr = "77.91.85.64@853#dns.parsemyx.ml";
+                  forward-tls-upstream = true;
+                }
+              ];
+            };
           };
           users = [{
             name = "mika";
