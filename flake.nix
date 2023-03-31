@@ -45,7 +45,6 @@
         test = host.mkHost
           {
             name = "test-vm";
-            NICs = [ "enp1s0" ];
             kernelPackage = pkgs.linuxKernel.packages.linux_xanmod_latest;
             initrdMods = [ "ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk" ];
             kernelMods = [ "kvm-intel" ];
