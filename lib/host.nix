@@ -43,6 +43,8 @@ with builtins; with utils;
             "hmsystemdata.json".text = toJSON userCfg;
           };
 
+          systemd.network.wait-online.enable = false;
+
           networking.hostName = name;
           networking.interfaces = networkCfg;
           networking.wireless.interfaces = wifi;
