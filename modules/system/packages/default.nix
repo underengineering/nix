@@ -20,7 +20,6 @@ in
       neovim
 
       # Utils
-      sshfs
       nmap
       unzip
       zstd
