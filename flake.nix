@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     hyprland.url = "github:underengineering/Hyprland";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -34,29 +33,22 @@
         mika = user.mkHMUser {
           username = "mika";
           userConfig = {
-            wayland.enable = true;
             git.enable = true;
+            wayland.enable = true;
             hyprland.enable = true;
           };
         };
       };
 
       nixosConfigurations = {
-        test = host.mkHost
+        lenowo = host.mkHost
           {
-            name = "test-vm";
+            name = "lenowo";
             kernelPackage = pkgs.linuxKernel.packages.linux_xanmod_latest;
-            initrdMods = [ "ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk" ];
-            kernelMods = [ "kvm-intel" ];
-            kernelParams = [ ];
+            initrdMods = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
+            kernelMods = [ "kvm-amd" ];
+            kernelParams = [ "mitigations=off" ];
             systemConfig = {
-              ssh.enable = true;
-              ssh.type = "server";
-              #kernel = {
-              #  enablePatches = true;
-              #  cpuVendor = "intel";
-              #  disableMitigations = true;
-              #};
               zram.enable = true;
               pipewire.enable = true;
               wayland.enable = true;
@@ -64,25 +56,14 @@
                 enable = true;
                 command = "${pkgs.greetd.greetd}/bin/agreety -c 'dbus-launch --sh-syntax --exit-with-session Hyprland'";
               };
-              unbound = {
-                enable = true;
-                forward-zone = [
-                  {
-                    name = ".";
-                    forward-addr = "77.91.85.64@853#dns.parsemyx.ml";
-                    forward-tls-upstream = true;
-                  }
-                ];
-              };
             };
-            quirk = nixos-hardware.nixosModules.dell-xps-13-9380;
             users = [{
               name = "mika";
-              groups = [ "wheel" ];
+              groups = [ "audio" "video" "wheel" ];
               uid = 1000;
               shell = pkgs.zsh;
             }];
-            cpuCores = 4;
+            cpuCores = 16;
           };
       };
     };

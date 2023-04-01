@@ -10,7 +10,6 @@ with builtins; with utils;
     , systemConfig
     , cpuCores
     , users
-    , quirk ? null
     , wifi ? [ ]
     , gpuTempSensor ? null
     , cpuTempSensor ? null
@@ -34,6 +33,8 @@ with builtins; with utils;
           environment.etc = {
             "hmsystemdata.json".text = toJSON userCfg;
           };
+
+          hardware.enableRedistributableFirmware = true;
 
           systemd.network.wait-online.enable = false;
 
@@ -65,7 +66,6 @@ with builtins; with utils;
 
           system.stateVersion = "23.05";
         }
-      ]
-      ++ (if quirk != null then [ quirk ] else [ ]);
+      ];
     };
 }
