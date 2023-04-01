@@ -3,7 +3,6 @@ with builtins; with utils;
 {
   mkHost =
     { name
-    , NICs
     , initrdMods
     , kernelMods
     , kernelParams
@@ -19,15 +18,8 @@ with builtins; with utils;
     let
       systemEnableModule = enableModule systemConfig;
 
-      networkCfg = listToAttrs (map
-        (iface: {
-          name = "${iface}";
-          value = { useDHCP = true; };
-        })
-        NICs);
-
       userCfg = {
-        inherit name NICs systemConfig cpuCores gpuTempSensor cpuTempSensor;
+        inherit name systemConfig cpuCores gpuTempSensor cpuTempSensor;
       };
 
       sysUsers = map (u: user.mkSystemUser u) users;
@@ -43,8 +35,9 @@ with builtins; with utils;
             "hmsystemdata.json".text = toJSON userCfg;
           };
 
+          systemd.network.wait-online.enable = false;
+
           networking.hostName = name;
-          networking.interfaces = networkCfg;
           networking.wireless.interfaces = wifi;
 
           networking.networkmanager.enable = true;
