@@ -33,6 +33,7 @@
         mika = user.mkHMUser {
           username = "mika";
           userConfig = {
+            applications.enable = true;
             git.enable = true;
             wayland.enable = true;
             hyprland = {

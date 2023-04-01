@@ -4,5 +4,6 @@
     ./git
     ./hyprland
     ./wayland
+    ./applications
   ];
 }

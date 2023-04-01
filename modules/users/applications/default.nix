@@ -6,7 +6,7 @@ in {
   options.jd.applications = {
     enable = mkOption {
       description = "Enable common applications";
-      type = types.bool
+      type = types.bool;
       default = false;
     };
   };
