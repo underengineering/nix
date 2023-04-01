@@ -21,6 +21,7 @@ in
 
       # Utils
       nmap
+      fzf
       unzip
       zstd
       p7zip

@@ -16,7 +16,8 @@ in {
 
       kitty
 
-      nmap
+      # CLI tools
+      starship
       sshfs
       
       # Fonts
