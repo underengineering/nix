@@ -9,5 +9,6 @@
     ./unbound
     ./wayland
     ./pipewire
+    ./zram
   ];
 }
