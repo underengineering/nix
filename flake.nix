@@ -35,7 +35,10 @@
           userConfig = {
             git.enable = true;
             wayland.enable = true;
-            hyprland.enable = true;
+            hyprland = {
+              enable = true;
+              extraConfig = builtins.readFile "${self}/config/hyprland.conf";
+            };
           };
         };
       };
