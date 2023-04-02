@@ -6,5 +6,6 @@
     ./wayland
     ./applications
     ./fonts
+    ./dunst
   ];
 }

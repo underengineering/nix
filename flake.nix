@@ -37,6 +37,7 @@
             fonts.enable = true;
             git.enable = true;
             wayland.enable = true;
+            dunst.enable = true;
             hyprland = {
               enable = true;
               extraConfig = builtins.readFile "${self}/config/hyprland.conf";
