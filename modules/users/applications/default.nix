@@ -14,8 +14,6 @@ in {
     home.packages = with pkgs; [
       home-manager
 
-      kitty
-
       # CLI tools
       starship
       sshfs

@@ -14,6 +14,7 @@ in
   config = mkIf (cfg.enable) {
     home.packages = with pkgs; [
       rofi-wayland
+      eww-wayland
       kitty
       firefox-bin
       wireshark
