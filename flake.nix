@@ -57,6 +57,7 @@
               zram.enable = true;
               pipewire.enable = true;
               wayland.enable = true;
+              bluetooth.enable = true;
               greetd = {
                 enable = true;
                 command = "${pkgs.greetd.greetd}/bin/agreety -c 'dbus-launch --sh-syntax --exit-with-session Hyprland'";

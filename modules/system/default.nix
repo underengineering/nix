@@ -10,5 +10,6 @@
     ./wayland
     ./pipewire
     ./zram
+    ./bluetooth
   ];
 }
