@@ -19,6 +19,7 @@ in {
       # CLI tools
       starship
       sshfs
+      fzf
     ];
   };
 }
