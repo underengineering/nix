@@ -5,5 +5,6 @@
     ./hyprland
     ./wayland
     ./applications
+    ./fonts
   ];
 }

@@ -19,14 +19,6 @@ in {
       # CLI tools
       starship
       sshfs
-      
-      # Fonts
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      fira-code
-      fira-code-symbols
-      powerline-symbols
     ];
   };
 }

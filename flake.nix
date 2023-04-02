@@ -34,6 +34,7 @@
           username = "mika";
           userConfig = {
             applications.enable = true;
+            fonts.enable = true;
             git.enable = true;
             wayland.enable = true;
             hyprland = {
