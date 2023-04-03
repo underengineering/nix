@@ -11,5 +11,6 @@
     ./pipewire
     ./zram
     ./bluetooth
+    ./tlp
   ];
 }
