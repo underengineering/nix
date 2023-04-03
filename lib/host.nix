@@ -35,6 +35,10 @@ with builtins; with utils;
           };
 
           hardware.enableRedistributableFirmware = true;
+          hardware.cpu = {
+            intel.updateMicrocode = true;
+            amd.updateMicrocode = true;
+          };
 
           systemd.network.wait-online.enable = false;
 
