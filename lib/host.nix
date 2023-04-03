@@ -42,8 +42,6 @@ with builtins; with utils;
 
           systemd.network.wait-online.enable = false;
 
-          services.thermald.enable = true;
-
           networking.hostName = name;
           networking.wireless.interfaces = wifi;
 
