@@ -35,7 +35,11 @@
           userConfig = {
             applications.enable = true;
             fonts.enable = true;
-            git.enable = true;
+            git = {
+              enable = true;
+              userName = "underengineering";
+              userEmail = "san4a852b@gmail.com";
+            };
             wayland.enable = true;
             dunst.enable = true;
             hyprland = {
