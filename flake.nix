@@ -4,17 +4,18 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     hyprland.url = "github:underengineering/Hyprland";
+    xdph.url = "github:hyprwm/xdg-desktop-portal-hyprland";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-hardware, hyprland, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs:
     let
       inherit (nixpkgs) lib;
       util = import ./lib {
-        inherit inputs system nixpkgs pkgs home-manager nixos-hardware hyprland lib; overlays = pkgs.overlays;
+        inherit inputs system nixpkgs pkgs home-manager hyprland lib; overlays = pkgs.overlays;
       };
 
       inherit (util) user;

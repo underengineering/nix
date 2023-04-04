@@ -6,13 +6,12 @@ in
 {
   options.jd.flatpak = {
     enable = mkOption {
-      description = "Enable flatpak. Enables XDG portal";
+      description = "Enable flatpak";
       type = types.bool;
       default = false;
     };
   };
   config = mkIf (cfg.enable) {
-    xdg.portal.enable = true;
     services.flatpak.enable = true;
   };
 }

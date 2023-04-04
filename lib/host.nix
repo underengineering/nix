@@ -28,7 +28,7 @@ with builtins; with utils;
 
       modules = [
         {
-          imports = [ ../modules/system ] ++ sysUsers;
+          imports = [ (import ../modules/system { inherit inputs; }) ] ++ sysUsers;
           jd = systemConfig;
           environment.etc = {
             "hmsystemdata.json".text = toJSON userCfg;

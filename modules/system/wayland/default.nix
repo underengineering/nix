@@ -1,3 +1,4 @@
+{ inputs }:
 { pkgs, config, lib, ... }:
 with lib;
 let
@@ -12,6 +13,13 @@ in
     };
   };
   config = mkIf (cfg.enable) {
+    services.dbus.enable = true;
+    xdg.portal = {
+      enable = true;
+      extraPortals = [
+        inputs.xdph.packages.x86_64-linux.default
+      ];
+    };
     programs.light.enable = true;
     environment.systemPackages = with pkgs; [
       libva-utils

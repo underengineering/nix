@@ -1,4 +1,4 @@
-{ inputs, nixpkgs, pkgs, home-manager, hyprland, system, lib, overlays, ... }:
+{ inputs, nixpkgs, pkgs, hyprland, home-manager, system, lib, overlays, ... }:
 rec {
   utils = import ./utils.nix { inherit lib; };
   user = import ./user.nix { inherit nixpkgs pkgs home-manager hyprland lib system overlays; };
