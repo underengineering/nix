@@ -21,10 +21,10 @@ in
       krita
 
       wl-clipboard
-
       grim
       slurp
       swappy
+      light
     ];
   };
 }
