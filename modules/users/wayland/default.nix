@@ -24,7 +24,6 @@ in
       grim
       slurp
       swappy
-      light
     ];
     home.sessionVariables = {
       _JAVA_AWT_WM_NONREPARENTING = 1;

@@ -12,6 +12,7 @@ in
     };
   };
   config = mkIf (cfg.enable) {
+    programs.light.enable = true;
     environment.systemPackages = with pkgs; [
       libva-utils
       vdpauinfo
