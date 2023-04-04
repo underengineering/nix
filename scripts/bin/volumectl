@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+case $1 in
+    "+"*)
+        wpctl set-volume @DEFAULT_SINK@ "${1:1}%+"
+        ;;
+    "-"*)
+        wpctl set-volume @DEFAULT_SINK@ "${1:1}%-"
+        ;;
+    *)
+        echo "Usage: volumectl [+-]{volume}"
+        ;;
+esac
+
+volume=$(wpctl get-volume @DEFAULT_SINK@ | sed 's/^Volume: //' | awk '{printf "%d", $1*100}')
+notify-send -r 10002 -h int:value:$volume "Volume: $volume%"
+
