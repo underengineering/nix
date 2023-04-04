@@ -46,6 +46,25 @@
               enable = true;
               extraConfig = builtins.readFile "${self}/config/hyprland.conf";
             };
+            themes = {
+              enable = true;
+              cursorTheme = {
+                enable = true;
+                package = pkgs.capitaine-cursors-themed;
+                name = "Capitaine Cursors (Gruvbox)";
+                size = 32;
+              };
+              iconTheme = {
+                enable = true;
+                package = pkgs.gruvbox-dark-icons-gtk;
+                name = "oomox-gruvbox-dark";
+              };
+              theme = {
+                enable = true;
+                package = pkgs.gruvbox-gtk-theme;
+                name = "Gruvbox-Dark";
+              };
+            };
           };
         };
       };

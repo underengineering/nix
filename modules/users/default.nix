@@ -7,5 +7,6 @@
     ./applications
     ./fonts
     ./dunst
+    ./themes
   ];
 }
