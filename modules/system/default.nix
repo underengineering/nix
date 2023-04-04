@@ -12,5 +12,6 @@
     ./zram
     ./bluetooth
     ./tlp
+    ./chrony
   ];
 }
