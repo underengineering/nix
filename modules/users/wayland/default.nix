@@ -24,6 +24,13 @@ in
       grim
       slurp
       swappy
+
+      (pkgs.buildEnv {
+        name = "custom-scripts";
+        paths = [
+          ../../../scripts
+        ];
+      })
     ];
     home.sessionVariables = {
       _JAVA_AWT_WM_NONREPARENTING = 1;

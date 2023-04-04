@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+case $1 in
+    "+"*)
+        light -A "${1:1}"
+        ;;
+    "-"*)
+        light -U "${1:1}"
+        ;;
+    *)
+        echo "Usage: backlightctl [+-]{brightness}"
+        exit 1
+        ;;
+esac
+
+brightness=$(light)
+notify-send -r 10001 -h int:value:$brightness "Brightness: $brightness%"
+
