@@ -13,5 +13,6 @@
     ./bluetooth
     ./tlp
     ./chrony
+    ./flatpak
   ];
 }

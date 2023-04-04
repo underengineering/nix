@@ -78,6 +78,7 @@
             kernelMods = [ "kvm-amd" ];
             kernelParams = [ "mitigations=off" ];
             systemConfig = {
+              flatpak.enable = true;
               zram.enable = true;
               pipewire.enable = true;
               wayland.enable = true;
