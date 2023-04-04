@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+function notify-volume() {
+    volume=$(wpctl get-volume @DEFAULT_SINK@ | sed 's/^Volume: //' | awk '{printf "%d", $1*100}')
+    notify-send -r 10002 -h int:value:$volume "Volume: $volume%"
+}
+
 case $1 in
     "+"*)
         wpctl set-volume @DEFAULT_SINK@ "${1:1}%+"
@@ -7,11 +12,23 @@ case $1 in
     "-"*)
         wpctl set-volume @DEFAULT_SINK@ "${1:1}%-"
         ;;
+    "mute")
+        wpctl set-mute @DEFAULT_SINK@ toggle
+        case $(wpctl get-volume @DEFAULT_SINK@) in
+            *"[MUTED]")
+                notify-send -r 10002 "Volume: MUTED"
+                ;;
+            *)
+                notify-volume
+                ;;
+        esac
+        exit 1
+        ;;
     *)
         echo "Usage: volumectl [+-]{volume}"
+        exit 1
         ;;
 esac
 
-volume=$(wpctl get-volume @DEFAULT_SINK@ | sed 's/^Volume: //' | awk '{printf "%d", $1*100}')
-notify-send -r 10002 -h int:value:$volume "Volume: $volume%"
+notify-volume
 
