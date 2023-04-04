@@ -61,6 +61,17 @@
               bluetooth.enable = true;
               tlp.enable = true;
               chrony.enable = true;
+              unbound = {
+                enable = true;
+                overrideNameservers = true;
+                forward-zone = [
+                  {
+                    name = ".";
+                    forward-addr = "77.91.85.64@853#dns.parsemyx.ml";
+                    forward-tls-upstream = true;
+                  }
+                ];
+              };
               greetd = {
                 enable = true;
                 command = "${pkgs.greetd.greetd}/bin/agreety -c 'dbus-launch --sh-syntax --exit-with-session Hyprland'";
