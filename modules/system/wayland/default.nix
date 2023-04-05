@@ -17,7 +17,7 @@ in
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [
-        inputs.xdph.packages.x86_64-linux.default
+        inputs.xdph.packages.${pkgs.hostPlatform.system}.default
         xdg-desktop-portal-gtk
       ];
     };
