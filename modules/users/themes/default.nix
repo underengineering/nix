@@ -71,13 +71,15 @@ in
     home.packages = with pkgs; [
       dconf
     ];
+    home.pointerCursor = mkIf (cfg.cursorTheme.enable) {
+      gtk.enable = true;
+      x11.enable = true;
+      package = cfg.cursorTheme.package;
+      name = cfg.cursorTheme.name;
+      size = cfg.cursorTheme.size;
+    };
     gtk = {
       enable = true;
-      cursorTheme = mkIf (cfg.cursorTheme.enable) {
-        package = cfg.cursorTheme.package;
-        name = cfg.cursorTheme.name;
-        size = cfg.cursorTheme.size;
-      };
       iconTheme = mkIf (cfg.iconTheme.enable) {
         package = cfg.iconTheme.package;
         name = cfg.iconTheme.name;
