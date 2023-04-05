@@ -16,8 +16,9 @@ in
     services.dbus.enable = true;
     xdg.portal = {
       enable = true;
-      extraPortals = [
+      extraPortals = with pkgs; [
         inputs.xdph.packages.x86_64-linux.default
+        xdg-desktop-portal-gtk
       ];
     };
     programs.light.enable = true;
