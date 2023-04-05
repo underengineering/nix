@@ -6,6 +6,7 @@ let
 in
 {
   config = {
+    programs.zsh.enable = true;
     environment.systemPackages = with pkgs; [
       # Coreutils replacements
       exa
@@ -17,7 +18,7 @@ in
 
       # Text editors
       vim
-      neovim
+      neovim-nightly
 
       # Utils
       nmap

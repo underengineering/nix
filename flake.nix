@@ -4,12 +4,12 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     hyprland = {
-        url = "github:underengineering/Hyprland";
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:underengineering/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     xdph = {
-        url = "github:hyprwm/xdg-desktop-portal-hyprland";
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:hyprwm/xdg-desktop-portal-hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     eww = {
       url = "github:elkowar/eww";
@@ -17,6 +17,10 @@
     };
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay?rev=7070f17bb65146f9f6cff012c0321cbc9c8c8def";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -34,7 +38,9 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [ ];
+        overlays = [
+          inputs.neovim-nightly-overlay.overlay
+        ];
       };
 
       system = "x86_64-linux";
