@@ -3,9 +3,18 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    hyprland.url = "github:underengineering/Hyprland";
-    xdph.url = "github:hyprwm/xdg-desktop-portal-hyprland";
-    eww.url = "github:elkowar/eww";
+    hyprland = {
+        url = "github:underengineering/Hyprland";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
+    xdph = {
+        url = "github:hyprwm/xdg-desktop-portal-hyprland";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
+    eww = {
+      url = "github:elkowar/eww";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
