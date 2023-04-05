@@ -1,9 +1,10 @@
+{ inputs }:
 { pkgs, config, lib, ... }:
 {
   imports = [
     ./git
     ./hyprland
-    ./wayland
+    (import ./wayland { inherit inputs; })
     ./applications
     ./fonts
     ./dunst

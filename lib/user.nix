@@ -1,4 +1,4 @@
-{ pkgs, home-manager, hyprland, lib, system, overlays, ... }:
+{ inputs, pkgs, home-manager, hyprland, lib, system, overlays, ... }:
 with builtins;
 {
   mkHMUser = { userConfig, username }:
@@ -17,7 +17,7 @@ with builtins;
     home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [
-        ../modules/users
+        (import ../modules/users { inherit inputs; })
         machineModule
         hyprland.homeManagerModules.default
         {

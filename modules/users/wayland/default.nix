@@ -1,3 +1,4 @@
+{ inputs }:
 { pkgs, config, lib, ... }:
 with lib;
 let
@@ -14,7 +15,6 @@ in
   config = mkIf (cfg.enable) {
     home.packages = with pkgs; [
       rofi-wayland
-      eww-wayland
       kitty
       firefox-bin
       wireshark
@@ -24,6 +24,7 @@ in
       grim
       slurp
       swappy
+      inputs.eww.packages.${pkgs.hostPlatform.system}.eww-wayland
 
       (pkgs.buildEnv {
         name = "custom-scripts";
