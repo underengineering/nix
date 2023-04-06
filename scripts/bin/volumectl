@@ -2,7 +2,13 @@
 
 function notify-volume() {
     volume=$(wpctl get-volume @DEFAULT_SINK@ | sed 's/^Volume: //' | awk '{printf "%d", $1*100}')
+    eww update volume_data=$volume
     notify-send -r 10002 -h int:value:$volume "Volume: $volume%"
+}
+
+function notify-muted() {
+    eww update volume_data=MUTED
+    notify-send -r 10002 "Volume: MUTED"
 }
 
 case $1 in
@@ -16,7 +22,7 @@ case $1 in
         wpctl set-mute @DEFAULT_SINK@ toggle
         case $(wpctl get-volume @DEFAULT_SINK@) in
             *"[MUTED]")
-                notify-send -r 10002 "Volume: MUTED"
+                notify-muted
                 ;;
             *)
                 notify-volume
