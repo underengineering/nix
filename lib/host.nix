@@ -48,6 +48,8 @@ with builtins; with utils;
           networking.networkmanager.enable = true;
           networking.useDHCP = false;
 
+          time.timeZone = "Europe/Moscow";
+
           boot.initrd.availableKernelModules = initrdMods;
           boot.kernelModules = kernelMods;
           boot.kernelParams = kernelParams;
