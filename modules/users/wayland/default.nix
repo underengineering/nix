@@ -21,6 +21,7 @@ in
       krita
 
       wl-clipboard
+      xdg-utils
       grim
       slurp
       swappy
