@@ -16,6 +16,7 @@ in {
 
       # CLI tools
       starship
+      binutils
       sshfs
       fzf
     ];
