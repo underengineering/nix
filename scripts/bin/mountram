@@ -1,0 +1,203 @@
+#!/usr/bin/python
+
+import argparse
+import subprocess
+import sys
+import time
+import shutil
+from pathlib import Path
+from typing import Optional
+
+SIZE_POSTFIXES = set("BKMG")
+DIGITS = set("0123456789")
+
+
+class Size:
+    def __init__(self, text: str) -> None:
+        if not text:
+            raise TypeError("Expected size to be a non-empty string")
+
+        if text[-1] not in SIZE_POSTFIXES:
+            raise TypeError("Invalid size string")
+
+        if not all((digit in DIGITS for digit in text[:-1])):
+            raise ValueError("Expected size to contain digits")
+
+        self._size = text
+
+    def __str__(self) -> str:
+        return self._size
+
+
+def find_device(*, mounted_to: str) -> Optional[str]:
+    mounts = Path("/proc/mounts").read_text()
+
+    device = None
+    for mount in mounts.splitlines():
+        if not mount:
+            continue
+
+        data = mount.split(" ")
+        dev = data[0]
+        point = data[1]
+
+        if point == mounted_to:
+            device = dev
+            break
+
+    return device
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Manages ZRAM disks")
+    subparsers = parser.add_subparsers(
+        title="Command", dest="command", required=True)
+
+    add_parser = subparsers.add_parser("add", help="Adds a ZRAM disk")
+    add_parser.add_argument("size", type=Size, help="Disk size")
+    add_parser.add_argument(
+        "-p", "--point", default="/ram", help="Mount point")
+    add_parser.add_argument("-f", "--filesystem", default="ext4",
+                            help="Filesystem to format to")
+
+    update_parser = subparsers.add_parser("update", help="Updates a ZRAM disk")
+    update_parser.add_argument("size", type=Size, help="Disk size")
+    update_parser.add_argument(
+        "-p", "--point", default="/ram", help="Mount point")
+
+    remove_parser = subparsers.add_parser(
+        "remove", help="Unmount and remove zram device")
+    remove_parser.add_argument(
+        "-p", "--point", default="/ram", help="Mount point")
+
+    args = parser.parse_args()
+    if args.command == "add" \
+            and args.filesystem not in ("tmpfs", "ext4", "btrfs"):
+        print(f"Invalid filesystem specified: {args.filesystem}")
+        return 1
+
+    mount_point = args.point
+    if not Path(mount_point).exists():
+        print(f"Mount point '{mount_point}' doesn't exist")
+        return 1
+
+    # Update
+    if args.command == "update":
+        device = find_device(mounted_to=mount_point)
+        if device is None:
+            print(f"ZRAM device mounted to '{mount_point}' not found")
+            return 1
+
+        device_id = device.removeprefix("/dev/zram")
+
+        # Set it's size
+        size_node = Path(f"/sys/block/zram{device_id}/disksize")
+        size_node.write_text(str(args.size))
+
+        print("Device updated successfully")
+
+        return 0
+
+    # Remove
+    if args.command == "remove":
+        device = find_device(mounted_to=mount_point)
+        if device is None:
+            print(f"ZRAM device mounted to '{mount_point}' not found")
+            return 1
+
+        # Lazy unmount
+        print("Unmounting device", device)
+
+        proc = subprocess.run(
+            ["umount", "-l", mount_point],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT)
+        if proc.returncode != 0:
+            print(
+                f"Failed to unmount the device: "
+                f"process exited with status {proc.returncode}")
+            print("Output:", proc.stdout.decode("utf-8"))
+            return 1
+
+        # Remove the device
+        print("Removing the ZRAM device")
+
+        device_id = device.removeprefix("/dev/zram")
+        hot_remove_node = Path("/sys/class/zram-control/hot_remove")
+
+        for _ in range(3):
+            try:
+                hot_remove_node.write_text(device_id)
+                break
+            except OSError as exc:
+                print("Caught OSError, retrying:", exc)
+                time.sleep(5)
+        else:
+            print("Failed to unmount the ZRAM device")
+            return 1
+
+        print("Device removed successfully")
+
+        return 0
+
+    device = find_device(mounted_to=mount_point)
+    if device is not None:
+        print(f"Device '{device}' is already mounted to '{mount_point}'")
+        return 1
+
+    # Hot-add the device
+    hot_add_node = Path("/sys/class/zram-control/hot_add")
+    device_id = hot_add_node.read_text().strip()
+    device = "/dev/zram" + device_id
+
+    print(f"Added a new device '{device}'")
+
+    # Set it's size
+    size_node = Path(f"/sys/block/zram{device_id}/disksize")
+    size_node.write_text(str(args.size))
+
+    # Format
+    if args.filesystem != "tmpfs":
+        cmd = f"mkfs.{args.filesystem}"
+        proc = subprocess.run([cmd, device],
+                              stdout=subprocess.PIPE,
+                              stderr=subprocess.STDOUT)
+        if proc.returncode != 0:
+            print(f"Failed to format the device: "
+                  f"process exited with status {proc.returncode}")
+            print("Output:", proc.stdout.decode("utf-8"))
+            return 1
+
+    # Mount
+    print("Mounting...")
+    mount_args = [
+        "mount",
+        "-o", "rw,noatime,nosuid,nodev,nobarrier,discard,"
+              "dioread_nolock,nojournal_checksum"]
+    if args.filesystem == "tmpfs":
+        mount_args.extend(("-t", "tmpfs"))
+
+    mount_args.append(device)
+    mount_args.append(mount_point)
+
+    proc = subprocess.run(
+        mount_args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    if proc.returncode != 0:
+        print(f"Failed to mount the device: "
+              f"process exited with status {proc.returncode}")
+        print("Output:", proc.stdout.decode("utf-8"))
+        return 1
+
+    print("Device mounted successfully")
+
+    print("Fixing rights...")
+    Path(mount_point).chmod(0o777)
+
+    print("Rights fixed successfully")
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
