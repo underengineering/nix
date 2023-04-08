@@ -14,6 +14,22 @@ in
   };
   config = mkIf (cfg.enable) {
     services.syncthing.enable = true;
+    programs.mpv = {
+      enable = true;
+      config = {
+        sub-auto = "fuzzy";
+        sub-font = "Noto Sans";
+        sub-bold = true;
+
+        profile = "gpu-hq";
+        hwdec = "auto";
+        video-sync = "display-resample";
+        interpolation = true;
+        tscale = "oversample";
+
+        save-position-on-quit = true;
+      };
+    };
     home.packages = with pkgs; [
       rofi-wayland
       kitty
