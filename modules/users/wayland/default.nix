@@ -13,6 +13,7 @@ in
     };
   };
   config = mkIf (cfg.enable) {
+    services.syncthing.enable = true;
     home.packages = with pkgs; [
       rofi-wayland
       kitty
