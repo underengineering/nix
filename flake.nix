@@ -69,12 +69,35 @@
             };
             wayland.enable = true;
             dunst = {
-                enable = true;
-                iconTheme = {
-                    package = pkgs.gruvbox-dark-icons-gtk;
-                    name = "oomox-gruvbox-dark";
+              enable = true;
+              iconTheme = {
+                package = pkgs.gruvbox-dark-icons-gtk;
+                name = "oomox-gruvbox-dark";
+              };
+              settings = {
+                global = {
+                  font = "Fira Code 8";
+                  corner_radius = 4;
+                  frame_width = 1;
+                  gap_size = 4;
+
+                  foreground = "#ebdbb2";
+                  background = "#3c38361f";
+                  highlight = "#ebdbb2";
                 };
-                configFile = "${self}/config/dunst.conf";
+                urgency_low = {
+                  urgency = "low";
+                  frame_color = "#458588";
+                };
+                urgency_normal = {
+                  urgency = "normal";
+                  frame_color = "#98971a";
+                };
+                urgency_critical = {
+                  urgency = "critical";
+                  frame_color = "#cc241d";
+                };
+              };
             };
             hyprland = {
               enable = true;

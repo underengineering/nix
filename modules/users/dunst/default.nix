@@ -27,9 +27,9 @@ in
         default = "32x32";
       };
     };
-    configFile = mkOption {
-      description = "Path to the configuration file";
-      type = with types; either str path;
+    settings = mkOption {
+      description = "Dunst configuration";
+      type = with types; attrsOf (attrsOf (either str (either bool (either int (listOf str)))));
     };
   };
   config = mkIf (cfg.enable) {
@@ -39,7 +39,7 @@ in
     services.dunst = {
       enable = true;
       iconTheme = cfg.iconTheme;
-      configFile = cfg.configFile;
+      settings = cfg.settings;
     };
   };
 }
