@@ -14,5 +14,5 @@ case $1 in
 esac
 
 brightness=$(light)
-notify-send -r 10001 -h int:value:$brightness "Brightness: $brightness%"
+notify-send -r 10001 -i brightnesssettings -h int:value:$brightness "Brightness: $brightness%"
 

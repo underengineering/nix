@@ -2,17 +2,34 @@
 with lib;
 let
   cfg = config.jd.dunst;
-in {
+in
+{
   options.jd.dunst = {
     enable = mkOption {
       description = "Enable dunst";
       type = types.bool;
       default = false;
     };
-    settings = mkOption {
-      description = "Dunst configuration";
-      type = with types; attrsOf (attrs);
-      default = {};
+    iconTheme = {
+      package = mkOption {
+        description = "The icon theme to use";
+        type = with types; nullOr package;
+        default = null;
+      };
+      name = mkOption {
+        description = "Icon name";
+        type = types.str;
+        default = "";
+      };
+      size = mkOption {
+        description = "Desired icon size";
+        type = types.str;
+        default = "32x32";
+      };
+    };
+    configFile = mkOption {
+      description = "Path to the configuration file";
+      type = with types; either str path;
     };
   };
   config = mkIf (cfg.enable) {
@@ -21,7 +38,8 @@ in {
     ];
     services.dunst = {
       enable = true;
-      settings = cfg.settings;
+      iconTheme = cfg.iconTheme;
+      configFile = cfg.configFile;
     };
   };
 }

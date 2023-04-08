@@ -68,7 +68,14 @@
               userEmail = "san4a852b@gmail.com";
             };
             wayland.enable = true;
-            dunst.enable = true;
+            dunst = {
+                enable = true;
+                iconTheme = {
+                    package = pkgs.gruvbox-dark-icons-gtk;
+                    name = "oomox-gruvbox-dark";
+                };
+                configFile = "${self}/config/dunst.conf";
+            };
             hyprland = {
               enable = true;
               extraConfig = builtins.readFile "${self}/config/hyprland.conf";
@@ -125,7 +132,7 @@
               };
               greetd = {
                 enable = true;
-                command = "${pkgs.greetd.greetd}/bin/agreety -c 'dbus-launch --sh-syntax --exit-with-session Hyprland'";
+                command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t -c 'dbus-launch --sh-syntax --exit-with-session Hyprland'";
               };
             };
             users = [{
