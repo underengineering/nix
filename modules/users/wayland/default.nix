@@ -52,6 +52,8 @@ in
     ];
   };
   imports = [
-    ./kitty
+    ./applications
+    ./fonts
+    ./themes
   ];
 }

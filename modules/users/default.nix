@@ -3,12 +3,7 @@
 {
   imports = [
     ./git
-    ./hyprland
     (import ./wayland { inherit inputs; })
     ./applications
-    ./fonts
-    ./dunst
-    ./themes
-    ./swaylock
   ];
 }
