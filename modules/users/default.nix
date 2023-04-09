@@ -9,5 +9,6 @@
     ./fonts
     ./dunst
     ./themes
+    ./swaylock
   ];
 }
