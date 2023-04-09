@@ -61,6 +61,10 @@
           username = "mika";
           userConfig = {
             applications.enable = true;
+            kitty = {
+              enable = true;
+              config = builtins.readFile "${self}/config/kitty.conf";
+            };
             fonts.enable = true;
             git = {
               enable = true;

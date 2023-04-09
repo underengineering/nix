@@ -32,7 +32,6 @@ in
     };
     home.packages = with pkgs; [
       rofi-wayland
-      kitty
       firefox-bin
       wireshark
       krita
@@ -52,4 +51,7 @@ in
       })
     ];
   };
+  imports = [
+    ./kitty
+  ];
 }
