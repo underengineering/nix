@@ -61,9 +61,9 @@
           username = "mika";
           userConfig = {
             applications.enable = true;
-            kitty = {
+            wezterm = {
               enable = true;
-              config = builtins.readFile "${self}/config/kitty.conf";
+              config = builtins.readFile "${self}/config/wezterm.lua";
             };
             fonts.enable = true;
             git = {

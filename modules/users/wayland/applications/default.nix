@@ -5,5 +5,6 @@
     ./hyprland
     ./kitty
     ./swaylock
+    ./wezterm
   ];
 }
