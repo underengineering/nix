@@ -164,7 +164,7 @@
             };
             users = [{
               name = "mika";
-              groups = [ "audio" "video" "wheel" ];
+              groups = [ "audio" "video" "wheel" "wireshark" ];
               uid = 1000;
               shell = pkgs.zsh;
             }];

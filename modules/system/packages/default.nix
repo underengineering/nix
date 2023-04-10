@@ -7,6 +7,7 @@ in
 {
   config = {
     programs.zsh.enable = true;
+    programs.wireshark.enable = true;
     environment.systemPackages = with pkgs; [
       # Coreutils replacements
       exa

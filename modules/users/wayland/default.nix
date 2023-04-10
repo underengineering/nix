@@ -33,7 +33,6 @@ in
     home.packages = with pkgs; [
       rofi-wayland
       firefox-bin
-      wireshark
       krita
 
       wl-clipboard
