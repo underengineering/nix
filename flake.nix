@@ -137,7 +137,7 @@
             kernelPackage = pkgs.linuxKernel.packages.linux_xanmod_latest;
             initrdMods = [ "amdgpu" "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
             kernelMods = [ "kvm-amd" ];
-            kernelParams = [ "mitigations=off" ];
+            kernelParams = [ "mitigations=off" "initcall_blacklist=acpi_cpufreq" "amd_pstate=passive" ];
             systemConfig = {
               flatpak.enable = true;
               zram.enable = true;
