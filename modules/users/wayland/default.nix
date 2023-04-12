@@ -34,6 +34,7 @@ in
       rofi-wayland
       firefox-bin
       krita
+      wireshark
 
       wl-clipboard
       xdg-utils
