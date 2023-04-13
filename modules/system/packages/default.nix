@@ -27,6 +27,7 @@ in
       unzip
       zstd
       p7zip
+      config.boot.kernelPackages.cpupower
     ];
   };
 }
