@@ -14,6 +14,7 @@ in
   };
   config = mkIf (cfg.enable) {
     services.syncthing.enable = true;
+    systemd.user.services.syncthing.Install.WantedBy = mkForce [];
     programs.mpv = {
       enable = true;
       config = {
