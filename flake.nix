@@ -2,7 +2,7 @@
   description = "My system configuration";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/53dad94e874c9586e71decf82d972dfb640ef044";
     hyprland = {
       url = "github:underengineering/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
