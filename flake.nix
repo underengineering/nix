@@ -164,7 +164,7 @@
             };
             users = [{
               name = "mika";
-              groups = [ "audio" "video" "wheel" "wireshark" ];
+              groups = [ "audio" "video" "wheel" "wireshark" "libvirtd" ];
               uid = 1000;
               shell = pkgs.zsh;
             }];

@@ -39,6 +39,7 @@ in
       krita
       wireshark
       qbittorrent
+      virt-manager
 
       wl-clipboard
       xdg-utils

@@ -8,6 +8,8 @@ in
   config = {
     programs.zsh.enable = true;
     programs.wireshark.enable = true;
+    programs.dconf.enable = true;
+    virtualisation.libvirtd.enable = true;
     environment.systemPackages = with pkgs; [
       # Coreutils replacements
       exa
