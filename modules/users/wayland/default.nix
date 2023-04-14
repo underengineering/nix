@@ -36,6 +36,7 @@ in
       firefox-bin
       krita
       wireshark
+      qbittorrent
 
       wl-clipboard
       xdg-utils
