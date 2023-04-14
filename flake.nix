@@ -123,7 +123,7 @@
               theme = {
                 enable = true;
                 package = pkgs.gruvbox-gtk-theme;
-                name = "Gruvbox-Dark";
+                name = "Gruvbox-Dark-BL";
               };
             };
           };
