@@ -31,6 +31,8 @@ in
         save-position-on-quit = true;
       };
     };
+    # TODO: Mount /tmp as zram
+    home.file.Downloads.source = config.lib.file.mkOutOfStoreSymlink "/tmp/Downloads";
     home.packages = with pkgs; [
       rofi-wayland
       firefox-bin
