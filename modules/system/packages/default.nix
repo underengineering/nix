@@ -9,7 +9,10 @@ in
     programs.zsh.enable = true;
     programs.wireshark.enable = true;
     programs.dconf.enable = true;
+
     virtualisation.libvirtd.enable = true;
+    systemd.services.libvirtd.enable = false;
+
     environment.systemPackages = with pkgs; [
       # Coreutils replacements
       exa
