@@ -19,4 +19,12 @@ config.window_padding = {
 
 config.window_background_opacity = 0.8
 
+config.ssh_domains = {
+    {
+        name = "parsemyx.ml",
+        remote_address = "77.91.85.64",
+        username = "mika"
+    }
+}
+
 return config
