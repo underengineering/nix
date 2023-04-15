@@ -15,6 +15,23 @@ in
     programs.neovim = {
       enable = true;
       package = pkgs.neovim-nightly;
+      extraPackages = with pkgs; [
+        # Nix
+        nil
+        nixpkgs-fmt
+
+        # Lua
+        lua-language-server
+
+        # Python
+        ruff
+        nodejs
+        nodePackages_latest.pyright
+        black
+
+        # C++ and C
+        clang-tools_15
+      ];
     };
   };
 }
