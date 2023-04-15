@@ -65,6 +65,7 @@
               enable = true;
               config = builtins.readFile "${self}/config/wezterm.lua";
             };
+            neovim.enable = true;
             fonts.enable = true;
             git = {
               enable = true;

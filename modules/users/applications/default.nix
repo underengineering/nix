@@ -2,7 +2,8 @@
 with lib;
 let
   cfg = config.jd.applications;
-in {
+in
+{
   options.jd.applications = {
     enable = mkOption {
       description = "Enable common applications";
@@ -21,4 +22,7 @@ in {
       fzf
     ];
   };
+  imports = [
+    ./neovim
+  ];
 }

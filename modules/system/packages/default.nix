@@ -24,7 +24,6 @@ in
 
       # Text editors
       vim
-      neovim-nightly
 
       # Utils
       nmap
