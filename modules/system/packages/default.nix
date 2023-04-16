@@ -13,6 +13,12 @@ in
     virtualisation.libvirtd.enable = true;
     systemd.services.libvirtd.enable = false;
 
+    virtualisation.podman = {
+      enable = true;
+      dockerCompat = true;
+      dockerSocket.enable = true;
+    };
+
     environment.systemPackages = with pkgs; [
       # Coreutils replacements
       exa
@@ -32,6 +38,7 @@ in
       zstd
       p7zip
       config.boot.kernelPackages.cpupower
+      podman-compose
     ];
   };
 }
