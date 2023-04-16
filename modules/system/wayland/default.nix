@@ -37,4 +37,7 @@ in
       ];
     };
   };
+  imports = [
+    ./greetd
+  ];
 }

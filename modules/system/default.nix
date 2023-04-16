@@ -6,7 +6,6 @@
     ./kernel
     ./ssh
     ./packages
-    ./greetd
     ./unbound
     (import ./wayland { inherit inputs; })
     ./pipewire
