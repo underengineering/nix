@@ -36,7 +36,6 @@ in
     home.packages = with pkgs; [
       rofi-wayland
       firefox-bin
-      krita
       wireshark
       qbittorrent
       virt-manager
