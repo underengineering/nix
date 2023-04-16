@@ -66,6 +66,10 @@
               config = builtins.readFile "${self}/config/wezterm.lua";
             };
             neovim.enable = true;
+            zsh = {
+              enable = true;
+              initExtra = builtins.readFile "${self}/config/.zshrc";
+            };
             fonts.enable = true;
             git = {
               enable = true;

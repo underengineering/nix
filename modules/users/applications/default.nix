@@ -12,6 +12,8 @@ in
     };
   };
   config = mkIf (cfg.enable) {
+    # Manage bash with home-manager
+    programs.bash.enable = true;
     home.packages = with pkgs; [
       home-manager
 
@@ -24,5 +26,6 @@ in
   };
   imports = [
     ./neovim
+    ./zsh
   ];
 }
