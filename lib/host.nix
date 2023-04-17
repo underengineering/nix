@@ -54,7 +54,7 @@ with builtins; with utils;
           boot.kernelModules = kernelMods;
           boot.kernelParams = kernelParams;
           boot.kernelPackages = kernelPackage;
-          boot.tmpOnTmpfs = true;
+          boot.tmp.useTmpfs = true;
 
           nixpkgs.pkgs = pkgs;
 
