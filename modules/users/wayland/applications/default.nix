@@ -1,3 +1,4 @@
+{ inputs }:
 { pkgs, config, lib, ... }:
 {
   imports = [
@@ -6,5 +7,6 @@
     ./kitty
     ./swaylock
     ./wezterm
+    (import ./eww { inherit inputs; })
   ];
 }

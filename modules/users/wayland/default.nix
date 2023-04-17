@@ -45,7 +45,6 @@ in
       grim
       slurp
       swappy
-      inputs.eww.packages.${pkgs.hostPlatform.system}.eww-wayland
 
       (pkgs.buildEnv {
         name = "custom-scripts";
@@ -56,7 +55,7 @@ in
     ];
   };
   imports = [
-    ./applications
+    (import ./applications { inherit inputs; })
     ./fonts
     ./themes
   ];
