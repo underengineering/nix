@@ -1,4 +1,3 @@
-{ inputs }:
 { pkgs, config, lib, ... }:
 {
   imports = [
@@ -7,7 +6,7 @@
     ./ssh
     ./packages
     ./unbound
-    (import ./wayland { inherit inputs; })
+    ./wayland
     ./pipewire
     ./zram
     ./bluetooth
