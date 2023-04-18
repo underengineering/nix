@@ -31,6 +31,11 @@ in
 
         # C++ and C
         clang-tools_15
+
+        # Web
+        nodePackages_latest.typescript-language-server
+        nodePackages_latest.prettier
+        nodePackages_latest.vscode-langservers-extracted
       ];
     };
   };
