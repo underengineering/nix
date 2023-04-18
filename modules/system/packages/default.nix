@@ -11,7 +11,7 @@ in
     programs.dconf.enable = true;
 
     virtualisation.libvirtd.enable = true;
-    systemd.services.libvirtd.enable = false;
+    systemd.services.libvirtd.wantedBy = mkForce [];
 
     virtualisation.podman = {
       enable = true;
