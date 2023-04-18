@@ -36,6 +36,8 @@ in
         nodePackages_latest.typescript-language-server
         nodePackages_latest.prettier
         nodePackages_latest.vscode-langservers-extracted
+        nodePackages_latest.svelte-language-server
+        nodePackages_latest."@tailwindcss/language-server"
       ];
     };
   };
