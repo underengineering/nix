@@ -27,4 +27,22 @@ config.ssh_domains = {
     }
 }
 
+config.keys = {
+    {
+        mods = "CTRL|SHIFT",
+        key = "s",
+        action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" }
+    },
+    {
+        mods = "CTRL|SHIFT",
+        key = "d",
+        action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" }
+    },
+    {
+        mods = "CTRL|SHIFT",
+        key = "w",
+        action = wezterm.action.CloseCurrentPane { confirm = true },
+    }
+}
+
 return config
