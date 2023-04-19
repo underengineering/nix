@@ -18,6 +18,8 @@ in
       dejavu_fonts
       liberation_ttf
       noto-fonts
+      noto-fonts-emoji
+      noto-fonts-cjk
       fira-code
       fira-code-symbols
       powerline-symbols
