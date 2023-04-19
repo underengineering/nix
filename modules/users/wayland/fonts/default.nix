@@ -12,6 +12,9 @@ in {
   };
   config = mkIf (cfg.enable) {
     home.packages = with pkgs; [
+      roboto
+      dejavu_fonts
+      liberation_ttf
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
