@@ -8,5 +8,6 @@
     ./swaylock
     ./wezterm
     (import ./eww { inherit inputs; })
+    ./hyprpaper
   ];
 }

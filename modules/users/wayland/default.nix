@@ -39,7 +39,6 @@ in
       wireshark
       qbittorrent
       virt-manager
-      hyprpaper
 
       wl-clipboard
       xdg-utils

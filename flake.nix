@@ -122,6 +122,14 @@
               enable = true;
               extraConfig = builtins.readFile "${self}/config/hyprland.conf";
             };
+            hyprpaper = {
+              enable = true;
+              ipc = false;
+              preload = [ "${self}/wallpapers/wallpaper.png" ];
+              wallpapers = {
+                eDP-2 = "${self}/wallpapers/wallpaper.png";
+              };
+            };
             themes = {
               enable = true;
               cursorTheme = {
