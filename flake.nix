@@ -174,7 +174,7 @@
               };
               greetd = {
                 enable = true;
-                command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t -c 'dbus-launch --sh-syntax --exit-with-session Hyprland'";
+                command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t -c Hyprland";
               };
             };
             users = [{
