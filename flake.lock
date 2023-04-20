@@ -135,6 +135,26 @@
         "type": "github"
       }
     },
+    "hyprpaper": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1681650457,
+        "narHash": "sha256-IGXRZrFGFqUeM5iDgP/ojbrd+gKL40PaFFAITxbkfZ0=",
+        "owner": "hyprwm",
+        "repo": "hyprpaper",
+        "rev": "3bfaac09f58ce31c33e1a56e7eaa606a87fe4c32",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyprwm",
+        "repo": "hyprpaper",
+        "type": "github"
+      }
+    },
     "neovim-flake": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -201,6 +221,7 @@
         "eww": "eww",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
+        "hyprpaper": "hyprpaper",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs",
         "rust-overlay": "rust-overlay"

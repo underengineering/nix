@@ -7,6 +7,10 @@
       url = "github:underengineering/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     eww = {
       url = "github:elkowar/eww";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,6 +45,7 @@
         config.allowUnfree = true;
         overlays = [
           inputs.neovim-nightly-overlay.overlay
+          inputs.hyprpaper.overlays.default
         ];
       };
 
