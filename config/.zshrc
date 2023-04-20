@@ -90,12 +90,12 @@ fi
 
 if command -v sshfs &> /dev/null
 then
-    function sshfsw() {
-        runtime_dir="$XDG_RUNTIME_DIR"
-        control_master="ssh-%C"
-        control_master_path="$runtime_dir/$control_master"
+    function _sshfs_wrapper() {
+        local runtime_dir="$XDG_RUNTIME_DIR"
+        local control_master="ssh-%C"
+        local control_master_path="$runtime_dir/$control_master"
 
-        sshfs -C -o reconnect,kernel_cache,auto_cache,cache=yes,auto_unmount \
+        \sshfs -C -o reconnect,kernel_cache,auto_cache,cache=yes,auto_unmount \
             -o ControlMaster=auto                   \
             -o ControlPath="${control_master_path}" \
             -o ControlPersist=yes                   \
@@ -104,6 +104,8 @@ then
             -o TCPKeepAlive=no                      \
             "$@"
     }
+
+    alias sshfs=_sshfs_wrapper
 
     enabled_aliases+='sshfs'
 fi
@@ -165,12 +167,12 @@ then
     enabled_aliases+='progress'
 fi
 
-function sshw() {
+function _ssh_wrapper() {
     local runtime_dir="$XDG_RUNTIME_DIR"
     local control_master="ssh-%C"
     local control_master_path="$runtime_dir/$control_master"
 
-    ssh -C \
+    \ssh -C \
         -o ControlMaster=auto                   \
         -o ControlPath="${control_master_path}" \
         -o ControlPersist=yes                   \
@@ -178,6 +180,8 @@ function sshw() {
         -o ServerAliveCountMax=5                \
         "$@"
 }
+
+alias ssh=_ssh_wrapper
 
 # alias vpnsh='sudo ip netns exec ${1:-protected} sudo -u $USER -i'
 alias wine="WINEARCH=win64 WINEPREFIX=${HOME}/.wine /usr/bin/wine"
