@@ -27,5 +27,6 @@ in
   imports = [
     ./neovim
     ./zsh
+    ./starship
   ];
 }

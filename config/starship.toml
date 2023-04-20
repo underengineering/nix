@@ -1,0 +1,94 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+continuation_prompt = " "
+palette = "gruvbox"
+
+format       = """$directory$python$nodejs$rust$nix_shell$git_branch$git_metrics$git_status$git_commit[ ](#458588 bg:bg0)[](bg0)$fill[](bg0)$status$cmd_duration
+$character"""
+
+[directory]
+format = "[ $path]($style)[$read_only]($read_only_style)[  ](gray bg:bg0)"
+style  = "bright-green bg:bg0"
+
+read_only       = ""
+read_only_style = "bright-red bg:bg0"
+
+[python]
+format = "[via $symbol$pyenv_prefix $version]($style)[  ](gray bg:bg0)"
+style = "bright-yellow bg:bg0"
+
+symbol = ""
+
+[nodejs]
+format = "[via $symbol $version]($style)[  ](gray bg:bg0)"
+style = "bright-yellow bg:bg0"
+
+symbol = ""
+
+[rust]
+format = "[via $symbol $version]($style)[  ](gray bg:bg0)"
+style = "bright-yellow bg:bg0"
+
+symbol = ""
+
+[nix_shell]
+format = "[via $symbol $state( \\($name\\))]($style)[  ](gray bg:bg0)"
+symbol = "[󱄅](blue bg:bg0)"
+impure_msg = "[impure](bold red bg:bg0)"
+pure_msg = "[pure](bold green bg:bg0)"
+unknown_msg = "[unknown shell](bold yellow)"
+style = "bold bright-yellow bg:bg0"
+
+[git_branch]
+format = "[on ](bright-yellow bg:bg0)[$symbol$branch(/$remote_branch) ]($style)"
+style = "bold bright-yellow bg:bg0"
+
+[git_commit]
+format = "[($hash$tag)]($style)[  ](gray bg:bg0)"
+style = "bright-yellow bg:bg0"
+
+[git_metrics]
+disabled = false
+format = "([+$added ]($added_style))([-$deleted ]($deleted_style))"
+added_style = "bold bright-green bg:bg0"
+deleted_style = "bold bright-red bg:bg0"
+
+[git_status]
+format = "([\\[](bg:bg0)[$all_status$ahead$behind]($style)[\\]](bg:bg0)[  ](gray bg:bg0))"
+style = "bold bright-yellow bg:bg0"
+
+[character]
+success_symbol = "[](bold bright-green)"
+error_symbol   = "[](bold bright-red)"
+
+[fill]
+symbol = "·"
+style = "bg1"
+
+[cmd_duration]
+format = "[took $duration ]($style)"
+style = "bright-red bg:bg0"
+
+[status]
+disabled = false
+
+format = "[ $symbol($status)]($style)[  ](gray bg:bg0)"
+map_symbol = true
+
+success_symbol        = " "
+symbol                = " "
+not_found_symbol      = " "
+not_executable_symbol = " "
+sigint_symbol         = " "
+
+style = "bright-green bg:bg0"
+
+[package]
+disabled = true
+
+[palettes.gruvbox]
+bg0 = "#1d2021"
+bg1 = "#3c3836"
+gray = "#928374"
