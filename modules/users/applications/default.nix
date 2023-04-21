@@ -17,6 +17,8 @@ in
     home.packages = with pkgs; [
       home-manager
 
+      ffmpeg
+
       # CLI tools
       starship
       binutils
