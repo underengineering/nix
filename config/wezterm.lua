@@ -42,7 +42,27 @@ config.keys = {
         mods = "CTRL|SHIFT",
         key = "w",
         action = wezterm.action.CloseCurrentPane { confirm = true },
-    }
+    },
+    {
+        mods = "CTRL|SHIFT",
+        key = "<",
+        action = wezterm.action.ActivateTabRelative(-1)
+    },
+    {
+        mods = "CTRL|SHIFT",
+        key = ">",
+        action = wezterm.action.ActivateTabRelative(1)
+    },
+    {
+        mods = "CTRL|SHIFT",
+        key = ":",
+        action = wezterm.action.MoveTabRelative(-1)
+    },
+    {
+        mods = "CTRL|SHIFT",
+        key = "\"",
+        action = wezterm.action.MoveTabRelative(1)
+    },
 }
 
 return config
