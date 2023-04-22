@@ -175,7 +175,11 @@
                 forward-zone = [
                   {
                     name = ".";
-                    forward-addr = "77.91.85.64@853#dns.parsemyx.ml";
+                    forward-addr = [
+                      "77.91.85.64@853#dns.parsemyx.ml"
+                      "1.1.1.1@853"
+                      "1.0.0.1@853"
+                    ];
                     forward-tls-upstream = true;
                   }
                 ];
