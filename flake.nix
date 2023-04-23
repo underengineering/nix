@@ -46,16 +46,6 @@
         config.allowUnfree = true;
       };
 
-      # Cursor names must be without spaces to be parsed correctly
-      capitaine-cursors-themed = pkgs.capitaine-cursors-themed.overrideAttrs ({ preInstall ? "", ... }: {
-        preInstall = preInstall + ''
-          for src in *; do
-            dst=$(echo "$src" | tr " " "-")
-            mv "./$src" "$dst"
-          done
-        '';
-      });
-
       system = "x86_64-linux";
     in
     {
@@ -131,7 +121,7 @@
               enable = true;
               cursorTheme = {
                 enable = true;
-                package = capitaine-cursors-themed;
+                package = pkgs.capitaine-cursors-themed;
                 name = "Capitaine-Cursors-(Gruvbox)";
                 size = 32;
               };
