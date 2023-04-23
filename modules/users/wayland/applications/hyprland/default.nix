@@ -3,13 +3,6 @@
 with lib;
 let
   cfg = config.jd.hyprland;
-
-  # TODO: Move to overlays
-  hyprland-lto = pkgs.hyprland.overrideAttrs (old: {
-    NIX_CFLAGS_COMPILE = toString (old.NIX_CFLAGS_COMPILE or "") + " -pipe -march=native -O3 -fipa-pta";
-    NIX_CXXFLAGS_COMPILE = toString (old.NIX_CXXFLAGS_COMPILE or "") + " -pipe -march=native -O3 -fipa-pta";
-    NIX_LDFLAGS = toString (old.NIX_LDFLAGS or "") + " -flto=15";
-  });
 in
 {
   options.jd.hyprland = {
@@ -27,7 +20,7 @@ in
   config = mkIf (cfg.enable) {
     wayland.windowManager.hyprland = {
       enable = true;
-      package = hyprland-lto;
+      package = pkgs.hyprland-lto;
       extraConfig = cfg.extraConfig;
     };
   };

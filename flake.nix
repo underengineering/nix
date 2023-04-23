@@ -42,12 +42,8 @@
 
       pkgs = import nixpkgs {
         inherit system;
+        inherit ((import ./overlays { inherit inputs system nixpkgs pkgs lib; })) overlays;
         config.allowUnfree = true;
-        overlays = [
-          inputs.neovim-nightly-overlay.overlay
-          inputs.hyprland.overlays.default
-          inputs.hyprpaper.overlays.default
-        ];
       };
 
       # Cursor names must be without spaces to be parsed correctly
