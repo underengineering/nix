@@ -45,6 +45,7 @@
         config.allowUnfree = true;
         overlays = [
           inputs.neovim-nightly-overlay.overlay
+          inputs.hyprland.overlays.default
           inputs.hyprpaper.overlays.default
         ];
       };

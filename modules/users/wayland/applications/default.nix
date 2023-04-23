@@ -3,7 +3,7 @@
 {
   imports = [
     ./dunst
-    ./hyprland
+    (import ./hyprland { inherit inputs; })
     ./kitty
     ./swaylock
     ./wezterm
