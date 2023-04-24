@@ -11,7 +11,7 @@ in
     programs.dconf.enable = true;
 
     virtualisation.libvirtd.enable = true;
-    systemd.services.libvirtd.wantedBy = mkForce [];
+    systemd.services.libvirtd.wantedBy = mkForce [ ];
 
     virtualisation.podman = {
       enable = true;
@@ -20,6 +20,8 @@ in
     };
 
     environment.systemPackages = with pkgs; [
+      virtiofsd
+
       # Coreutils replacements
       exa
       delta
