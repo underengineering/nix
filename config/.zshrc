@@ -5,8 +5,6 @@ export -U PATH=$HOME/.local/bin:$PATH
 export WORDCHARS=${WORDCHARS/\/}
 
 ####[ OPTIONS ]####
-autoload -U compinit && compinit
-
 setopt autocd autopushd pushdignoredups
 zstyle ':completion:*' menu select
 
