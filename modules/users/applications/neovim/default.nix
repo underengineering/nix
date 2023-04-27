@@ -16,6 +16,9 @@ in
       enable = true;
       package = pkgs.neovim-nightly;
       extraPackages = with pkgs; [
+        # Plugin deps
+        fd
+
         # Nix
         nil
         nixpkgs-fmt
