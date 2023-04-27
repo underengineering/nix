@@ -23,6 +23,7 @@ in
       starship
       binutils
       sshfs
+      rsync
       fzf
     ];
   };

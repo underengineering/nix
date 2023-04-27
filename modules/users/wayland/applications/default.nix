@@ -9,5 +9,6 @@
     ./wezterm
     (import ./eww { inherit inputs; })
     ./hyprpaper
+    ./vscodium
   ];
 }

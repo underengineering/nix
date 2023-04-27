@@ -74,6 +74,7 @@
               userEmail = "san4a852b@gmail.com";
             };
             wayland.enable = true;
+            vscodium.enable = true;
             dunst = {
               enable = true;
               iconTheme = {
