@@ -191,6 +191,12 @@ function rust-musl-builder {
         clux/muslrust:nightly "$@"
 }
 
+function .. {
+    local d=..
+    repeat ${1-1} [[ -d ${d::=$d/..} ]] || break
+    cd ${d%/..}
+}
+
 # Health check
 function health-check {
     local RED='\033[0;31m'
