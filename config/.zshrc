@@ -181,6 +181,26 @@ function _ssh_wrapper() {
 
 alias ssh=_ssh_wrapper
 
+function wezterm-setup {
+    local HOST=$1
+
+    echo "Connecting to root@$HOST"
+    local SCRIPT='
+    set -e
+    if [ -f /usr/bin/wezterm ]; then
+        echo "Wezterm is already set up - reinstalling"
+        rm /usr/bin/wezterm
+    fi
+
+    apt install fuse -y
+    curl -Lo /usr/bin/wezterm https://github.com/wez/wezterm/releases/download/nightly/WezTerm-nightly-Ubuntu20.04.AppImage
+    chmod +x /usr/bin/wezterm
+    '
+
+    local SCRIPT_BASE64=$(base64 <<< $SCRIPT)
+    \ssh root@$1 "base64 -d <<< '$SCRIPT_BASE64' | bash"
+}
+
 # alias vpnsh='sudo ip netns exec ${1:-protected} sudo -u $USER -i'
 alias wine="WINEARCH=win64 WINEPREFIX=${HOME}/.wine /usr/bin/wine"
 
