@@ -193,7 +193,7 @@ function wezterm-setup {
     fi
 
     apt install fuse -y
-    curl -Lo /usr/bin/wezterm https://github.com/wez/wezterm/releases/download/nightly/WezTerm-nightly-Ubuntu20.04.AppImage
+    curl -Lo /usr/bin/wezterm https://github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/WezTerm-20230408-112425-69ae8472-Ubuntu20.04.AppImage
     chmod +x /usr/bin/wezterm
     '
 
