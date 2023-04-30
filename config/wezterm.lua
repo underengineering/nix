@@ -22,7 +22,7 @@ config.window_background_opacity = 0.8
 config.ssh_domains = {
     {
         name = "parsemyx.ml",
-        remote_address = "77.91.85.64",
+        remote_address = "185.106.92.119",
         username = "mika"
     }
 }
