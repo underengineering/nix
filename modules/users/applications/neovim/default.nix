@@ -35,6 +35,9 @@ in
         # C++ and C
         clang-tools_15
 
+        # Misc
+        taplo
+
         # Web
         nodePackages_latest.typescript-language-server
         nodePackages_latest.prettier
