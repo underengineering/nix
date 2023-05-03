@@ -31,6 +31,7 @@ in
         nodejs
         nodePackages_latest.pyright
         black
+        python310Packages.ruff-lsp
 
         # C++ and C
         clang-tools_15
@@ -45,6 +46,10 @@ in
         nodePackages_latest.svelte-language-server
         nodePackages_latest."@tailwindcss/language-server"
       ];
+      # withPython3 = true;
+      # extraPython3Packages = pythonPackages: with pythonPackages; [
+      #   ruff-lsp
+      # ];
     };
   };
 }
