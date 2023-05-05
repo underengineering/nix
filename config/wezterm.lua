@@ -65,4 +65,9 @@ config.keys = {
     },
 }
 
+config.set_environment_variables = {
+    WSLENV = "TERMINFO_DIRS",
+}
+config.term = "wezterm"
+
 return config
