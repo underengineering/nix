@@ -18,6 +18,8 @@ in
       extraPackages = with pkgs; [
         # Plugin deps
         fd
+        gcc
+        nodejs
 
         # Nix
         nil
@@ -28,7 +30,6 @@ in
 
         # Python
         ruff
-        nodejs
         nodePackages_latest.pyright
         black
         python310Packages.ruff-lsp
