@@ -19,6 +19,8 @@ in
 
       ffmpeg
 
+      wireguard-tools
+
       # CLI tools
       starship
       binutils
