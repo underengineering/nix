@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.jd.zsh;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.jd.zsh;
+in {
   options.jd.zsh = {
     enable = mkOption {
       description = "Enable zsh";

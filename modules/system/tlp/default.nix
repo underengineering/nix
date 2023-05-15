@@ -1,10 +1,12 @@
-
-{ pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.jd.tlp;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.jd.tlp;
+in {
   options.jd.tlp = {
     enable = mkOption {
       description = "Enable TLP service";

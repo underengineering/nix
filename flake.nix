@@ -39,161 +39,169 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs:
-    let
-      inherit (nixpkgs) lib;
-      util = import ./lib {
-        inherit inputs system nixpkgs pkgs home-manager hyprland lib; overlays = pkgs.overlays;
-      };
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    hyprland,
+    ...
+  } @ inputs: let
+    inherit (nixpkgs) lib;
+    util = import ./lib {
+      inherit inputs system nixpkgs pkgs home-manager hyprland lib;
+      overlays = pkgs.overlays;
+    };
 
-      inherit (util) user;
-      inherit (util) host;
+    inherit (util) user;
+    inherit (util) host;
 
-      pkgs = import nixpkgs {
-        inherit system;
-        inherit ((import ./overlays { inherit inputs system nixpkgs pkgs lib; })) overlays;
-        config.allowUnfree = true;
-      };
+    pkgs = import nixpkgs {
+      inherit system;
+      inherit ((import ./overlays {inherit inputs system nixpkgs pkgs lib;})) overlays;
+      config.allowUnfree = true;
+    };
 
-      system = "x86_64-linux";
-    in
-    {
-      homeManagerConfigurations = {
-        mika = user.mkHMUser {
-          username = "mika";
-          userConfig = {
-            applications.enable = true;
-            wezterm = {
-              enable = true;
-              config = builtins.readFile "${self}/config/wezterm.lua";
+    system = "x86_64-linux";
+  in {
+    homeManagerConfigurations = {
+      mika = user.mkHMUser {
+        username = "mika";
+        userConfig = {
+          applications.enable = true;
+          wezterm = {
+            enable = true;
+            config = builtins.readFile "${self}/config/wezterm.lua";
+          };
+          eww = {
+            enable = true;
+            config = "${self}/config/eww"; # TODO
+          };
+          neovim.enable = true;
+          zsh = {
+            enable = true;
+            initExtra = builtins.readFile "${self}/config/.zshrc";
+          };
+          fonts.enable = true;
+          git = {
+            enable = true;
+            userName = "underengineering";
+            userEmail = "san4a852b@gmail.com";
+          };
+          wayland.enable = true;
+          vscodium.enable = true;
+          dunst = {
+            enable = true;
+            iconTheme = {
+              package = pkgs.gruvbox-dark-icons-gtk;
+              name = "oomox-gruvbox-dark";
             };
-            eww = {
-              enable = true;
-              config = "${self}/config/eww"; # TODO
-            };
-            neovim.enable = true;
-            zsh = {
-              enable = true;
-              initExtra = builtins.readFile "${self}/config/.zshrc";
-            };
-            fonts.enable = true;
-            git = {
-              enable = true;
-              userName = "underengineering";
-              userEmail = "san4a852b@gmail.com";
-            };
-            wayland.enable = true;
-            vscodium.enable = true;
-            dunst = {
-              enable = true;
-              iconTheme = {
-                package = pkgs.gruvbox-dark-icons-gtk;
-                name = "oomox-gruvbox-dark";
-              };
-              settings = {
-                global = {
-                  font = "Fira Code 8";
-                  corner_radius = 4;
-                  frame_width = 1;
-                  gap_size = 4;
+            settings = {
+              global = {
+                font = "Fira Code 8";
+                corner_radius = 4;
+                frame_width = 1;
+                gap_size = 4;
 
-                  foreground = "#ebdbb2";
-                  background = "#3c38361f";
-                  highlight = "#ebdbb2";
-                };
-                urgency_low = {
-                  urgency = "low";
-                  frame_color = "#458588";
-                };
-                urgency_normal = {
-                  urgency = "normal";
-                  frame_color = "#98971a";
-                };
-                urgency_critical = {
-                  urgency = "critical";
-                  frame_color = "#cc241d";
-                };
+                foreground = "#ebdbb2";
+                background = "#3c38361f";
+                highlight = "#ebdbb2";
+              };
+              urgency_low = {
+                urgency = "low";
+                frame_color = "#458588";
+              };
+              urgency_normal = {
+                urgency = "normal";
+                frame_color = "#98971a";
+              };
+              urgency_critical = {
+                urgency = "critical";
+                frame_color = "#cc241d";
               };
             };
-            hyprland = {
-              enable = true;
-              extraConfig = builtins.readFile "${self}/config/hyprland.conf";
+          };
+          hyprland = {
+            enable = true;
+            extraConfig = builtins.readFile "${self}/config/hyprland.conf";
+          };
+          hyprpaper = {
+            enable = true;
+            ipc = false;
+            preload = ["${self}/wallpapers/wallpaper.png"];
+            wallpapers = {
+              eDP-2 = "${self}/wallpapers/wallpaper.png";
             };
-            hyprpaper = {
+          };
+          themes = {
+            enable = true;
+            cursorTheme = {
               enable = true;
-              ipc = false;
-              preload = [ "${self}/wallpapers/wallpaper.png" ];
-              wallpapers = {
-                eDP-2 = "${self}/wallpapers/wallpaper.png";
-              };
+              package = pkgs.capitaine-cursors-themed;
+              name = "Capitaine-Cursors-(Gruvbox)";
+              size = 32;
             };
-            themes = {
+            iconTheme = {
               enable = true;
-              cursorTheme = {
-                enable = true;
-                package = pkgs.capitaine-cursors-themed;
-                name = "Capitaine-Cursors-(Gruvbox)";
-                size = 32;
-              };
-              iconTheme = {
-                enable = true;
-                package = pkgs.gruvbox-dark-icons-gtk;
-                name = "oomox-gruvbox-dark";
-              };
-              theme = {
-                enable = true;
-                package = pkgs.gruvbox-gtk-theme;
-                name = "Gruvbox-Dark-BL";
-              };
+              package = pkgs.gruvbox-dark-icons-gtk;
+              name = "oomox-gruvbox-dark";
+            };
+            theme = {
+              enable = true;
+              package = pkgs.gruvbox-gtk-theme;
+              name = "Gruvbox-Dark-BL";
             };
           };
         };
       };
+    };
 
-      nixosConfigurations = {
-        lenowo = host.mkHost
-          {
-            name = "lenowo";
-            kernelPackage = pkgs.linuxKernel.packages.linux_xanmod_latest;
-            initrdMods = [ "amdgpu" "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
-            kernelMods = [ "kvm-amd" ];
-            kernelParams = [ "mitigations=off" "initcall_blacklist=acpi_cpufreq" "amd_pstate=passive" ];
-            systemConfig = {
-              flatpak.enable = true;
-              zram.enable = true;
-              pipewire.enable = true;
-              wayland.enable = true;
-              bluetooth.enable = true;
-              tlp.enable = true;
-              chrony.enable = true;
-              unbound = {
-                enable = true;
-                overrideNameservers = true;
-                forward-zone = [
-                  {
-                    name = ".";
-                    forward-addr = [
-                      "185.106.92.119@853#dns.parsemyx.ml"
-                      "1.1.1.1@853"
-                      "1.0.0.1@853"
-                    ];
-                    forward-tls-upstream = true;
-                  }
-                ];
-              };
-              greetd = {
-                enable = true;
-                command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t -c Hyprland";
-              };
+    nixosConfigurations = {
+      lenowo =
+        host.mkHost
+        {
+          name = "lenowo";
+          kernelPackage = pkgs.linuxKernel.packages.linux_xanmod_latest;
+          initrdMods = ["amdgpu" "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
+          kernelMods = ["kvm-amd"];
+          kernelParams = ["mitigations=off" "initcall_blacklist=acpi_cpufreq" "amd_pstate=passive"];
+          systemConfig = {
+            flatpak.enable = true;
+            zram.enable = true;
+            pipewire.enable = true;
+            wayland.enable = true;
+            bluetooth.enable = true;
+            tlp.enable = true;
+            chrony.enable = true;
+            unbound = {
+              enable = true;
+              overrideNameservers = true;
+              forward-zone = [
+                {
+                  name = ".";
+                  forward-addr = [
+                    "185.106.92.119@853#dns.parsemyx.ml"
+                    "1.1.1.1@853"
+                    "1.0.0.1@853"
+                  ];
+                  forward-tls-upstream = true;
+                }
+              ];
             };
-            users = [{
+            greetd = {
+              enable = true;
+              command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t -c Hyprland";
+            };
+          };
+          users = [
+            {
               name = "mika";
-              groups = [ "audio" "video" "wheel" "wireshark" "libvirtd" ];
+              groups = ["audio" "video" "wheel" "wireshark" "libvirtd"];
               uid = 1000;
               shell = pkgs.zsh;
-            }];
-            cpuCores = 16;
-          };
-      };
+            }
+          ];
+          cpuCores = 16;
+        };
     };
+  };
 }

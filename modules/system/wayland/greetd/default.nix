@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.jd.greetd;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.jd.greetd;
+in {
   options.jd.greetd = {
     enable = mkOption {
       description = "Enable greetd";

@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.jd.chrony;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.jd.chrony;
+in {
   options.jd.chrony = {
     enable = mkOption {
       description = "Enable chrony. Disables timesyncd.";

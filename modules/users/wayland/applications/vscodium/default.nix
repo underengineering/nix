@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.jd.vscodium;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.jd.vscodium;
+in {
   options.jd.vscodium = {
     enable = mkOption {
       description = "Enable vscodium";
@@ -22,7 +25,7 @@ in
       icon = "vscodium";
       exec = mkForce "codium --enable-features=UseOzonePlatform --ozone-platform=wayland %F";
       terminal = false;
-      categories = [ "Utility" "TextEditor" "Development" "IDE" ];
+      categories = ["Utility" "TextEditor" "Development" "IDE"];
     };
   };
 }

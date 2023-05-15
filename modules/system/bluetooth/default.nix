@@ -1,6 +1,10 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.jd.greetd;
 in {
   options.jd.bluetooth = {

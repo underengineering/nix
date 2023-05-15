@@ -1,6 +1,10 @@
-{ inputs, pkgs, lib, ... }:
-with lib;
 {
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; {
   overlays = [
     inputs.neovim-nightly-overlay.overlay
     inputs.hyprland.overlays.default
@@ -14,17 +18,19 @@ with lib;
 
       # https://wiki.hyprland.org/Nix/XDG-Desktop-Portal-Hyprland/
       xdg-desktop-portal-hyprland = inputs.xdph.packages.${prev.system}.default.override {
-        hyprland-share-picker = inputs.xdph.packages.${prev.system}.hyprland-share-picker.override { inherit hyprland-lto; };
+        hyprland-share-picker = inputs.xdph.packages.${prev.system}.hyprland-share-picker.override {inherit hyprland-lto;};
       };
 
       # Cursor names must be without spaces to be parsed correctly
-      capitaine-cursors-themed = prev.capitaine-cursors-themed.overrideAttrs ({ preInstall ? "", ... }: {
-        preInstall = preInstall + ''
-          for src in *; do
-            dst=$(echo "$src" | tr " " "-")
-            mv "./$src" "$dst"
-          done
-        '';
+      capitaine-cursors-themed = prev.capitaine-cursors-themed.overrideAttrs ({preInstall ? "", ...}: {
+        preInstall =
+          preInstall
+          + ''
+            for src in *; do
+              dst=$(echo "$src" | tr " " "-")
+              mv "./$src" "$dst"
+            done
+          '';
       });
     })
   ];

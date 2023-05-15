@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.jd.zram;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.jd.zram;
+in {
   options.jd.zram = {
     enable = mkOption {
       description = "Enable ZRAM";

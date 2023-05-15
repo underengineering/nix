@@ -1,10 +1,12 @@
-{ inputs }:
-{ pkgs, config, lib, ... }:
-with lib;
-let
+{inputs}: {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.jd.hyprland;
-in
-{
+in {
   options.jd.hyprland = {
     enable = mkOption {
       description = "Enable hyprland";

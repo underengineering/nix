@@ -1,13 +1,16 @@
-{ inputs }:
-{ pkgs, config, lib, ... }:
-{
+{inputs}: {
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   imports = [
     ./dunst
-    (import ./hyprland { inherit inputs; })
+    (import ./hyprland {inherit inputs;})
     ./kitty
     ./swaylock
     ./wezterm
-    (import ./eww { inherit inputs; })
+    (import ./eww {inherit inputs;})
     ./hyprpaper
     ./vscodium
   ];

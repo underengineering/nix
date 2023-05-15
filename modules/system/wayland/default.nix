@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.jd.wayland;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.jd.wayland;
+in {
   options.jd.wayland = {
     enable = mkOption {
       description = "Enable wayland";
@@ -13,8 +16,8 @@ in
   };
   config = mkIf (cfg.enable) {
     services.dbus = {
-        enable = true;
-        implementation = "broker";
+      enable = true;
+      implementation = "broker";
     };
     xdg.portal = {
       enable = true;

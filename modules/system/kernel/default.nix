@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.jd.kernel;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.jd.kernel;
+in {
   options.jd.kernel = {
     enablePatches = mkOption {
       description = "Whether to enable custom .config patches";
@@ -12,7 +15,7 @@ in
     };
     cpuVendor = mkOption {
       description = "CPU vendor to optimize for";
-      type = types.enum [ "intel" "amd" ];
+      type = types.enum ["intel" "amd"];
     };
     disableMitigations = mkOption {
       description = "Whether to disable performance-killing mitigations";

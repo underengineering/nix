@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.jd.hyprpaper;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.jd.hyprpaper;
+in {
   options.jd.hyprpaper = {
     enable = mkOption {
       description = "Enable hyprpaper";
@@ -18,12 +21,12 @@ in
     preload = mkOption {
       description = "List of images to preload";
       type = with types; listOf path;
-      default = [ ];
+      default = [];
     };
     wallpapers = mkOption {
       description = "List of wallpapers to show";
       type = with types; attrsOf path;
-      default = { };
+      default = {};
     };
   };
   config = mkIf (cfg.enable) {
@@ -32,7 +35,11 @@ in
     ];
     xdg.configFile."hypr/hyprpaper.conf" = with builtins; {
       text = ''
-        ipc = ${if cfg.ipc then "on" else "off"}
+        ipc = ${
+          if cfg.ipc
+          then "on"
+          else "off"
+        }
         ${
           strings.concatMapStrings (path: "preload = ${path}\n") cfg.preload
         }

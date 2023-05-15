@@ -1,17 +1,19 @@
-{ pkgs, config, lib, ... }:
-with lib;
-
-let
-  cfg = config.jd.packages;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.jd.packages;
+in {
   config = {
     programs.zsh.enable = true;
     programs.wireshark.enable = true;
     programs.dconf.enable = true;
 
     virtualisation.libvirtd.enable = true;
-    systemd.services.libvirtd.wantedBy = mkForce [ ];
+    systemd.services.libvirtd.wantedBy = mkForce [];
 
     virtualisation.podman = {
       enable = true;

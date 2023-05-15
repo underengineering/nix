@@ -1,34 +1,40 @@
-{ inputs, user, lib, utils, system, pkgs, ... }:
-with builtins; with utils;
 {
-  mkHost =
-    { name
-    , initrdMods
-    , kernelMods
-    , kernelParams
-    , kernelPackage
-    , systemConfig
-    , cpuCores
-    , users
-    , wifi ? [ ]
-    , gpuTempSensor ? null
-    , cpuTempSensor ? null
-    }:
-    let
-      systemEnableModule = enableModule systemConfig;
+  inputs,
+  user,
+  lib,
+  utils,
+  system,
+  pkgs,
+  ...
+}:
+with builtins; with utils; {
+  mkHost = {
+    name,
+    initrdMods,
+    kernelMods,
+    kernelParams,
+    kernelPackage,
+    systemConfig,
+    cpuCores,
+    users,
+    wifi ? [],
+    gpuTempSensor ? null,
+    cpuTempSensor ? null,
+  }: let
+    systemEnableModule = enableModule systemConfig;
 
-      userCfg = {
-        inherit name systemConfig cpuCores gpuTempSensor cpuTempSensor;
-      };
+    userCfg = {
+      inherit name systemConfig cpuCores gpuTempSensor cpuTempSensor;
+    };
 
-      sysUsers = map (u: user.mkSystemUser u) users;
-    in
+    sysUsers = map (u: user.mkSystemUser u) users;
+  in
     lib.nixosSystem {
       inherit system;
 
       modules = [
         {
-          imports = [ ../modules/system ] ++ sysUsers;
+          imports = [../modules/system] ++ sysUsers;
           jd = systemConfig;
           environment.etc = {
             "hmsystemdata.json".text = toJSON userCfg;
@@ -60,7 +66,7 @@ with builtins; with utils;
 
           nix.settings = {
             max-jobs = lib.mkDefault cpuCores;
-            experimental-features = [ "flakes" "nix-command" ];
+            experimental-features = ["flakes" "nix-command"];
             substituters = [
               "https://cache.nixos.org"
               "https://hyprland.cachix.org"

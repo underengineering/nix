@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.jd.fonts;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.jd.fonts;
+in {
   options.jd.fonts = {
     enable = mkOption {
       description = "Enable common fonts";
@@ -23,7 +26,7 @@ in
       fira-code
       fira-code-symbols
       powerline-symbols
-      (nerdfonts.override { fonts = [ "FiraCode" "NerdFontsSymbolsOnly" ]; })
+      (nerdfonts.override {fonts = ["FiraCode" "NerdFontsSymbolsOnly"];})
     ];
   };
 }

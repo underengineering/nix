@@ -1,9 +1,12 @@
-{ inputs }:
-{ pkgs, config, lib, ... }:
-{
+{inputs}: {
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   imports = [
     ./git
-    (import ./wayland { inherit inputs; })
+    (import ./wayland {inherit inputs;})
     ./applications
   ];
 }

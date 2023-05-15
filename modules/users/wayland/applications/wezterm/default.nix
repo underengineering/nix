@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.jd.wezterm;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.jd.wezterm;
+in {
   options.jd.wezterm = {
     enable = mkOption {
       description = "Enable wezterm";

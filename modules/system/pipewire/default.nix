@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.jd.pipewire;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.jd.pipewire;
+in {
   options.jd.pipewire = {
     enable = mkOption {
       description = "Enable pipewire";

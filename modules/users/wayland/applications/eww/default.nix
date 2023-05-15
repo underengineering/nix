@@ -1,10 +1,12 @@
-{ inputs }:
-{ pkgs, config, lib, ... }:
-with lib;
-let
+{inputs}: {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.jd.eww;
-in
-{
+in {
   options.jd.eww = {
     enable = mkOption {
       description = "Enable eww";

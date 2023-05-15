@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.jd.flatpak;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.jd.flatpak;
+in {
   options.jd.flatpak = {
     enable = mkOption {
       description = "Enable flatpak";

@@ -1,10 +1,12 @@
-{ inputs }:
-{ pkgs, config, lib, ... }:
-with lib;
-let
+{inputs}: {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.jd.wayland;
-in
-{
+in {
   options.jd.wayland = {
     enable = mkOption {
       description = "Enable wayland";
@@ -14,7 +16,7 @@ in
   };
   config = mkIf (cfg.enable) {
     services.syncthing.enable = true;
-    systemd.user.services.syncthing.Install.WantedBy = mkForce [ ];
+    systemd.user.services.syncthing.Install.WantedBy = mkForce [];
     programs.mpv = {
       enable = true;
       config = {
@@ -55,7 +57,7 @@ in
     ];
   };
   imports = [
-    (import ./applications { inherit inputs; })
+    (import ./applications {inherit inputs;})
     ./fonts
     ./themes
   ];
