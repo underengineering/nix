@@ -23,7 +23,7 @@ in
 
         # Nix
         nil
-        nixpkgs-fmt
+        alejandra
 
         # Lua
         lua-language-server
