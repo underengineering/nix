@@ -27,6 +27,7 @@ in {
       ];
     };
     programs.light.enable = true;
+    services.xserver.gdk-pixbuf.modulePackages = with pkgs; [ librsvg ];
     environment.systemPackages = with pkgs; [
       libva-utils
       vdpauinfo
