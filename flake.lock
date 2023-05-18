@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "arkenfox": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1683284168,
+        "narHash": "sha256-EWa9vkzprNuBFV+HpO6yBrClVtMTI5QmChErISW/SZY=",
+        "owner": "arkenfox",
+        "repo": "user.js",
+        "rev": "04e6e77439bfa6e3f6b7b9c5e0afac7f74f0586a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "arkenfox",
+        "repo": "user.js",
+        "type": "github"
+      }
+    },
     "eww": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -538,6 +554,7 @@
     },
     "root": {
       "inputs": {
+        "arkenfox": "arkenfox",
         "eww": "eww",
         "home-manager": "home-manager",
         "hyprland": "hyprland",

@@ -37,7 +37,6 @@ in {
     home.file.Downloads.source = config.lib.file.mkOutOfStoreSymlink "/tmp/Downloads";
     home.packages = with pkgs; [
       rofi-wayland
-      firefox-beta
       wireshark
       qbittorrent
       virt-manager

@@ -37,6 +37,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.neovim-flake.follows = "neovim-flake";
     };
+    arkenfox = {
+      url = "github:arkenfox/user.js";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -71,6 +75,11 @@
           wezterm = {
             enable = true;
             config = builtins.readFile "${self}/config/wezterm.lua";
+          };
+          firefox = {
+            enable = true;
+            package = pkgs.firefox-beta;
+            extraConfig = builtins.readFile "${self}/config/firefox.js";
           };
           eww = {
             enable = true;

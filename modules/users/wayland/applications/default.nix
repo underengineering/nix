@@ -13,5 +13,6 @@
     (import ./eww {inherit inputs;})
     ./hyprpaper
     ./vscodium
+    (import ./firefox {inherit inputs;})
   ];
 }
