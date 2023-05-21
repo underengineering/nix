@@ -17,6 +17,7 @@ in {
   config = mkIf (cfg.enable) {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
+      lexend
       roboto
       dejavu_fonts
       liberation_ttf
