@@ -7,7 +7,8 @@
   pkgs,
   ...
 }:
-with builtins; with utils; {
+with builtins;
+with utils; {
   mkHost = {
     name,
     initrdMods,
@@ -46,6 +47,9 @@ with builtins; with utils; {
             amd.updateMicrocode = true;
           };
 
+          systemd.extraConfig = ''
+            DefaultTimeStopSec=15s
+          '';
           systemd.network.wait-online.enable = false;
 
           networking.hostName = name;
