@@ -31,7 +31,7 @@ user_pref("privacy.clearOnShutdown.cache", false);
 user_pref("privacy.clearOnShutdown.downloads", false);
 user_pref("privacy.clearOnShutdown.formdata", false);
 user_pref("privacy.clearOnShutdown.history", false);
-user_pref("privacy.clearOnShutdown.sessions", false)
+user_pref("privacy.clearOnShutdown.sessions", false);
 
 /* 2815: set "Cookies" and "Site Data" to clear on shutdown (if 2810 is true) [SETUP-CHROME]
  * [NOTE] Exceptions: A "cookie" block permission also controls "offlineApps" (see note below).
@@ -72,3 +72,5 @@ user_pref("privacy.resistFingerprinting.letterboxing", false);
 /* 4510: disable using system colors
  * [SETTING] General>Language and Appearance>Fonts and Colors>Colors>Use system colors ***/
 user_pref("browser.display.use_system_colors", true);
+
+user_pref("_user.js.parrot", "SUCCESS: Custom JS loaded");
