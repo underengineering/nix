@@ -40,6 +40,7 @@ in {
       wireshark
       qbittorrent
       virt-manager
+      looking-glass-client
 
       wl-clipboard
       xdg-utils
