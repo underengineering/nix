@@ -106,7 +106,7 @@
             };
             settings = {
               global = {
-                font = "Fira Code 8";
+                font = "Lexend 9";
                 corner_radius = 4;
                 frame_width = 1;
                 gap_size = 4;
