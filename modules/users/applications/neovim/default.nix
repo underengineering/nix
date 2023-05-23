@@ -49,6 +49,7 @@ in {
         nodePackages_latest.vscode-langservers-extracted
         nodePackages_latest.svelte-language-server
         nodePackages_latest."@tailwindcss/language-server"
+        nodePackages_latest."@prisma/language-server"
       ];
       # withPython3 = true;
       # extraPython3Packages = pythonPackages: with pythonPackages; [
