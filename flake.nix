@@ -174,6 +174,16 @@
           kernelMods = ["kvm-amd"];
           kernelParams = ["mitigations=off" "initcall_blacklist=acpi_cpufreq" "amd_pstate=passive"];
           systemConfig = {
+            kernel = {
+              enablePatches = true;
+              cpuVendor = "amd";
+              patches = [
+                {
+                  name = "Lenovo sound patch";
+                  patch = "${self}/patches/kernel/lenovo-sound.patch";
+                }
+              ];
+            };
             flatpak.enable = true;
             zram.enable = true;
             pipewire.enable = true;
