@@ -48,7 +48,7 @@ with utils; {
           };
 
           systemd.extraConfig = ''
-            DefaultTimeStopSec=15s
+            DefaultTimeoutStopSec=15s
           '';
           systemd.network.wait-online.enable = false;
 
