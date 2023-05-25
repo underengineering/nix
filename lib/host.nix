@@ -64,7 +64,10 @@ with utils; {
           boot.kernelModules = kernelMods;
           boot.kernelParams = kernelParams;
           boot.kernelPackages = kernelPackage;
-          boot.tmp.useTmpfs = true;
+          boot.tmp = {
+              useTmpfs = true;
+              tmpfsSize = "75%";
+          };
 
           nixpkgs.pkgs = pkgs;
 
