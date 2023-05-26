@@ -74,6 +74,7 @@ in {
           extraStructuredConfig = with kernel; {
             # SECURITY = no;
             SECURITY_APPARMOR = mkForce no;
+            SECURITY_SELINUX = mkForce no;
             SECURITY_LANDLOCK = mkForce no;
             SECURITY_LOCKDOWN_LSM = mkForce no;
             DEFAULT_SECURITY_APPARMOR = mkForce (option no);
