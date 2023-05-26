@@ -18,7 +18,7 @@ with lib; {
 
       # https://wiki.hyprland.org/Nix/XDG-Desktop-Portal-Hyprland/
       xdg-desktop-portal-hyprland = inputs.xdph.packages.${prev.system}.default.override {
-        hyprland-share-picker = inputs.xdph.packages.${prev.system}.hyprland-share-picker.override {inherit hyprland-lto;};
+        hyprland-share-picker = inputs.xdph.packages.${prev.system}.hyprland-share-picker.override {hyprland = final.hyprland-lto;};
       };
 
       # Cursor names must be without spaces to be parsed correctly
