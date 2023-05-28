@@ -20,6 +20,8 @@ in {
     programs.mpv = {
       enable = true;
       config = {
+        osd-font = "Lexend";
+
         sub-auto = "fuzzy";
         sub-font = "Noto Sans";
         sub-bold = true;
