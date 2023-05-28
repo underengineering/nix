@@ -311,11 +311,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1685127318,
-        "narHash": "sha256-/LgKx/dM/+ZHmHkJ7KhLKY1iWfjnw7sfHblqvUqbQKU=",
+        "lastModified": 1685227616,
+        "narHash": "sha256-3SsQhUQDOWtRepQL92/WpMjwDEzqg7Ftlm2ePUGbDBU=",
         "owner": "underengineering",
         "repo": "Hyprland",
-        "rev": "ee6650226a29511026bb1ac39b5767d06d97c8ee",
+        "rev": "8b466ea7fd19372c27999d49f1a16753d2ad0dc1",
         "type": "github"
       },
       "original": {
