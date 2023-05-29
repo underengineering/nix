@@ -30,6 +30,12 @@ in {
       sshfs
       rsync
       fzf
+
+      # Various interpreters
+      luajit
+      python3
+      nodejs
+      nodePackages.pnpm
     ];
   };
   imports = [
