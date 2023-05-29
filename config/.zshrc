@@ -42,6 +42,11 @@ else
     alias la='ls -la --color=auto'
 fi
 
+if command -v ip &> /dev/null
+then
+    alias ip='ip -c'
+fi
+
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 
