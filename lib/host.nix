@@ -58,6 +58,11 @@ with utils; {
           networking.networkmanager.enable = true;
           networking.useDHCP = false;
 
+          services.fstrim = {
+            enable = true;
+            interval = "weekly";
+          };
+
           time.timeZone = "Europe/Moscow";
 
           boot.initrd.availableKernelModules = initrdMods;
@@ -65,8 +70,8 @@ with utils; {
           boot.kernelParams = kernelParams;
           boot.kernelPackages = kernelPackage;
           boot.tmp = {
-              useTmpfs = true;
-              tmpfsSize = "75%";
+            useTmpfs = true;
+            tmpfsSize = "75%";
           };
 
           nixpkgs.pkgs = pkgs;
