@@ -25,17 +25,23 @@ in {
       wireguard-tools
 
       # CLI tools
-      starship
       binutils
-      sshfs
-      rsync
+      btop
+      delta
+      du-dust
+      duf
+      exa
       fzf
+      ripgrep
+      rsync
+      sshfs
+      starship
 
       # Various interpreters
       luajit
-      python3
-      nodejs
       nodePackages.pnpm
+      nodejs
+      python3
     ];
   };
   imports = [

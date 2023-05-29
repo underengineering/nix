@@ -24,14 +24,6 @@ in {
     environment.systemPackages = with pkgs; [
       virtiofsd
 
-      # Coreutils replacements
-      exa
-      delta
-      du-dust
-      duf
-      ripgrep
-      btop
-
       # Text editors
       vim
 
