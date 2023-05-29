@@ -31,54 +31,19 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
 ####[ ALIASES ]####
-local expected_aliases=('doas' 'exa' 'delta' 'dust' 'duf' 'rg' 'sshfs' 'progress')
-local enabled_aliases=()
-
-if command -v doas &> /dev/null
-then
-    alias sudo='doas'
-    enabled_aliases+='doas'
-fi
-
 if command -v exa &> /dev/null
 then
     alias ls='exa'
     alias ll='exa -lh'
     alias la='exa -lah'
-    enabled_aliases+='exa'
 else
     alias ls='ls --color=auto'
     alias ll='ls -lh --color=auto'
     alias la='ls -la --color=auto'
 fi
 
-if command -v delta &> /dev/null
-then
-    alias diff='delta'
-    enabled_aliases+='delta'
-else
-    alias diff='diff --color=auto'
-fi
-
-if command -v dust &> /dev/null
-then
-    alias du='dust'
-    enabled_aliases+='dust'
-fi
-
-if command -v duf &> /dev/null
-then
-    alias df='duf'
-    enabled_aliases+='duf'
-fi
-
-if command -v rg &> /dev/null
-then
-    alias grep='rg'
-    enabled_aliases+='rg'
-else
-    alias grep='grep --color=auto'
-fi
+alias diff='diff --color=auto'
+alias grep='grep --color=auto'
 
 if command -v sshfs &> /dev/null
 then
@@ -100,63 +65,6 @@ then
     alias sshfs=_sshfs_wrapper
 
     enabled_aliases+='sshfs'
-fi
-
-if command -v progress &> /dev/null
-then
-    function track {
-        if [ ! -t 1 ]
-        then
-            $1 "${@:2}"
-            return $?
-        fi
-
-        setopt local_options localtraps no_notify no_monitor
-
-        function on-interrupt {
-            kill $watchdog 2>/dev/null
-            kill $cmd 2>/dev/null
-        }
-
-        trap on-interrupt INT
-
-        (sleep 1) &
-        watchdog=$!
-
-        ($1 "${@:2}"; ; kill $watchdog 2>/dev/null) &
-        cmd=$!
-
-        wait $watchdog
-
-        while ps -p $cmd > /dev/null
-        do
-            pid=$(pgrep -P $cmd)
-            progress -w -p $pid | sed -n 2p | sed 's/^[[:space:]]/\r/g'
-        done
-    }
-
-    # alias cp='track cp'
-    # alias mv='track mv'
-    alias dd='track dd'
-    alias tar='track tar'
-    # alias cat='track cat'
-    alias grep='track grep'
-    alias sort='track sort'
-    alias gzip='track gzip'
-    alias gunzip='track gunzip'
-    alias bzip2='track bzip2'
-    alias bunzip2='track bunzip2'
-    alias xz='track xz'
-    alias unxz='track unxz'
-    alias lzma='track lzma'
-    alias unlzma='track unlzma'
-    alias 7z='track 7z'
-    alias 7za='track 7za'
-    alias zcat='track zcat'
-    alias bzcat='track bzcat'
-    alias lzcat='track lzcat'
-
-    enabled_aliases+='progress'
 fi
 
 function _ssh_wrapper() {
@@ -231,34 +139,6 @@ function nvim-remote-upload {
 function nvim-remote {
     local HOST=$1
     \ssh -Ct root@$HOST "docker run -it --rm --name nvim-remote -v /:/mnt -e TERM=$TERM localhost/nvim nvim"
-}
-
-# Health check
-function health-check {
-    local RED='\033[0;31m'
-    local GREEN='\033[0;32m'
-    local RESET='\033[0m'
-
-    function enabled {
-        local found=1
-        for enabled in $enabled_aliases; do
-            if [[ $enabled = $1 ]]; then
-                found=0
-                break
-            fi
-        done
-
-        return found
-    }
-
-    echo 'Aliases:'
-    for expected in $expected_aliases; do
-        if enabled $expected; then
-            echo "${GREEN}[]$RESET $expected"
-        else
-            echo "${RED}[]$RESET $expected"
-        fi
-    done
 }
 
 alias nix-shell="\\nix-shell --command $SHELL"
