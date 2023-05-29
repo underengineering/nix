@@ -30,12 +30,6 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 # Disable minimizing when unfocused
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
-# Kitty blur (KDE/X11)
-# if [[ $(ps --no-header -p $PPID -o comm) =~ '^yakuake|kitty$' ]]; then
-#     for wid in $(xdotool search --pid $PPID); do
-#         xprop -f _KDE_NET_WM_BLUR_BEHIND_REGION 32c -set _KDE_NET_WM_BLUR_BEHIND_REGION 0 -id $wid; done
-# fi
-
 ####[ ALIASES ]####
 local expected_aliases=('doas' 'exa' 'delta' 'dust' 'duf' 'rg' 'sshfs' 'progress')
 local enabled_aliases=()
@@ -215,6 +209,28 @@ function .. {
     local d=..
     repeat ${1-1} [[ -d ${d::=$d/..} ]] || break
     cd ${d%/..}
+}
+
+function nvim-remote-upload {
+    local HOST=$1
+    local LOCAL_IMAGE_PATH='/tmp/.nvim-image.tar.zst'
+    local REMOTE_IMAGE_PATH='/root/.nvim-image.tar.zst'
+
+    echo "Generating image archive..."
+    \podman image save nvim --uncompressed | zstd > $LOCAL_IMAGE_PATH
+
+    echo "Uploading image to: $HOST"
+    \rsync -aP $LOCAL_IMAGE_PATH root@$HOST:$REMOTE_IMAGE_PATH
+
+    rm $LOCAL_IMAGE_PATH
+
+    echo "Loading image"
+    \ssh root@$HOST "unzstd < $REMOTE_IMAGE_PATH | docker image load && rm $REMOTE_IMAGE_PATH"
+}
+
+function nvim-remote {
+    local HOST=$1
+    \ssh -Ct root@$HOST "docker run -it --rm --name nvim-remote -v /:/mnt -e TERM=$TERM localhost/nvim nvim"
 }
 
 # Health check
