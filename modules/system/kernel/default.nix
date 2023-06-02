@@ -6,6 +6,27 @@
 }:
 with lib; let
   cfg = config.jd.kernel;
+  wlanVendors = [
+    "admtek"
+    "ath"
+    "atmel"
+    "broadcom"
+    "cisco"
+    "intel"
+    "intersil"
+    "marvell"
+    "mediatek"
+    "microchip"
+    "purelifi"
+    "quantenna"
+    "ralink"
+    "realtek"
+    "rsi"
+    "silabs"
+    "st"
+    "ti"
+    "zydas"
+  ];
 in {
   options.jd.kernel = {
     enablePatches = mkOption {
@@ -16,6 +37,12 @@ in {
     cpuVendor = mkOption {
       description = "CPU vendor to optimize for";
       type = types.enum ["intel" "amd"];
+    };
+    wlanVendor = mkOption {
+      description = "WLAN vendor to enable modules for";
+      type = with types;
+        nullOr (enum wlanVendors);
+      default = null;
     };
     disableMitigations = mkOption {
       description = "Whether to disable exploit mitigations";
@@ -79,6 +106,22 @@ in {
             SECURITY_LOCKDOWN_LSM = mkForce no;
             DEFAULT_SECURITY_APPARMOR = mkForce (option no);
           };
+        })
+        # TODO: This should override default options: 
+        # https://github.com/NixOS/nixpkgs/blob/master/pkgs/os-specific/linux/kernel/common-config.nix
+        (mkIf (cfg.wlanVendor != null) {
+          name = "Enable only specific wlan vendor modules";
+          patch = null;
+          extraStructuredConfig = with builtins;
+          with kernel;
+            listToAttrs (map (vendor: {
+                name = "WLAN_VENDOR_${toUpper vendor}";
+                value =
+                  if vendor == cfg.wlanVendor
+                  then option yes
+                  else option no;
+              })
+              wlanVendors);
         })
       ]
       ++ cfg.patches;
