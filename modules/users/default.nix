@@ -8,5 +8,6 @@
     ./git
     (import ./wayland {inherit inputs;})
     ./applications
+    ./wireplumber
   ];
 }

@@ -160,6 +160,10 @@
               name = "Gruvbox-Dark-BL";
             };
           };
+          wireplumber = {
+            enable = true;
+            bluetoothConfig = builtins.readFile "${self}/config/wireplumber/bluetooth.lua";
+          };
         };
       };
     };
