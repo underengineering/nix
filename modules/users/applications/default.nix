@@ -32,10 +32,15 @@ in {
       duf
       exa
       fzf
+      p7zip
       ripgrep
       rsync
       sshfs
       starship
+      unar
+      unzip
+      zip
+      zstd
 
       # Various interpreters
       luajit

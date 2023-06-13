@@ -30,9 +30,6 @@ in {
       # Utils
       nmap
       fzf
-      unzip
-      zstd
-      p7zip
       config.boot.kernelPackages.cpupower
       podman-compose
     ];
