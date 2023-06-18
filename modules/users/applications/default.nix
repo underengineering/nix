@@ -37,6 +37,7 @@ in {
       rsync
       sshfs
       starship
+      tesseract
       unar
       unzip
       zip
