@@ -193,6 +193,9 @@ source ~/.zsh/zsh-tab-title/zsh-tab-title.plugin.zsh
 
 ####[ END PLUGINS ]####
 
+# Start direnv
+eval "$(direnv hook zsh)"
+
 # Start starship
 eval "$(starship init zsh)"
 

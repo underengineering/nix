@@ -17,6 +17,10 @@ in {
   config = mkIf (cfg.enable) {
     # Manage bash with home-manager
     programs.bash.enable = true;
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
     home.packages = with pkgs; [
       home-manager
 
