@@ -50,6 +50,9 @@ with utils; {
           systemd.extraConfig = ''
             DefaultTimeoutStopSec=15s
           '';
+          systemd.user.extraConfig = ''
+            DefaultTimeoutStopSec=15s
+          '';
           systemd.network.wait-online.enable = false;
 
           networking.hostName = name;
