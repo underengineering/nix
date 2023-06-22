@@ -147,6 +147,11 @@ function nvim-remote {
 }
 
 alias nix-shell="\\nix-shell --command $SHELL"
+
+alias gitl="git log --graph --pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=short"
+alias gitc='git commit -m'
+alias gita='git add'
+alias gitall='git add -A'
 ####[ END ALIASES ]####
 
 ####[ PLUGINS ]####
