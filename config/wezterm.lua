@@ -2,8 +2,19 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
-config.font = wezterm.font "Fira Code"
-config.font_size = 11
+-- config.font = wezterm.font "Fira Code"
+-- config.font_size = 11
+
+config.font = wezterm.font "Iosevka"
+config.font_size = 12
+config.harfbuzz_features = {
+    "ss14",   -- JetBrains Mono
+    "cv92=1", -- ()
+    "cv93=1", -- {}
+    "cv45=1", -- u
+    "VXLA=1", -- >=
+}
+
 config.color_scheme = "Gruvbox dark, medium (base16)"
 
 config.use_fancy_tab_bar = false
