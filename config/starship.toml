@@ -25,7 +25,7 @@ symbol = ""
 format = "[via $symbol $version]($style)[  ](gray bg:bg0)"
 style = "bright-yellow bg:bg0"
 
-symbol = ""
+symbol = "󰎙"
 
 [rust]
 format = "[via $symbol $version]($style)[  ](gray bg:bg0)"
@@ -78,8 +78,8 @@ format = "[ $symbol($status)]($style)[  ](gray bg:bg0)"
 map_symbol = true
 
 success_symbol        = " "
-symbol                = " "
-not_found_symbol      = " "
+symbol                = "󰅚 "
+not_found_symbol      = "󰍉 "
 not_executable_symbol = " "
 sigint_symbol         = " "
 
