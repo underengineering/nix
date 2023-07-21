@@ -37,7 +37,6 @@ with builtins; {
       modules = [
         (import ../modules/users {inherit inputs;})
         machineModule
-        hyprland.homeManagerModules.default
         {
           jd = userConfig;
           nixpkgs = {
