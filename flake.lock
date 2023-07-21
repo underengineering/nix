@@ -418,11 +418,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1689355663,
-        "narHash": "sha256-xsfhhusyZYkhuSR9IGnorpStfjqQIxFpa3mWeL+qY1A=",
+        "lastModified": 1689944839,
+        "narHash": "sha256-2HDhg3swMqroZHBhpFufAnBsXMfxJ+RBCsOPLE096jo=",
         "owner": "underengineering",
         "repo": "nixpkgs",
-        "rev": "bea352f46ef85bcb3414277a2c0956c4f0aad282",
+        "rev": "ad228bb80844dd2f22995726b5fcffea9ab7930d",
         "type": "github"
       },
       "original": {
