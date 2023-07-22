@@ -32,6 +32,9 @@ in {
         settings = {
           server = {
             interface = ["127.0.0.1"];
+            outgoing-range = 950;
+            num-queries-per-thread = 475;
+            so-reuseport = true;
           };
           forward-zone = cfg.forward-zone;
         };
