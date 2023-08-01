@@ -76,6 +76,10 @@
             enable = true;
             config = builtins.readFile "${self}/config/wezterm.lua";
           };
+          starship = {
+            enable = true;
+            extraConfig = builtins.readFile "${self}/config/starship.toml";
+          };
           firefox = {
             enable = true;
             package = pkgs.firefox-beta;

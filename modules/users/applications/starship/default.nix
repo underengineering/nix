@@ -20,12 +20,7 @@ in {
     };
   };
   config = mkIf (cfg.enable) {
-    programs.starship = {
-      enable = true;
-      enableFishIntegration = false;
-      enableIonIntegration = false;
-      enableNushellIntegration = false;
-      settings = cfg.extraConfig;
-    };
+    home.packages = [pkgs.starship];
+    xdg.configFile."starship.toml".text = cfg.extraConfig;
   };
 }

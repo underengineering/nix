@@ -40,7 +40,6 @@ in {
       ripgrep
       rsync
       sshfs
-      starship
       tesseract
       unar
       unzip
