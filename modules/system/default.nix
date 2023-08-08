@@ -17,5 +17,6 @@
     ./tlp
     ./chrony
     ./flatpak
+    ./fprintd
   ];
 }
