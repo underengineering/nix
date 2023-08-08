@@ -257,11 +257,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1691502808,
-        "narHash": "sha256-+U3LLXIl+4+iZY5W/hr3k9yEEcDw2tleVv+WkTYaq1A=",
+        "lastModified": 1691507783,
+        "narHash": "sha256-bofVqAZT2QI/X4H4nBC57lVomoPDt/SxsTGpF/S6CNE=",
         "owner": "underengineering",
         "repo": "Hyprland",
-        "rev": "045aad019936cf28dd301f4b0f99098de5e13079",
+        "rev": "33ae3a31323bb0bd7ef1644ce3754f448e6b335a",
         "type": "github"
       },
       "original": {
