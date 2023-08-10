@@ -199,7 +199,6 @@
             bluetooth.enable = true;
             tlp.enable = true;
             chrony.enable = true;
-            fprintd.enable = true;
             unbound = {
               enable = true;
               overrideNameservers = true;
