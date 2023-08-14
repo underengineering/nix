@@ -2,12 +2,10 @@
 
 function notify-volume() {
     volume=$(wpctl get-volume @DEFAULT_SINK@ | sed 's/^Volume: //' | awk '{printf "%d", $1*100}')
-    eww update volume_data=$volume
     notify-send -r 10002 -i audio-volume-medium-symbolic -h int:value:$volume "Volume: $volume%"
 }
 
 function notify-muted() {
-    eww update volume_data=MUTED
     notify-send -r 10002 -i audio-volume-muted-symbolic "Volume: MUTED"
 }
 
