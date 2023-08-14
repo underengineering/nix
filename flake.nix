@@ -20,6 +20,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
     };
+    cbar = {
+      url = "github:underengineering/cbar";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
+    };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -89,6 +94,7 @@
             enable = true;
             config = "${self}/config/eww"; # TODO
           };
+          cbar.enable = true;
           neovim.enable = true;
           zsh = {
             enable = true;
