@@ -28,6 +28,25 @@ config.window_padding = {
     bottom = 0
 }
 
+local function is_on_ac()
+    for _, battery in ipairs(wezterm.battery_info()) do
+        if battery.state == "Discharging" then
+            return false
+        end
+    end
+
+    return true
+end
+
+if is_on_ac() then
+    config.default_cursor_style = "BlinkingBar"
+    config.cursor_blink_rate = 800
+    config.cursor_blink_ease_in = "Constant"
+    config.cursor_blink_ease_out = "Constant"
+else
+    config.default_cursor_style = "SteadyBar"
+end
+
 config.window_background_opacity = 0.8
 
 config.ssh_domains = {
