@@ -21,6 +21,35 @@ config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 
+local color_scheme = wezterm.color.get_builtin_schemes()[config.color_scheme]
+config.colors = {
+    tab_bar = {
+        background = color_scheme.background,
+        active_tab = {
+            fg_color = color_scheme.foreground,
+            bg_color = "#7c6f64",
+        },
+        inactive_tab = {
+            fg_color = color_scheme.foreground,
+            bg_color = color_scheme.background,
+        },
+        inactive_tab_hover = {
+            fg_color = color_scheme.foreground,
+            bg_color = "#3c3836",
+            italic = true,
+        },
+        new_tab = {
+            bg_color = "#3c3836",
+            fg_color = color_scheme.foreground,
+        },
+        new_tab_hover = {
+            bg_color = "#504945",
+            fg_color = color_scheme.foreground,
+            italic = true,
+        }
+    }
+}
+
 config.window_padding = {
     left = 0,
     right = 0,
