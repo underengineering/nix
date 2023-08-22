@@ -29,6 +29,7 @@ in {
       wireguard-tools
 
       # CLI tools
+      ast-grep
       binutils
       btop
       delta
