@@ -28,6 +28,7 @@ config.colors = {
         active_tab = {
             fg_color = "#b8b226",
             bg_color = "#3c3836",
+            intensity = "Bold",
         },
         inactive_tab = {
             fg_color = color_scheme.foreground,
