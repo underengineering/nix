@@ -9,10 +9,11 @@ config.font = wezterm.font "Iosevka"
 config.font_size = 12
 config.harfbuzz_features = {
     "ss14",   -- JetBrains Mono
-    "cv92=1", -- ()
-    "cv93=1", -- {}
     "cv45=1", -- u
-    "VXLA=1", -- >=
+    "cv93=2", -- ~
+    "cv97=1", -- ()
+    "cv98=1", -- {}
+    "VLAA=1", -- >=
 }
 
 config.color_scheme = "Gruvbox dark, medium (base16)"
