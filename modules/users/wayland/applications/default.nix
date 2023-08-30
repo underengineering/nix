@@ -10,7 +10,6 @@
     ./kitty
     ./swaylock
     ./wezterm
-    (import ./eww {inherit inputs;})
     (import ./cbar {inherit inputs;})
     ./hyprpaper
     ./vscodium

@@ -6,6 +6,7 @@
     hyprland = {
       url = "github:underengineering/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.xdph.follows = "xdph";
     };
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
@@ -14,11 +15,6 @@
     xdph = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    eww = {
-      url = "github:elkowar/eww";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
     };
     cbar = {
       url = "github:underengineering/cbar";
@@ -89,10 +85,6 @@
             enable = true;
             package = pkgs.firefox-beta;
             extraConfig = builtins.readFile "${self}/config/firefox.js";
-          };
-          eww = {
-            enable = true;
-            config = "${self}/config/eww"; # TODO
           };
           cbar.enable = true;
           neovim.enable = true;
