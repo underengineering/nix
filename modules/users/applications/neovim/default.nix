@@ -23,6 +23,9 @@ in {
         fd
         gcc
         nodejs
+        # Markdown-preview
+        yarn
+        stdenv.cc.cc.lib
 
         # Nix
         nil
