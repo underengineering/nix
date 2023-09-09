@@ -10,7 +10,7 @@
     ./kitty
     ./swaylock
     ./wezterm
-    (import ./cbar {inherit inputs;})
+    (import ./crabshell {inherit inputs;})
     ./hyprpaper
     ./vscodium
     (import ./firefox {inherit inputs;})

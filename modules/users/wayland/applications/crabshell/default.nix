@@ -5,11 +5,11 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.cbar;
+  cfg = config.jd.crabshell;
 in {
-  options.jd.cbar = {
+  options.jd.crabshell = {
     enable = mkOption {
-      description = "Enable cbar";
+      description = "Enable crabshell";
       type = types.bool;
       default = false;
     };
@@ -21,7 +21,7 @@ in {
   };
   config = mkIf (cfg.enable) {
     home.packages = [
-      inputs.cbar.defaultPackage.${pkgs.hostPlatform.system}
+      inputs.crabshell.defaultPackage.${pkgs.hostPlatform.system}
     ];
   };
 }

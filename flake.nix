@@ -16,8 +16,8 @@
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    cbar = {
-      url = "github:underengineering/cbar";
+    crabshell = {
+      url = "github:underengineering/crabshell";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
     };
@@ -86,7 +86,7 @@
             package = pkgs.firefox-beta;
             extraConfig = builtins.readFile "${self}/config/firefox.js";
           };
-          cbar.enable = true;
+          crabshell.enable = true;
           neovim.enable = true;
           zsh = {
             enable = true;
