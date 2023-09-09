@@ -16,7 +16,7 @@
         "type": "github"
       }
     },
-    "cbar": {
+    "crabshell": {
       "inputs": {
         "crate2nix": "crate2nix",
         "flake-compat": "flake-compat",
@@ -30,16 +30,16 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1694263566,
-        "narHash": "sha256-eYRl66V1UPmvm29jW4OYiNJVys/+v/GFgeMxvk7JFhw=",
+        "lastModified": 1694267110,
+        "narHash": "sha256-8zqTOWbUnRChmSN34s0NfYHDX6glGgUKi36IrlkpQ1o=",
         "owner": "underengineering",
-        "repo": "cbar",
-        "rev": "84e350fcd8caabebbb81b96c6244b0f3ae7430b0",
+        "repo": "crabshell",
+        "rev": "a4b20c820a640bef87bcc6aed6f7793734c4b275",
         "type": "github"
       },
       "original": {
         "owner": "underengineering",
-        "repo": "cbar",
+        "repo": "crabshell",
         "type": "github"
       }
     },
@@ -191,7 +191,7 @@
     "gtk4-layer-shell": {
       "inputs": {
         "nixpkgs": [
-          "cbar",
+          "crabshell",
           "nixpkgs"
         ],
         "utils": "utils"
@@ -487,7 +487,7 @@
     "root": {
       "inputs": {
         "arkenfox": "arkenfox",
-        "cbar": "cbar",
+        "crabshell": "crabshell",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprpaper": "hyprpaper",
