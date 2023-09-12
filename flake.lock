@@ -30,11 +30,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1694267110,
-        "narHash": "sha256-8zqTOWbUnRChmSN34s0NfYHDX6glGgUKi36IrlkpQ1o=",
+        "lastModified": 1694543672,
+        "narHash": "sha256-YeZHUJmHo9VHisi6UMI9nsOeYCHipSG4uBevbXrybLE=",
         "owner": "underengineering",
         "repo": "crabshell",
-        "rev": "a4b20c820a640bef87bcc6aed6f7793734c4b275",
+        "rev": "755f053ef0fd3d8765bed7e98f120bab78eb7116",
         "type": "github"
       },
       "original": {
