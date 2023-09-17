@@ -16,11 +16,6 @@ with lib; {
         NIX_LDFLAGS = toString (old.NIX_LDFLAGS or "") + " -flto=15";
       });
 
-      # https://wiki.hyprland.org/Nix/XDG-Desktop-Portal-Hyprland/
-      xdg-desktop-portal-hyprland = inputs.xdph.packages.${prev.system}.default.override {
-        hyprland-share-picker = inputs.xdph.packages.${prev.system}.hyprland-share-picker.override {hyprland = final.hyprland-lto;};
-      };
-
       # Cursor names must be without spaces to be parsed correctly
       capitaine-cursors-themed = prev.capitaine-cursors-themed.overrideAttrs ({preInstall ? "", ...}: {
         preInstall =
