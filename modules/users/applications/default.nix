@@ -41,6 +41,7 @@ in {
       ripgrep
       rsync
       sshfs
+      swayidle
       tesseract
       unar
       unzip
