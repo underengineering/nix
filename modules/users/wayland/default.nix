@@ -38,17 +38,18 @@ in {
     # TODO: Mount /tmp as zram
     home.file.Downloads.source = config.lib.file.mkOutOfStoreSymlink "/tmp/Downloads";
     home.packages = with pkgs; [
-      rofi-wayland
-      wireshark
-      qbittorrent
-      virt-manager
       looking-glass-client
+      qbittorrent
+      rofi-wayland
+      virt-manager
+      wireshark
 
-      wl-clipboard
-      xdg-utils
       grim
       slurp
       swappy
+      swaylock-effects
+      wl-clipboard
+      xdg-utils
 
       (pkgs.buildEnv {
         name = "custom-scripts";

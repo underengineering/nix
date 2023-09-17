@@ -5,18 +5,19 @@
   ...
 }: {
   imports = [
-    ./boot
-    ./kernel
-    ./ssh
-    ./packages
-    ./unbound
-    ./wayland
-    ./pipewire
-    ./zram
     ./bluetooth
-    ./tlp
+    ./boot
     ./chrony
     ./flatpak
     ./fprintd
+    ./kernel
+    ./packages
+    ./pam
+    ./pipewire
+    ./ssh
+    ./tlp
+    ./unbound
+    ./wayland
+    ./zram
   ];
 }
