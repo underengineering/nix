@@ -35,7 +35,7 @@ in {
       delta
       du-dust
       duf
-      exa
+      eza
       fzf
       p7zip
       ripgrep

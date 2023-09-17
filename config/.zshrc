@@ -31,11 +31,11 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
 ####[ ALIASES ]####
-if command -v exa &> /dev/null
+if command -v eza &> /dev/null
 then
-    alias ls='exa'
-    alias ll='exa -lh'
-    alias la='exa -lah'
+    alias ls='eza'
+    alias ll='eza -lh'
+    alias la='eza -lah'
 else
     alias ls='ls --color=auto'
     alias ll='ls -lh --color=auto'
