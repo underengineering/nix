@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-swaylock -k --screenshots --clock --effect-blur 7x5 --indicator -n         \
+swaylock -k --grace 5 --screenshots --clock --effect-blur 7x5 --indicator -n         \
 --inside-color 28282899 --inside-clear-color d65d0e99                      \
 --inside-ver-color 83a59899 --inside-wrong-color cc241d99                  \
 --key-hl-color fabd2f99 --ring-color b8bb26 --ring-clear-color fe8019      \
