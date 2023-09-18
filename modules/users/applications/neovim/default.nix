@@ -29,6 +29,7 @@ in {
 
         # Nix
         nil
+        nixd
         alejandra
 
         # Lua
