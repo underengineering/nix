@@ -23,14 +23,14 @@ in {
         osd-font = "Lexend";
 
         sub-auto = "fuzzy";
-        sub-font = "Noto Sans";
         sub-bold = true;
+        sub-font = "Noto Sans";
 
-        profile = "gpu-hq";
         hwdec = "auto";
-        video-sync = "display-resample";
         interpolation = true;
+        profile = "gpu-hq";
         tscale = "oversample";
+        video-sync = "display-resample";
 
         save-position-on-quit = true;
       };

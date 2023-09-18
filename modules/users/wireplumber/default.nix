@@ -25,7 +25,7 @@ in {
     };
   };
   config = mkIf (cfg.enable) {
-    xdg.configFile."wireplumber/main.lua.d/51-nix-config.lua".text = cfg.mainConfig;
     xdg.configFile."wireplumber/bluetooth.lua.d/51-nix-config.lua".text = cfg.bluetoothConfig;
+    xdg.configFile."wireplumber/main.lua.d/51-nix-config.lua".text = cfg.mainConfig;
   };
 }
