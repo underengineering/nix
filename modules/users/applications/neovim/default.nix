@@ -30,7 +30,6 @@ in {
         # Nix
         alejandra
         nil
-        nixd
 
         # Lua
         lua-language-server
