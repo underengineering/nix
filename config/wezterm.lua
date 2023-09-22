@@ -126,6 +126,48 @@ config.keys = {
     },
 }
 
+local BACKGROUND_PATH = "/home/mika/projects/temp/"
+local backgrounds = { "astolfo_dark", "vanilla_dark", "chocola_dark", "natsuki_joy" }
+local autism_enabled = false
+local background_idx = 1
+config.keys[#config.keys + 1] = {
+    mods = "CTRL|SHIFT",
+    key = "B",
+    action = wezterm.action.EmitEvent "bg-toggle"
+}
+wezterm.on("bg-toggle", function(window, pane)
+    autism_enabled = not autism_enabled
+
+    local config_overrides = {}
+    if autism_enabled then
+        config_overrides.window_background_image = BACKGROUND_PATH .. backgrounds[background_idx] .. ".png"
+    else
+        config_overrides.window_background_image = nil
+    end
+
+    window:set_config_overrides(config_overrides)
+end)
+config.keys[#config.keys + 1] = {
+    mods = "CTRL|SHIFT",
+    key = "N",
+    action = wezterm.action.EmitEvent "bg-next"
+}
+wezterm.on("bg-next", function(window, pane)
+    background_idx = background_idx + 1
+    if background_idx > #backgrounds then
+        background_idx = 1
+    end
+
+    local config_overrides = {}
+    if autism_enabled then
+        config_overrides.window_background_image = BACKGROUND_PATH .. backgrounds[background_idx] .. ".png"
+    else
+        config_overrides.window_background_image = nil
+    end
+
+    window:set_config_overrides(config_overrides)
+end)
+
 config.set_environment_variables = {
     WSLENV = "TERMINFO_DIRS",
 }

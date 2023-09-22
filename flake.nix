@@ -87,7 +87,10 @@
             extraConfig = builtins.readFile "${self}/config/firefox.js";
           };
           crabshell.enable = true;
-          neovim.enable = true;
+          neovim = {
+            enable = true;
+            configPath = ./config/nvim;
+          };
           zsh = {
             enable = true;
             initExtra = builtins.readFile "${self}/config/.zshrc";
