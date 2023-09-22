@@ -10,9 +10,9 @@ config.font_size = 12
 config.harfbuzz_features = {
     "ss14",   -- JetBrains Mono
     "cv45=1", -- u
-    "cv93=2", -- ~
-    "cv97=1", -- ()
-    "cv98=1", -- {}
+    "cv95=2", -- ~
+    "cv99=1", -- ()
+    "VSAA=1", -- {}
     "VLAA=1", -- >=
 }
 
