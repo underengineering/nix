@@ -89,7 +89,7 @@
           crabshell.enable = true;
           neovim = {
             enable = true;
-            configPath = ./config/nvim;
+            configPath = "config/nvim";
           };
           zsh = {
             enable = true;

@@ -15,11 +15,11 @@ in {
     };
     configPath = mkOption {
       description = "Path to the config";
-      type = with types; either str path;
+      type = types.str;
     };
   };
   config = mkIf (cfg.enable) {
-    xdg.configFile.nvim.source = config.lib.file.mkOutOfStoreSymlink cfg.configPath;
+    xdg.configFile.nvim.source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix/${cfg.configPath}";
     programs.neovim = {
       enable = true;
       package = pkgs.neovim-nightly;
