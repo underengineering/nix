@@ -5,14 +5,14 @@ add_newline = true
 continuation_prompt = " "
 palette = "gruvbox"
 
-format       = """$directory$python$nodejs$rust$nix_shell$git_branch$git_metrics$git_status$git_commit[ ](#458588 bg:bg0)[](bg0)$fill[](bg0)$status$cmd_duration
+format = """$directory$python$nodejs$rust$nix_shell$git_branch$git_metrics$git_status$git_commit[ ](#458588 bg:bg0)[](bg0)$fill[](bg0)$status$cmd_duration
 $character"""
 
 [directory]
 format = "[ $path]($style)[$read_only]($read_only_style)[  ](gray bg:bg0)"
-style  = "bright-green bg:bg0"
+style = "bright-green bg:bg0"
 
-read_only       = ""
+read_only = ""
 read_only_style = "bright-red bg:bg0"
 
 [python]
@@ -61,7 +61,7 @@ style = "bold bright-yellow bg:bg0"
 
 [character]
 success_symbol = "[](bold bright-green)"
-error_symbol   = "[](bold bright-red)"
+error_symbol = "[](bold bright-red)"
 
 [fill]
 symbol = "·"
@@ -77,11 +77,11 @@ disabled = false
 format = "[ $symbol($status)]($style)[  ](gray bg:bg0)"
 map_symbol = true
 
-success_symbol        = " "
-symbol                = "󰅚 "
-not_found_symbol      = "󰍉 "
+success_symbol = " "
+symbol = "󰅚 "
+not_found_symbol = "󰍉 "
 not_executable_symbol = " "
-sigint_symbol         = "󱐋 "
+sigint_symbol = "󱐋 "
 
 style = "bright-green bg:bg0"
 
