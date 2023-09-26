@@ -5,7 +5,7 @@ add_newline = true
 continuation_prompt = " "
 palette = "gruvbox"
 
-format = """$directory$python$nodejs$rust$nix_shell$git_branch$git_metrics$git_status$git_commit[ ](#458588 bg:bg0)[](bg0)$fill[](bg0)$status$cmd_duration
+format = """$directory$python$nodejs$rust$nix_shell$git_branch$git_metrics$git_status$git_commit[ ](#458588 bg:bg0)[](bg0)$fill[](bg0)$status$cmd_duration[ ](bg:bg0)
 $character"""
 
 [directory]
@@ -68,13 +68,13 @@ symbol = "·"
 style = "bg1"
 
 [cmd_duration]
-format = "[took $duration ]($style)"
+format = "([  ](gray bg:bg0)[took $duration ]($style))"
 style = "bright-red bg:bg0"
 
 [status]
 disabled = false
 
-format = "[ $symbol($status)]($style)[  ](gray bg:bg0)"
+format = "[ $symbol($status)]($style)"
 map_symbol = true
 
 success_symbol = " "
