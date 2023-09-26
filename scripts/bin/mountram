@@ -154,6 +154,10 @@ def main() -> int:
 
     print(f"Added a new device '{device}'")
 
+    # Set compression algo to zstd
+    comp_algo_node = Path(f"/sys/block/zram{device_id}/comp_algorithm")
+    comp_algo_node.write_text("zstd")
+
     # Set it's size
     size_node = Path(f"/sys/block/zram{device_id}/disksize")
     size_node.write_text(str(args.size))
