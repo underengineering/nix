@@ -16,6 +16,9 @@ config.harfbuzz_features = {
     "VLAA=1", -- >=
 }
 
+config.underline_thickness = 4
+config.underline_position = -6
+
 config.color_scheme = "Gruvbox dark, medium (base16)"
 
 config.use_fancy_tab_bar = false

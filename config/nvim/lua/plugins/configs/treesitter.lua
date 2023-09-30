@@ -28,19 +28,6 @@ if true then
 end
 
 return function()
-    local rainbow_delimiters = require("rainbow-delimiters")
-    vim.g.rainbow_delimiters = {
-        strategy = {
-            [""] = function()
-                if vim.api.nvim_buf_line_count(0) > 10000 then return nil end
-                return rainbow_delimiters.strategy["global"]
-            end,
-        },
-        query = {
-            [""] = "rainbow-delimiters",
-        }
-    }
-
     require("nvim-treesitter.configs").setup {
         ensure_installed = ensure_installed,
         ignore_install = {},
