@@ -145,22 +145,22 @@ keymap.set("n",
     with_desc(opts, "[Trouble] Toggle diagnostic view"))
 
 -- LuaSnip
-vim.keymap.set({ "i" }, "<C-k>", function()
+keymap.set({ "i" }, "<C-k>", function()
     local luasnip = require("luasnip")
     luasnip.expand()
 end, with_desc(opts, "[LuaSnip] Expand"))
 
-vim.keymap.set({ "i", "s" }, "<C-l>", function()
+keymap.set({ "i", "s" }, "<C-l>", function()
     local luasnip = require("luasnip")
     luasnip.jump(1)
 end, with_desc(opts, "[LuaSnip] Jump forward"))
 
-vim.keymap.set({ "i", "s" }, "<C-h>", function()
+keymap.set({ "i", "s" }, "<C-h>", function()
     local luasnip = require("luasnip")
     luasnip.jump(-1)
 end, with_desc(opts, "[LuaSnip] Jump Backwards"))
 
-vim.keymap.set({ "i", "s" }, "<C-e>", function()
+keymap.set({ "i", "s" }, "<C-e>", function()
     local luasnip = require("luasnip")
     if luasnip.choice_active() then
         luasnip.change_choice(1)
