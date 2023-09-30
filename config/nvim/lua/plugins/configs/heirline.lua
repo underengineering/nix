@@ -4,7 +4,7 @@ return function()
     local conditions = require("heirline.conditions")
     local utils = require("heirline.utils")
 
-    local palette = require("gruvbox.palette").get_base_colors()
+    local palette = require("gruvbox.palette").get_base_colors({}, nil, "")
 
     ---@class Align: StatusLine
     local Align = { provider = "%=" }
@@ -20,6 +20,7 @@ return function()
     ---@field mode string
     ---@field mode_name string
     ---@field mode_hl table<string, string | boolean>
+    ---@field once boolean
     local ViMode = {
         static = {
             names = {
@@ -75,7 +76,10 @@ return function()
         },
         ---@param self ViMode
         init = function(self)
-            self.mode = vim.fn.mode(1)
+            local mode = vim.fn.mode(1)
+            if mode == nil then return end
+
+            self.mode = mode
             self.mode_name = self.names[self.mode]
             self.mode_hl = self.colors[self.mode_name]
             if not self.once then
@@ -396,9 +400,13 @@ return function()
                         provider = ctx.name:gsub("%%", "%%%%"),
                         on_click = {
                             minwid = minwid,
-                            callback = function(_, minwid)
+                            callback = function()
                                 local start_line, start_char, winnr = self.decode_scope(minwid)
                                 local win_id = vim.fn.win_getid(winnr)
+                                if win_id == nil then
+                                    return
+                                end
+
                                 vim.api.nvim_win_set_cursor(win_id, { start_line, start_char })
                             end,
                             name = "heirline_navic",
@@ -440,7 +448,8 @@ return function()
 
     ---@class ActiveLsp: StatusLine
     local ActiveLsp = {
-        condition = function() return #vim.lsp.get_active_clients { bufnr = 0 } > 0 end,
+        condition = function() return #vim.lsp.get_clients { bufnr = 0 } > 0 end,
+        { provider = "", hl = { fg = palette.bg1, bg = palette.bg4 } },
         {
             provider = " ",
         },
@@ -451,7 +460,7 @@ return function()
         {
             provider = function()
                 local names = {}
-                for _, server in ipairs(vim.lsp.get_active_clients { bufnr = 0 }) do
+                for _, server in ipairs(vim.lsp.get_clients { bufnr = 0 }) do
                     names[#names + 1] = server.name
                 end
 
@@ -488,7 +497,6 @@ return function()
         Align,
 
         -- Right
-        { provider = "", hl = { fg = palette.bg1 } },
         ActiveLsp,
         Diagnostics,
         { provider = "", hl = { fg = palette.bg3, bg = palette.bg2 } },
