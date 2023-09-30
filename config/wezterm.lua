@@ -19,6 +19,8 @@ config.harfbuzz_features = {
 config.underline_thickness = 4
 config.underline_position = -6
 
+config.cursor_thickness = "1pt"
+
 config.color_scheme = "Gruvbox dark, medium (base16)"
 
 config.use_fancy_tab_bar = false
