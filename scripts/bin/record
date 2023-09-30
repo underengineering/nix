@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+PROFILE="$1"
+OUT_PATH="$2"
+case "$PROFILE" in
+    "h264-low")
+        wf-recorder --audio -r 24 -c h264_vaapi -F 'format=nv12,hwupload,scale_vaapi=format=nv12:w=1920:h=1080' -p preset=veryslow -p b=2800K -b 2 -f "$OUT_PATH"
+        ;;
+    "h264-high")
+        wf-recorder --audio -r 24 -c h264_vaapi -F 'format=nv12,hwupload,scale_vaapi=format=nv12:w=1920:h=1080' -p preset=veryslow -p b=5200K -b 2 -f "$OUT_PATH"
+        ;;
+    *)
+        echo "Unknown profile '$PROFILE'"
+        echo "Available profiles: h264-low h264-high"
+        exit 1
+        ;;

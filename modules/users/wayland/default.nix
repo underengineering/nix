@@ -48,6 +48,7 @@ in {
       slurp
       swappy
       swaylock-effects
+      wf-recorder
       wl-clipboard
       xdg-utils
 
