@@ -115,8 +115,9 @@ cmp.setup {
         priority_weight = 2,
         comparators = {
             cmp.config.compare.score,
-            cmp.config.compare.locality,
+            require "cmp-under-comparator".under,
             cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
             -- require("cmp_tabnine.compare"),
             cmp.config.compare.offset,
             cmp.config.compare.order
