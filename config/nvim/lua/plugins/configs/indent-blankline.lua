@@ -15,8 +15,11 @@ return function()
     end
 
     require("ibl").setup {
-        show_current_context = true,
-        show_current_context_start = true,
-        scope = { enabled = true, highlight = highlight }
+        scope = {
+            enabled = true,
+            show_start = true,
+            show_end = false,
+            highlight = highlight
+        }
     }
 end
