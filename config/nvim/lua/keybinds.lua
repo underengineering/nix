@@ -61,7 +61,7 @@ keymap.set("n", "<C-j>", "<PageDown>", opts)
 
 keymap.set("n", "<Leader>h", ":noh<CR>", with_desc(opts, "Clear highlights"))
 keymap.set({ "n", "v" }, "<Leader>y", "\"+y", with_desc(opts, "Yank to the system clipboard"))
-keymap.set("n", "<Leader>Y", ":let @+=@\"", with_desc(opts, "Copy \" to system clipboard"))
+keymap.set("n", "<Leader>Y", ":let @+=@\"<CR>", with_desc(opts, "Copy \" to system clipboard"))
 
 -- Bufferline
 keymap.set("n", "<Leader>,", ":BufferLineCyclePrev<CR>", opts)
