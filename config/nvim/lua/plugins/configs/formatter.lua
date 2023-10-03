@@ -10,6 +10,9 @@ require("formatter").setup {
         typescript = {
             require("formatter.filetypes.typescript").prettier
         },
+        typescriptreact = {
+            require("formatter.filetypes.typescript").prettier
+        },
         nix = {
             require("formatter.filetypes.nix").alejandra
         },
@@ -18,5 +21,3 @@ require("formatter").setup {
         }
     }
 }
-
-
