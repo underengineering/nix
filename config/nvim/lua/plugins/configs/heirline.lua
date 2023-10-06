@@ -4,7 +4,7 @@ return function()
     local conditions = require("heirline.conditions")
     local utils = require("heirline.utils")
 
-    local palette = require("gruvbox.palette").get_base_colors({}, nil, "")
+    local palette = require("gruvbox").palette
 
     ---@class Align: StatusLine
     local Align = { provider = "%=" }
@@ -62,16 +62,16 @@ return function()
                 t         = "TERMINAL"
             },
             colors = {
-                ["NORMAL"]    = { fg = palette.fg0, bg = palette.bg2 },
-                ["O-PENDING"] = { fg = palette.fg0, bg = palette.bg2 },
-                ["VISUAL"]    = { bg = palette.orange },
-                ["V-LINE"]    = { bg = palette.orange },
-                ["V-BLOCK"]   = { bg = palette.orange },
-                ["INSERT"]    = { bg = palette.green },
-                ["REPLACE"]   = { bg = palette.red },
-                ["V-REPLACE"] = { bg = palette.red },
-                ["COMMAND"]   = { fg = palette.fg0, bg = palette.bg4 },
-                ["TERMINAL"]  = { fg = palette.fg0, bg = palette.bg4 }
+                ["NORMAL"]    = { fg = palette.light0, bg = palette.dark2 },
+                ["O-PENDING"] = { fg = palette.light0, bg = palette.dark2 },
+                ["VISUAL"]    = { bg = palette.bright_orange },
+                ["V-LINE"]    = { bg = palette.bright_orange },
+                ["V-BLOCK"]   = { bg = palette.bright_orange },
+                ["INSERT"]    = { bg = palette.bright_green },
+                ["REPLACE"]   = { bg = palette.bright_red },
+                ["V-REPLACE"] = { bg = palette.bright_red },
+                ["COMMAND"]   = { fg = palette.light0, bg = palette.dark4 },
+                ["TERMINAL"]  = { fg = palette.light0, bg = palette.dark4 }
             },
         },
         ---@param self ViMode
@@ -102,7 +102,7 @@ return function()
                 ---@type table<string, string | boolean>
                 ---@diagnostic disable-next-line: assign-type-mismatch
                 hl = vim.fn.copy(hl)
-                hl.fg = hl.fg or palette.bg1
+                hl.fg = hl.fg or palette.dark1
                 hl.bold = true
             end
 
@@ -125,7 +125,7 @@ return function()
 
                     -- Invert colors
                     hl.fg = hl.bg
-                    hl.bg = palette.bg1
+                    hl.bg = palette.dark1
                 end
 
                 return hl
@@ -193,7 +193,7 @@ return function()
                 if self.has_changes then return ")" end
             end
         },
-        hl = { fg = palette.neutral_yellow, bg = palette.bg1 }
+        hl = { fg = palette.neutral_yellow, bg = palette.dark1 }
     }
 
     ---@class FileNameBlock: StatusLine
@@ -203,7 +203,7 @@ return function()
         init = function(self)
             self.file_name = vim.api.nvim_buf_get_name(0)
         end,
-        hl = { bg = palette.bg1 }
+        hl = { bg = palette.dark1 }
     }
 
     ---@class FileIcon: FileNameBlock
@@ -241,7 +241,7 @@ return function()
 
             return file_name
         end,
-        hl = { fg = palette.fg0 }
+        hl = { fg = palette.light0 }
     }
 
     ---@class FileFlags: StatusLine
@@ -251,14 +251,14 @@ return function()
                 return vim.bo.modified
             end,
             provider = "[+]",
-            hl = { fg = palette.green },
+            hl = { fg = palette.bright_green },
         },
         {
             condition = function()
                 return not vim.bo.modifiable or vim.bo.readonly
             end,
             provider = "",
-            hl = { fg = palette.red },
+            hl = { fg = palette.bright_red },
         },
     }
 
@@ -266,7 +266,7 @@ return function()
     local FileNameModifier = {
         hl = function()
             if vim.bo.modified then
-                return { fg = palette.green, bold = true, force = true }
+                return { fg = palette.bright_green, bold = true, force = true }
             end
         end
     }
@@ -310,7 +310,7 @@ return function()
             name = "heirline_diagnostics",
         },
         update = { "DiagnosticChanged", "BufEnter" },
-        { provider = "", hl = { fg = palette.bg2, bg = palette.bg1 } },
+        { provider = "", hl = { fg = palette.dark2, bg = palette.dark1 } },
         Space,
         {
             ---@param self Diagnostics
@@ -340,7 +340,7 @@ return function()
             end,
             hl = { fg = get_color("DiagnosticHint", "fg#") }
         },
-        hl = { bg = palette.bg2 }
+        hl = { bg = palette.dark2 }
     }
 
     local navic = require("nvim-navic")
@@ -411,7 +411,7 @@ return function()
                             end,
                             name = "heirline_navic",
                         },
-                        hl = { fg = palette.fg0 }
+                        hl = { fg = palette.light0 }
                     }
                 }
 
@@ -419,7 +419,7 @@ return function()
                 if idx < #data then
                     child[#child + 1] = {
                         provider = " > ",
-                        hl = { fg = palette.fg0 }
+                        hl = { fg = palette.light0 }
                     }
                 end
 
@@ -434,28 +434,28 @@ return function()
 
             self.child = self:new(children, 1)
         end,
-        { provider = "", hl = { fg = palette.bg1, bg = palette.bg4 } },
+        { provider = "", hl = { fg = palette.dark1, bg = palette.dark4 } },
         {
             ---@param self Navic
             provider = function(self)
                 return self.child:eval()
             end,
         },
-        { provider = "", hl = { fg = palette.bg1, bg = palette.bg4 } },
-        hl = { bg = palette.bg1 },
+        { provider = "", hl = { fg = palette.dark1, bg = palette.dark4 } },
+        hl = { bg = palette.dark1 },
         update = "CursorMoved"
     }
 
     ---@class ActiveLsp: StatusLine
     local ActiveLsp = {
         condition = function() return #vim.lsp.get_clients { bufnr = 0 } > 0 end,
-        { provider = "", hl = { fg = palette.bg1, bg = palette.bg4 } },
+        { provider = "", hl = { fg = palette.dark1, bg = palette.dark4 } },
         {
             provider = " ",
         },
         {
             provider = " ",
-            hl = { fg = palette.orange }
+            hl = { fg = palette.bright_orange }
         },
         {
             provider = function()
@@ -471,7 +471,7 @@ return function()
             provider = "",
         },
         Space,
-        hl = { fg = palette.fg0, bg = palette.bg1 },
+        hl = { fg = palette.light0, bg = palette.dark1 },
         -- update = { "LspAttach", "LspDetach" },
     }
 
@@ -482,7 +482,7 @@ return function()
         -- %c = column number
         -- %P = percentage through file of displayed window
         provider = " %7(%l/%3L%):%2c %P ",
-        hl = { bg = palette.bg3 }
+        hl = { bg = palette.dark3 }
     }
 
     local status_line = {
@@ -490,7 +490,7 @@ return function()
         ViModePowerline,
         Git,
         FileNameBlock,
-        { provider = "", hl = { fg = palette.bg1 } },
+        { provider = "", hl = { fg = palette.dark1 } },
 
         Align,
         Navic,
@@ -499,9 +499,9 @@ return function()
         -- Right
         ActiveLsp,
         Diagnostics,
-        { provider = "", hl = { fg = palette.bg3, bg = palette.bg2 } },
+        { provider = "", hl = { fg = palette.dark3, bg = palette.dark2 } },
         Ruler,
-        hl = { bg = palette.bg4 }
+        hl = { bg = palette.dark4 }
     }
 
     require("heirline").setup {
