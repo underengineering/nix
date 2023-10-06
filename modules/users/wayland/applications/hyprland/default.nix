@@ -22,7 +22,6 @@ in {
   config = mkIf (cfg.enable) {
     wayland.windowManager.hyprland = {
       enable = true;
-      package = pkgs.hyprland-lto;
       extraConfig = cfg.extraConfig;
     };
   };

@@ -10,7 +10,7 @@ with lib; {
     inputs.hyprland.overlays.default
     inputs.hyprpaper.overlays.default
     (final: prev: {
-      hyprland-lto = inputs.hyprland.packages.${pkgs.system}.default.overrideAttrs (old: {
+      hyprland = inputs.hyprland.packages.${pkgs.system}.default.overrideAttrs (old: {
         NIX_CFLAGS_COMPILE = toString (old.NIX_CFLAGS_COMPILE or "") + " -pipe -march=native -O3 -fipa-pta";
         NIX_CXXFLAGS_COMPILE = toString (old.NIX_CXXFLAGS_COMPILE or "") + " -pipe -march=native -O3 -fipa-pta";
         NIX_LDFLAGS = toString (old.NIX_LDFLAGS or "") + " -flto=15";
