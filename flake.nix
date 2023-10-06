@@ -185,8 +185,6 @@
           kernelParams = ["mitigations=off" "initcall_blacklist=acpi_cpufreq" "amd_pstate=active" "nowatchdog"];
           systemConfig = {
             kernel = {
-              enablePatches = true;
-              cpuVendor = "amd";
               patches = [
                 {
                   name = "Lenovo sound patch";
