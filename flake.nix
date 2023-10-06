@@ -182,7 +182,14 @@
           kernelPackage = pkgs.linux_xanmod_custom_lenowo;
           initrdMods = ["amdgpu" "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
           kernelMods = ["kvm-amd"];
-          kernelParams = ["mitigations=off" "initcall_blacklist=acpi_cpufreq" "amd_pstate=active" "nowatchdog"];
+          kernelParams = [
+            "mitigations=off"
+            "initcall_blacklist=acpi_cpufreq"
+            "amd_pstate=active"
+            # https://gitlab.freedesktop.org/mesa/mesa/-/issues/8044
+            "amd_iommu=off"
+            "nowatchdog"
+          ];
           systemConfig = {
             kernel = {
               patches = [
