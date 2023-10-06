@@ -64,6 +64,9 @@ with lib; {
             # Reduce debug info
             DEBUG_INFO_REDUCED = mkForce yes;
 
+            # Disable ms surface HID
+            CONFIG_SURFACE_AGGREGATOR = no;
+
             # Disable unused wlan vendors
             WLAN_VENDOR_ADMTEK = no;
             WLAN_VENDOR_ATH = no;
@@ -84,6 +87,32 @@ with lib; {
             WLAN_VENDOR_TI = no;
             WLAN_VENDOR_ZYDAS = no;
             WLAN_VENDOR_QUANTENNA = no;
+
+            # Disable unused SOC modules
+            SND_SOC_CHV3_I2S = no;
+            SND_SOC_ADI = no;
+            SND_SOC_APPLE_MCA = no;
+            SND_ATMEL_SOC = no;
+            SND_DESIGNWARE_I2S = no;
+            SND_SOC_FSL_ASRC = no;
+            SND_SOC_FSL_SAI = no;
+            SND_SOC_FSL_MQS = no;
+            SND_SOC_FSL_AUDMIX = no;
+            SND_SOC_FSL_SSI = no;
+            SND_SOC_FSL_SPDIF = no;
+            SND_SOC_FSL_ESAI = no;
+            SND_SOC_FSL_MICFIL = no;
+            SND_SOC_FSL_EASRC = no;
+            SND_SOC_FSL_XCVR = no;
+            SND_SOC_FSL_UTILS = no;
+            SND_SOC_FSL_RPMSG = no;
+            SND_I2S_HI6210_I2S = no;
+            SND_SOC_IMG = no;
+            SND_SOC_STI = no;
+            SND_SOC_XILINX_I2S = no;
+            SND_SOC_XILINX_AUDIO_FORMATTER = no;
+            SND_SOC_XILINX_SPDIF = no;
+            SND_XEN_FRONTEND = no;
           }
           // prev.linux_xanmod_latest.structuredExtraConfig;
         ignoreConfigErrors = true;
