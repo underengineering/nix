@@ -13,13 +13,13 @@ in {
       type = types.bool;
       default = false;
     };
-    # config = mkOption {
-    #   description = "Cbar configuration path";
-    #   type = types.path;
-    #   default = "";
-    # };
+    configPath = mkOption {
+      description = "Path to the config";
+      type = types.str;
+    };
   };
   config = mkIf (cfg.enable) {
+    xdg.configFile.crabshell.source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix/${cfg.configPath}";
     home.packages = [
       inputs.crabshell.defaultPackage.${pkgs.hostPlatform.system}
     ];

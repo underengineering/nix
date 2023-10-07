@@ -86,7 +86,10 @@
             package = pkgs.firefox-beta;
             extraConfig = builtins.readFile "${self}/config/firefox.js";
           };
-          crabshell.enable = true;
+          crabshell = {
+            enable = true;
+            configPath = "config/crabshell";
+          };
           neovim = {
             enable = true;
             configPath = "config/nvim";
