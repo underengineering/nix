@@ -65,7 +65,13 @@ config.window_padding = {
 }
 
 local function is_on_ac()
-    for _, battery in ipairs(wezterm.battery_info()) do
+    local succ, err = pcall(wezterm.battery_info)
+    if not succ then
+        print("is_on_ac error:", err)
+        return false
+    end
+
+    for _, battery in ipairs(err) do
         if battery.state == "Discharging" then
             return false
         end
