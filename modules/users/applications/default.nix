@@ -35,6 +35,7 @@ in {
       delta
       du-dust
       duf
+      duplicacy
       eza
       fzf
       p7zip
