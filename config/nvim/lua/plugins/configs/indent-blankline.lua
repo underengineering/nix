@@ -15,6 +15,10 @@ return function()
     end
 
     require("ibl").setup {
+        viewport_buffer = {
+            max = 30,
+            min = 0,
+        },
         scope = {
             enabled = true,
             show_start = true,
