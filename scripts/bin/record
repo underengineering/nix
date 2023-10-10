@@ -14,3 +14,4 @@ case "$PROFILE" in
         echo "Available profiles: h264-low h264-high"
         exit 1
         ;;
+esac
