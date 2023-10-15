@@ -67,7 +67,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.api.nvim_create_user_command("ForEach", function(opts)
-    vim.fn.execute(('%u,%ug//exe "normal! %s" | noh'):format(opts.line1, opts.line2, vim.fn.escape(opts.args, '"')))
+    vim.fn.execute(('%u,%ug/^/exe "normal! %s" | noh'):format(opts.line1, opts.line2, vim.fn.escape(opts.args, '"')))
 end, {
     nargs = 1,
     complete = "mapping",
