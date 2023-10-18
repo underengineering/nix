@@ -127,6 +127,11 @@ return {
         cond = not_in_vscode
     },
     {
+        "karb94/neoscroll.nvim",
+        config = require "plugins.configs.neoscroll",
+        cond = not_in_vscode
+    },
+    {
         "windwp/nvim-autopairs",
         event = "VeryLazy",
         opts = {

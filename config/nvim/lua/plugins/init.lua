@@ -10,7 +10,6 @@ if not is_in_vscode then
         require("plugins.lsp"),
         require("plugins.cmp"),
         require("plugins.bufferline"),
-        require("plugins.neoscroll"),
         require("plugins.treesitter"),
         require("plugins.telescope"),
         require("plugins.neo-tree"),
