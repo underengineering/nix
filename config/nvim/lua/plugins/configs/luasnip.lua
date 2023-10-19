@@ -39,7 +39,20 @@ local function get_snippets()
                   }};
                 }});
             }}
-        ]], {}))
+        ]], {})),
+        s("tormsc", fmt([[
+            import {{ Column, Entity }} from "typeorm";
+
+            @Entity()
+            export class {entity_name} {{
+                @Column()
+                {field_name}: {field_type};
+            }}
+        ]], {
+            entity_name = i(1, "entityName"),
+            field_name = i(2, "fieldName"),
+            field_type = i(3, "fieldType"),
+        }))
     }
 end
 
