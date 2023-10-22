@@ -3,7 +3,6 @@ return {
     dependencies = {
         {
             "HiPhish/rainbow-delimiters.nvim",
-            branch = "use-children",
             config = require "plugins.configs.rainbow-delimiters"
         },
         "windwp/nvim-ts-autotag"
