@@ -25,10 +25,8 @@ in {
       noto-fonts-emoji
       noto-fonts-cjk
       iosevka
-      fira-code
-      fira-code-symbols
       powerline-symbols
-      (nerdfonts.override {fonts = ["FiraCode" "NerdFontsSymbolsOnly"];})
+      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
   };
 }
