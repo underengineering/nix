@@ -10,9 +10,11 @@ return {
         lazy = true
     },
     {
-        "VonHeikemen/lsp-zero.nvim",
+        "neovim/nvim-lspconfig",
+        cmd = { "LspInfo", "LspInstall", "LspStart" },
+        event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            "neovim/nvim-lspconfig",
+            { "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
             "SmiteshP/nvim-navic",
             "b0o/schemastore.nvim",
             {

@@ -1,9 +1,4 @@
-local lsp_signature_cfg = {
-    bind = true,
-    handler_opts = {
-        border = "rounded"
-    }
-}
+local lspconfig = require("lspconfig")
 
 local lsp = require("lsp-zero").preset {
     float_border = "rounded",
@@ -12,19 +7,17 @@ local lsp = require("lsp-zero").preset {
 
 local navic = require("nvim-navic")
 
-local notifiedServers = {}
+local lsp_signature_cfg = {
+    bind = true,
+    handler_opts = {
+        border = "rounded"
+    }
+}
+
 lsp.on_attach(function(client, bufnr)
     require "lsp_signature".on_attach(lsp_signature_cfg, bufnr)
 
     lsp.default_keymaps({ buffer = bufnr })
-    if not notifiedServers[client.name] then
-        local symbols_supported = client.supports_method("textDocument/documentSymbol")
-        if not symbols_supported then
-            print(("Symbols are not supported by %s"):format(client.name))
-            notifiedServers[client.name] = true
-            return
-        end
-    end
 
     if client.server_capabilities.inlayHintProvider then
         vim.lsp.inlay_hint(bufnr, true)
@@ -67,64 +60,29 @@ lsp.setup_servers {
     "taplo",
 }
 
-lsp.skip_server_setup({ "rust_analyzer" })
-
-lsp.configure("lua_ls", {
-    opts = {
+lspconfig.lua_ls.setup {
+    settings = {
         Lua = {
             telemetry = {
                 enable = false
             }
         }
     }
-})
+}
 
-lsp.configure("jsonls", {
-    opts = {
+lspconfig.jsonls.setup {
+    settings = {
         json = {
             schemas = require("schemastore").json.schemas(),
             validate = { enable = true }
         }
     }
-})
-
--- require("lspconfig").lua_ls.setup {
---     settings = {
---         Lua = {
---             telemetry = {
---                 enable = false
---             }
---         }
---     }
--- }
-
--- require("lspconfig").jsonls.setup {
---     settings = {
---         json = {
---             schemas = require("schemastore").json.schemas(),
---             validate = { enable = true }
---         }
---     }
--- }
-
-local function defineSign(name, symbol)
-    vim.fn.sign_define(name, { texthl = name, text = symbol, numhl = "", icon = "" })
-end
-
-local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" }
 }
 
-for _, sign in ipairs(signs) do
-    defineSign(sign.name, sign.text)
-end
+lsp.set_sign_icons(require("utils").diagnostic_signs)
 
 vim.diagnostic.config {
     virtual_text = { prefix = "●" },
-    signs = { active = signs },
     update_in_insert = true,
     underline = true,
     severity_sort = true,
@@ -137,13 +95,6 @@ vim.diagnostic.config {
         prefix = ""
     }
 }
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-    { update_in_insert = true })
-
-lsp.setup()
 
 require("rust-tools").setup {
     tools = {

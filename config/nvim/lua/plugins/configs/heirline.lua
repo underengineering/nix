@@ -279,6 +279,8 @@ return function()
         { provider = " %<" }
     )
 
+    local diagnostic_icons = require("utils").diagnostic_signs
+
     ---@class Diagnostics: StatusLine
     ---@field error_icon string
     ---@field warn_icon string
@@ -291,10 +293,10 @@ return function()
     local Diagnostics = {
         condition = conditions.has_diagnostics,
         static = {
-            error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1].text,
-            warn_icon = vim.fn.sign_getdefined("DiagnosticSignWarn")[1].text,
-            info_icon = vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text,
-            hint_icon = vim.fn.sign_getdefined("DiagnosticSignHint")[1].text,
+            error_icon = diagnostic_icons.error,
+            warn_icon = diagnostic_icons.warn,
+            info_icon = diagnostic_icons.info,
+            hint_icon = diagnostic_icons.hint
         },
         ---@param self Diagnostics
         init = function(self)
@@ -315,28 +317,28 @@ return function()
         {
             ---@param self Diagnostics
             provider = function(self)
-                return self.errors > 0 and ("%s%u "):format(self.error_icon, self.errors)
+                return self.errors > 0 and ("%s %u "):format(self.error_icon, self.errors)
             end,
             hl = { fg = get_color("DiagnosticError", "fg#") }
         },
         {
             ---@param self Diagnostics
             provider = function(self)
-                return self.warnings > 0 and ("%s%u "):format(self.warn_icon, self.warnings)
+                return self.warnings > 0 and ("%s %u "):format(self.warn_icon, self.warnings)
             end,
             hl = { fg = get_color("DiagnosticWarn", "fg#") }
         },
         {
             ---@param self Diagnostics
             provider = function(self)
-                return self.info > 0 and ("%s%u "):format(self.info_icon, self.info)
+                return self.info > 0 and ("%s %u "):format(self.info_icon, self.info)
             end,
             hl = { fg = get_color("DiagnosticInfo", "fg#") }
         },
         {
             ---@param self Diagnostics
             provider = function(self)
-                return self.hints > 0 and ("%s%u "):format(self.hint_icon, self.hints)
+                return self.hints > 0 and ("%s %u "):format(self.hint_icon, self.hints)
             end,
             hl = { fg = get_color("DiagnosticHint", "fg#") }
         },

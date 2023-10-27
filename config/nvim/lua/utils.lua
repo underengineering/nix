@@ -8,4 +8,11 @@ function M.get_color(group, attr)
     return vim.fn.synIDattr(vim.fn.synIDtrans(hlId), attr)
 end
 
+M.diagnostic_signs = {
+    error = "",
+    warn = "",
+    hint = "",
+    info = ""
+}
+
 return M
