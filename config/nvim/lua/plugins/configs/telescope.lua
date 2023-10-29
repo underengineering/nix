@@ -30,5 +30,6 @@ return function()
     }
 
     telescope.load_extension("ui-select")
+    telescope.load_extension("undo")
     telescope.load_extension("ast_grep")
 end

@@ -18,11 +18,10 @@ end
 bootstrap_lazy()
 
 require("keybinds")
+require("settings")
 
 local plugins = require("plugins")
 require("lazy").setup(plugins)
-
-require("settings")
 
 local is_vscode = vim.g.vscode ~= nil
 if not is_vscode then require("highlight") end
