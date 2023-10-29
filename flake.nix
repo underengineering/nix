@@ -104,6 +104,12 @@
             userName = "underengineering";
             userEmail = "san4a852b@gmail.com";
           };
+          delta = {
+            enable = true;
+            options = {
+              syntax-theme = "gruvbox-dark";
+            };
+          };
           wayland.enable = true;
           vscodium.enable = true;
           dunst = {

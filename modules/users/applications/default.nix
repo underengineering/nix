@@ -32,7 +32,6 @@ in {
       ast-grep
       binutils
       btop
-      delta
       du-dust
       duf
       duplicacy
@@ -57,6 +56,7 @@ in {
     ];
   };
   imports = [
+    ./delta
     ./neovim
     ./zsh
     ./starship
