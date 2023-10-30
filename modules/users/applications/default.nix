@@ -28,6 +28,8 @@ in {
 
       wireguard-tools
 
+      distrobox
+
       # CLI tools
       ast-grep
       binutils
