@@ -35,8 +35,12 @@ in {
         save-position-on-quit = true;
       };
     };
-    # TODO: Mount /tmp as zram
+
     home.file.Downloads.source = config.lib.file.mkOutOfStoreSymlink "/tmp/Downloads";
+
+    # https://www.freedesktop.org/software/systemd/man/latest/tmpfiles.d.html
+    systemd.user.tmpfiles.rules = ["d /tmp/Downloads 0700 - - - -"];
+
     home.packages = with pkgs; [
       looking-glass-client
       qbittorrent
