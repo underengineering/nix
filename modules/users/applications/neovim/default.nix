@@ -42,7 +42,7 @@ in {
         # Python
         black
         nodePackages_latest.pyright
-        python310Packages.ruff-lsp
+        ruff-lsp
         ruff
 
         # C++ and C
