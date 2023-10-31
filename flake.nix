@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-staging.url = "github:NixOS/nixpkgs/staging";
     hyprland = {
       url = "github:underengineering/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,7 +47,6 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-staging,
     home-manager,
     hyprland,
     ...
@@ -64,7 +62,7 @@
 
     pkgs = import nixpkgs {
       inherit system;
-      inherit ((import ./overlays {inherit inputs system nixpkgs pkgs nixpkgs-staging lib;})) overlays;
+      inherit ((import ./overlays {inherit inputs system nixpkgs pkgs lib;})) overlays;
       config.allowUnfree = true;
     };
 

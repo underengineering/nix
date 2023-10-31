@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  nixpkgs-staging,
   lib,
   ...
 }:
@@ -29,42 +28,12 @@ with lib; {
           '';
       });
 
-      # ISSUE: https://github.com/nix-community/neovim-nightly-overlay/issues/332
-      neovim-nightly = prev.neovim-nightly.override {
-        libvterm-neovim = nixpkgs-staging.legacyPackages.x86_64-linux.libvterm-neovim;
-      };
       linux_xanmod_custom_lenowo = prev.linuxPackagesFor (prev.linux_xanmod_latest.override {
         structuredExtraConfig = with lib;
         with lib.kernel;
           {
-            # From xanmod {{
-            # Google's BBRv3 TCP congestion Control
-            TCP_CONG_BBR = yes;
-            DEFAULT_BBR = yes;
-
-            # FQ-PIE Packet Scheduling
-            NET_SCH_DEFAULT = yes;
-            DEFAULT_FQ_PIE = yes;
-
-            # Futex WAIT_MULTIPLE implementation for Wine / Proton Fsync.
-            FUTEX = yes;
-            FUTEX_PI = yes;
-
-            # WineSync driver for fast kernel-backed Wine
-            WINESYNC = module;
-
-            # Preemptive Full Tickless Kernel at 500Hz
-            HZ = freeform "500";
-            HZ_500 = yes;
-            HZ_1000 = no;
-            # }}
-
             # Optimize for AMD
             MNATIVE_AMD = yes;
-
-            # Use zstd for zram by default
-            ZSWAP_COMPRESSOR_DEFAULT_ZSTD = yes;
-            ZSWAP_COMPRESSOR_DEFAULT = freeform "zstd";
 
             # Disable AMDGPU CIK support
             CONFIG_DRM_AMDGPU_CIK = no;
