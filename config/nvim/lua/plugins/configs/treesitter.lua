@@ -19,6 +19,8 @@ if true then
         "lua",
         "python",
 
+        "jsx",
+        "tsx",
         "typescript",
         "javascript",
         "html",
