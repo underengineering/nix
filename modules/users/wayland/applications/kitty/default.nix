@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   lib,
   ...
@@ -13,7 +12,7 @@ in {
       type = types.bool;
       default = false;
     };
-    config = mkOption {
+    extraConfig = mkOption {
       description = "Kitty configuration";
       type = types.str;
       default = "";
@@ -22,7 +21,7 @@ in {
   config = mkIf (cfg.enable) {
     programs.kitty = {
       enable = true;
-      extraConfig = cfg.config;
+      extraConfig = cfg.extraConfig;
     };
   };
 }

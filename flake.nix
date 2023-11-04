@@ -73,9 +73,9 @@
         username = "mika";
         userConfig = {
           applications.enable = true;
-          wezterm = {
+          kitty = {
             enable = true;
-            config = builtins.readFile "${self}/config/wezterm.lua";
+            extraConfig = builtins.readFile "${self}/config/kitty.conf";
           };
           starship = {
             enable = true;

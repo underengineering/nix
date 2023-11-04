@@ -86,7 +86,12 @@ function _ssh_wrapper() {
         "$@"
 }
 
-alias ssh=_ssh_wrapper
+if [ "$TERM" = "xterm-kitty" ]
+then
+    alias ssh='kitten ssh'
+else
+    alias ssh=_ssh_wrapper
+fi
 
 function wezterm-setup {
     local HOST=$1
