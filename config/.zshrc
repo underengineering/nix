@@ -18,10 +18,10 @@ SAVEHIST=8192
 ####[ END OPTIONS ]####
 
 ####[ KEYBINDS ]####
-bindkey -e "^A" vi-beginning-of-line
-bindkey -e "^E" vi-end-of-line
-bindkey -e ";5C" forward-word
-bindkey -e ";5D" backward-word
+bindkey -e '^A' vi-beginning-of-line
+bindkey -e '^E' vi-end-of-line
+bindkey -e '^[[1;5C' forward-word
+bindkey -e '^[[1;5D' backward-word
 ####[ END KEYBINDS ]####
 
 # Disable microsoft spyware
