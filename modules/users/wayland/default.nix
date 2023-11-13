@@ -44,7 +44,6 @@ in {
     home.packages = with pkgs; [
       looking-glass-client
       qbittorrent
-      rofi-wayland
       virt-manager
       wireshark
 
