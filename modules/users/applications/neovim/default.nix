@@ -22,6 +22,7 @@ in {
     xdg.configFile.nvim.source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix/${cfg.configPath}";
     programs.neovim = {
       enable = true;
+      defaultEditor = true;
       package = pkgs.neovim-nightly;
       extraPackages = with pkgs; [
         # Plugin deps
