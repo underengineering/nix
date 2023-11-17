@@ -64,14 +64,15 @@ keymap.set({ "n", "v" }, "<Leader>y", "\"+y", with_desc(opts, "Yank to the syste
 keymap.set("n", "<Leader>Y", ":let @+=@\"<CR>", with_desc(opts, "Copy \" to system clipboard"))
 
 -- Bufferline
-keymap.set("n", "<Leader>,", ":BufferLineCyclePrev<CR>", opts)
-keymap.set("n", "<Leader>.", ":BufferLineCycleNext<CR>", opts)
-keymap.set("n", "<Leader>;", ":BufferLineMovePrev<CR>", opts)
-keymap.set("n", "<Leader>'", ":BufferLineMoveNext<CR>", opts)
+keymap.set("n", "<C-,>", ":BufferLineCyclePrev<CR>", opts)
+keymap.set("n", "<C-.>", ":BufferLineCycleNext<CR>", opts)
+keymap.set("n", "<C-;>", ":BufferLineMovePrev<CR>", opts)
+keymap.set("n", "<C-'>", ":BufferLineMoveNext<CR>", opts)
 keymap.set("n", "<Leader>po", ":BufferLinePick<CR>", opts)
 keymap.set("n", "<Leader>pc", ":BufferLinePickClose<CR>", opts)
 
 -- Telescope
+keymap.set("n", "<Leader>tb", ":Telescope buffers<CR>", opts)
 keymap.set("n", "<Leader>tf", ":Telescope find_files<CR>", opts)
 keymap.set("n", "<Leader>tg", ":Telescope live_grep<CR>", opts)
 keymap.set("n", "<Leader>ta", ":Telescope ast_grep<CR>", opts)
