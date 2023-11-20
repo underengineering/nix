@@ -8,10 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.xdph.follows = "xdph";
     };
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hyprpaper = {
+    #   url = "github:hyprwm/hyprpaper";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     xdph = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -204,7 +204,7 @@
               patches = [
                 {
                   name = "Lenovo sound patch";
-                  patch = "${self}/patches/kernel/lenovo-sound.patch";
+                  patch = "${self}/patches/kernel/lenovo-sound-6.6.patch";
                 }
               ];
             };
