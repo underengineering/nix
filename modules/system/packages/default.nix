@@ -30,7 +30,7 @@ in {
       # Utils
       nmap
       fzf
-      config.boot.kernelPackages.cpupower
+      linuxKernel.packages.linux_6_6.cpupower
       podman-compose
     ];
   };
