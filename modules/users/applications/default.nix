@@ -39,6 +39,7 @@ in {
       duplicacy
       eza
       fzf
+      lazygit
       p7zip
       ripgrep
       rsync
