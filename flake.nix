@@ -110,6 +110,10 @@
               syntax-theme = "gruvbox-dark";
             };
           };
+          lazygit = {
+            enable = true;
+            extraConfig = builtins.readFile "${self}/config/lazygit.yml";
+          };
           wayland.enable = true;
           vscodium.enable = true;
           dunst = {

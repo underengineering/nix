@@ -63,5 +63,6 @@ in {
     ./neovim
     ./zsh
     ./starship
+    ./lazygit
   ];
 }
