@@ -29,6 +29,7 @@ in {
         fd
         gcc
         nodejs
+
         # Markdown-preview
         stdenv.cc.cc.lib
         yarn
@@ -43,8 +44,8 @@ in {
         # Python
         black
         nodePackages_latest.pyright
-        ruff-lsp
         ruff
+        ruff-lsp
 
         # C++ and C
         clang-tools_15
@@ -55,16 +56,12 @@ in {
 
         # Web
         nodePackages_latest."@prisma/language-server"
-        nodePackages_latest."@tailwindcss/language-server"
         nodePackages_latest.prettier
         nodePackages_latest.svelte-language-server
         nodePackages_latest.typescript-language-server
-        nodePackages_latest.vscode-langservers-extracted
+        tailwindcss-language-server
+        vscode-langservers-extracted
       ];
-      # withPython3 = true;
-      # extraPython3Packages = pythonPackages: with pythonPackages; [
-      #   ruff-lsp
-      # ];
     };
   };
 }
