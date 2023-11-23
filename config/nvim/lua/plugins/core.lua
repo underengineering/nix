@@ -161,6 +161,7 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
+        cmd = "Gitsigns",
         event = "BufReadPre",
         config = true,
         cond = not_in_vscode

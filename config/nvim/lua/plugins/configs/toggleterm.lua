@@ -17,4 +17,8 @@ vim.keymap.set("n", "<Leader>g", function()
     end
 
     lazygit:toggle()
+
+    if not lazygit:is_open() then
+        vim.cmd("Gitsigns refresh")
+    end
 end)
