@@ -58,6 +58,7 @@ lsp.setup_servers {
     "nil_ls",
     "prismals",
     "taplo",
+    "yamlls"
 }
 
 lspconfig.lua_ls.setup {

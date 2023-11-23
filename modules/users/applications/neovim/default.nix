@@ -51,6 +51,7 @@ in {
 
         # Misc
         taplo
+        yaml-language-server
 
         # Web
         nodePackages_latest."@prisma/language-server"
