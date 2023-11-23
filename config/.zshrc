@@ -11,6 +11,9 @@ zstyle ':completion:*' menu select
 setopt no_share_history hist_ignore_dups
 unsetopt share_history
 
+# Disable stupid bell when hitting tab
+unsetopt beep
+
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=8192
