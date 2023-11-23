@@ -101,9 +101,10 @@ return {
     {
         "akinsho/toggleterm.nvim",
         cmd = "ToggleTerm",
-        opts = {
-            shading_factor = -4
+        keys = {
+            { "<Leader>g" }
         },
+        config = function() require "plugins/configs/toggleterm" end,
         cond = not_in_vscode
     },
     {
