@@ -12,13 +12,12 @@ vim.keymap.set("n", "<Leader>g", function()
         lazygit = Terminal:new({
             cmd = "lazygit",
             direction = "float",
-            hidden = true
+            hidden = true,
+            on_close = function()
+                vim.cmd("Gitsigns refresh")
+            end
         })
     end
 
     lazygit:toggle()
-
-    if not lazygit:is_open() then
-        vim.cmd("Gitsigns refresh")
-    end
 end)
