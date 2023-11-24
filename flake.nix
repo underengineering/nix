@@ -75,7 +75,11 @@
           applications.enable = true;
           kitty = {
             enable = true;
-            extraConfig = builtins.readFile "${self}/config/kitty.conf";
+            extraConfig = builtins.readFile "${self}/config/kitty/kitty.conf";
+            ssh = {
+              enable = true;
+              extraConfig = builtins.readFile "${self}/config/kitty/ssh.conf";
+            };
           };
           starship = {
             enable = true;
