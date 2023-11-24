@@ -137,7 +137,7 @@ keymap.set("n",
 keymap.set("n",
     "<Leader>li",
     function()
-        vim.lsp.inlay_hint(0)
+        vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
     end,
     with_desc(opts, "[LSP] Toggle inlay hints"))
 
