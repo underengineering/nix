@@ -29,6 +29,8 @@ fi
 
 source "$PLUGIN_PATH/ble.sh/ble-nightly/ble.sh"
 
+ble-bind -f 'C-M-DEL' kill-backward-cword
+
 ble-face -s auto_complete             fg=gray
 
 ble-face -s filename_directory        underline,fg=purple
