@@ -216,6 +216,8 @@ local function get_apps()
     return apps
 end
 
+---@class RunnerWidget
+---@field close fun():nil
 
 ---@param app Application
 local function build_runner(app)
@@ -296,6 +298,12 @@ local function build_runner(app)
 
     window:set_child(container:upcast())
     window:present()
+
+    return {
+        close = function()
+            window:close()
+        end
+    }
 end
 
 local function load_css()
@@ -309,9 +317,17 @@ end
 
 
 local app = gtk.Application.new("org.gtk_rs.AppRunner")
+
+---@type RunnerWidget?
+local runner
 app:connect_activate(function()
+    if runner then
+        runner.close()
+        return
+    end
+
     load_css()
-    build_runner(app)
+    runner = build_runner(app)
 end)
 
 app:run()
