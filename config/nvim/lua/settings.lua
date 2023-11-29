@@ -74,10 +74,21 @@ end, {
     range = "%"
 })
 
+local auto_format = true
+vim.api.nvim_create_user_command("AutoFormatEnable", function()
+    auto_format = true
+end, {})
+
+vim.api.nvim_create_user_command("AutoFormatDisable", function()
+    auto_format = false
+end, {})
+
 -- Autoformat
 local autoformat_group = vim.api.nvim_create_augroup("AutoFormat", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePre", {
     callback = function()
+        if not auto_format then return end
+
         local config = require("formatter.config")
         local formatters = config.formatters_for_filetype(vim.bo.filetype)
         if #formatters > 0 then
