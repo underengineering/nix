@@ -25,9 +25,12 @@ in {
         xdg-desktop-portal-hyprland
         xdg-desktop-portal-gtk
       ];
+      config = {
+        common.default = ["gtk" "hyprland"];
+      };
     };
     programs.light.enable = true;
-    services.xserver.gdk-pixbuf.modulePackages = with pkgs; [ librsvg ];
+    services.xserver.gdk-pixbuf.modulePackages = with pkgs; [librsvg];
     environment.systemPackages = with pkgs; [
       libva-utils
       vdpauinfo
