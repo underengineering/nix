@@ -231,5 +231,26 @@ return {
         build = "cd app && yarn install",
         cond = not_in_vscode,
         lazy = true
+    },
+    {
+        "Vigemus/iron.nvim",
+        config = function()
+            local iron = require("iron.core")
+            iron.setup {
+                config = {
+                    repl_definition = {
+                        python = { command = "python" },
+                        javascript = { command = "node" }
+                    },
+                    repl_open_cmd = require('iron.view').bottom(40),
+                    ignore_blank_lines = true,
+                },
+                keymaps = {
+                    visual_send = "<Leader>sc",
+                    send_until_cursor = "<Leader>su"
+                }
+            }
+        end,
+        cmd = { "IronAttach", "IronRepl", "IronReplHere", "IronRestart", "IronFocus", "IronHide", "IronWatch" }
     }
 }

@@ -211,6 +211,11 @@ keymap.set("n", "gR", "<CMD>Glance references<CR>", with_desc(opts, "[Glance] Sh
 keymap.set("n", "gY", "<CMD>Glance type_definitions<CR>", with_desc(opts, "[Glance] Show type definitions"))
 keymap.set("n", "gM", "<CMD>Glance implementations<CR>", with_desc(opts, "[Glance] Show implementations"))
 
+-- iron.nvim
+keymap.set("n", "<Leader>rs", ":IronRepl<CR>", with_desc(opts, "[Iron] Start Iron"))
+keymap.set("n", "<Leader>rr", ":IronRestart<CR>", with_desc(opts, "[Iron] Restart Iron"))
+keymap.set("n", "<Leader>rf", ":IronFocus<CR>", with_desc(opts, "[Iron] Focus Iron"))
+
 -- TODO: merge with opts
 -- keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 -- keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
