@@ -9,7 +9,6 @@ if not is_in_vscode then
     local extra_plugins = {
         require("plugins.lsp"),
         require("plugins.cmp"),
-        require("plugins.bufferline"),
         require("plugins.treesitter"),
         require("plugins.telescope"),
         require("plugins.neo-tree"),
