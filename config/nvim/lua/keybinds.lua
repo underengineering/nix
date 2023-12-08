@@ -59,6 +59,11 @@ keymap.set("n", "<Leader>b", ":Neotree<CR>")
 keymap.set("n", "<C-k>", "<PageUp>", opts)
 keymap.set("n", "<C-j>", "<PageDown>", opts)
 
+keymap.set("i", "<A-h>", "<Left>", opts)
+keymap.set("i", "<A-j>", "<Down>", opts)
+keymap.set("i", "<A-k>", "<Up>", opts)
+keymap.set("i", "<A-l>", "<Right>", opts)
+
 keymap.set("n", "<Leader>h", ":noh<CR>", with_desc(opts, "Clear highlights"))
 keymap.set({ "n", "v" }, "<Leader>y", "\"+y", with_desc(opts, "Yank to the system clipboard"))
 keymap.set("n", "<Leader>Y", ":let @+=@\"<CR>", with_desc(opts, "Copy \" to system clipboard"))
