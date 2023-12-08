@@ -1,17 +1,14 @@
 local is_in_vscode = require("utils").is_in_vscode
 
 local new_plugins = {
-    require("plugins.themes"),
     require("plugins.core"),
+    require("plugins.themes"),
 }
 
 if not is_in_vscode then
     local extra_plugins = {
         require("plugins.lsp"),
-        require("plugins.cmp"),
-        require("plugins.treesitter"),
-        require("plugins.telescope"),
-        require("plugins.neo-tree"),
+        require("plugins.ui"),
     }
 
     for i = 1, #extra_plugins do

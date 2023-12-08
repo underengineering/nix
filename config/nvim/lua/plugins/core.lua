@@ -4,6 +4,44 @@ local not_in_vscode = function() return not is_in_vscode end
 ---@type LazySpec
 return {
     {
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
+            "lukas-reineke/cmp-under-comparator",
+            "saadparwaiz1/cmp_luasnip",
+            {
+                "tzachar/cmp-tabnine",
+                cond = function() -- Fix ugly errors when tabnine is not downloaded
+                    local tabnine_path = vim.fn.expand("HOME")
+                    local tabnine_conf = "/.config/TabNine/tabnine_config.json"
+                    return false and vim.fn.filereadable(tabnine_path .. tabnine_conf)
+                end,
+                build = "./install.sh"
+            },
+        },
+        config = function() require "plugins.configs.cmp" end,
+        cond = not_in_vscode
+    },
+    {
+        {
+            "nvim-treesitter/nvim-treesitter",
+            dependencies = {
+                "nvim-treesitter/nvim-treesitter-textobjects",
+                {
+                    "HiPhish/rainbow-delimiters.nvim",
+                    config = require "plugins.configs.rainbow-delimiters"
+                },
+                "windwp/nvim-ts-autotag"
+            },
+            config = require "plugins.configs.treesitter",
+            cond = not_in_vscode
+        }
+    },
+    {
         "numToStr/Comment.nvim",
         event = "VeryLazy",
         config = true
@@ -22,34 +60,6 @@ return {
     --     config = true
     -- },
     {
-        "rebelot/heirline.nvim",
-        config = require "plugins/configs/heirline",
-        dependencies = {
-            "VonHeikemen/lsp-zero.nvim", -- For icons
-            "kyazdani42/nvim-web-devicons",
-            "SmiteshP/nvim-navic",
-            "lewis6991/gitsigns.nvim",
-        },
-        cond = not_in_vscode
-    },
-    {
-        "goolord/alpha-nvim",
-        config = require "plugins/configs/alpha"
-    },
-    {
-        "smjonas/inc-rename.nvim",
-        cmd = "IncRename",
-        config = true,
-        cond = not_in_vscode
-    },
-    {
-        "folke/trouble.nvim",
-        cmd = { "Trouble", "TroubleClose", "TroubleRefresh", "TroubleToggle" },
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = true,
-        cond = not_in_vscode
-    },
-    {
         "L3MON4D3/LuaSnip",
         event = "VeryLazy",
         dependencies = {
@@ -59,86 +69,12 @@ return {
         cond = not_in_vscode
     },
     {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        opts = {
-            disable = { filetypes = { "TelescopePrompt" } },
-        },
-        cond = not_in_vscode
-    },
-    {
-        "folke/noice.nvim",
-        event = "VeryLazy",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify"
-        },
-        opts = {
-            lsp = {
-                -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-                signature = { enabled = false },
-                override = {
-                    ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                    ["vim.lsp.util.stylize_markdown"] = true,
-                    ["cmp.entry.get_documentation"] = true,
-                },
-            },
-            presets = {
-                bottom_search = true,
-                command_palette = true,
-                long_message_to_split = true,
-                inc_rename = true,
-                lsp_doc_border = true,
-            }
-        },
-        cond = not_in_vscode
-    },
-    {
-        "folke/todo-comments.nvim",
-        event = "BufReadPost",
-        config = true,
-        cond = not_in_vscode
-    },
-    {
-        "akinsho/toggleterm.nvim",
-        cmd = "ToggleTerm",
-        keys = {
-            { "<Leader>g" }
-        },
-        config = function() require "plugins/configs/toggleterm" end,
-        cond = not_in_vscode
-    },
-    {
-        "petertriho/nvim-scrollbar",
-        event = "BufReadPost",
-        opts = {
-            show_in_active_only = false,
-            hide_if_all_visible = true,
-            handle = {
-                color = "BufferLineTabSelected"
-            },
-            -- marks = {
-            --     Search = { color = palette.bright_orange },
-            --     Error  = { color = palette.bright_red },
-            --     Warn   = { color = palette.bright_yellow },
-            --     Info   = { color = palette.bright_blue },
-            --     Hint   = { color = palette.bright_aqua },
-            --     Misc   = { color = palette.bright_purple },
-            -- }
-        },
-        cond = not_in_vscode
-    },
-    {
-        "karb94/neoscroll.nvim",
-        config = require "plugins.configs.neoscroll",
-        cond = not_in_vscode
-    },
-    {
         "windwp/nvim-autopairs",
         event = "VeryLazy",
         opts = {
             disable_filetype = { "TelescopePrompt" },
-        }
+        },
+        cond = not_in_vscode
     },
     -- {
     --     "ggandor/leap.nvim",
@@ -161,13 +97,6 @@ return {
         }
     },
     {
-        "lewis6991/gitsigns.nvim",
-        cmd = "Gitsigns",
-        event = "BufReadPre",
-        config = true,
-        cond = not_in_vscode
-    },
-    {
         "rmagatti/auto-session",
         dependencies = {
             "nvim-telescope/telescope.nvim"
@@ -177,17 +106,6 @@ return {
             auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
             auto_restore_enabled = true,
             pre_save_cmds = { "Neotree close" }
-        },
-        cond = not_in_vscode
-    },
-    {
-        "uga-rosa/ccc.nvim",
-        event = "BufReadPost",
-        opts = {
-            highlighter = {
-                auto_enable = true,
-                lsp = true,
-            }
         },
         cond = not_in_vscode
     },
@@ -203,16 +121,6 @@ return {
             search_workspace = true,
             name = { "venv", "env" }
         },
-        cond = not_in_vscode
-    },
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        config = require "plugins/configs/indent-blankline",
-    },
-    {
-        "lukas-reineke/virt-column.nvim",
-        event = "BufEnter",
-        config = true,
         cond = not_in_vscode
     },
     {
@@ -252,15 +160,7 @@ return {
                 }
             }
         end,
-        cmd = { "IronAttach", "IronRepl", "IronReplHere", "IronRestart", "IronFocus", "IronHide", "IronWatch" }
+        cmd = { "IronAttach", "IronRepl", "IronReplHere", "IronRestart", "IronFocus", "IronHide", "IronWatch" },
+        cond = not_in_vscode
     },
-    {
-        "akinsho/bufferline.nvim",
-        tag = "v4.2.0",
-        event = "BufReadPre",
-        dependencies = {
-            "kyazdani42/nvim-web-devicons"
-        },
-        opts = require "plugins.configs.bufferline",
-    }
 }
