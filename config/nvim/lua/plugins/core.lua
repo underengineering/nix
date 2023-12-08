@@ -1,6 +1,7 @@
 local is_in_vscode = require("utils").is_in_vscode
 local not_in_vscode = function() return not is_in_vscode end
 
+---@type LazySpec
 return {
     {
         "numToStr/Comment.nvim",
