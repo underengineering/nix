@@ -94,11 +94,11 @@ function _ssh_wrapper() {
         "$@"
 }
 
-if [ "$TERM" = "xterm-kitty" ]
+if [ -z "$KITTY_PID" ]
 then
-    alias ssh='kitten ssh'
-else
     alias ssh=_ssh_wrapper
+else
+    alias ssh='kitten ssh'
 fi
 
 # Use control master for rsync's ssh
