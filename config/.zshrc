@@ -77,7 +77,12 @@ fi
 
 function _ssh_wrapper() {
     local runtime_dir="$XDG_RUNTIME_DIR"
-    local control_master="ssh-%C"
+    if [ -z "$KITTY_PID" ]; then
+        local control_master="ssh-%C"
+    else
+        local control_master="kssh-$KITTY_PID-%C"
+    fi
+
     local control_master_path="$runtime_dir/$control_master"
 
     \ssh -C \
@@ -95,6 +100,9 @@ then
 else
     alias ssh=_ssh_wrapper
 fi
+
+# Use control master for rsync's ssh
+alias rsync='rsync -e ssh-session'
 
 function wezterm-setup {
     local HOST=$1
