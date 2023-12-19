@@ -94,12 +94,15 @@ function _ssh_wrapper() {
         "$@"
 }
 
-if [ -z "$KITTY_PID" ]
-then
-    alias ssh=_ssh_wrapper
-else
-    alias ssh='kitten ssh'
-fi
+# FIXME: FileNotFoundError: [Errno 2] No such file or directory: 'kssh-575523-5DZ6FM5DOE6XO'
+
+# if [ -z "$KITTY_PID" ]
+# then
+#     alias ssh=_ssh_wrapper
+# else
+#     alias ssh='kitten ssh'
+# fi
+alias ssh=_ssh_wrapper
 
 # Use control master for rsync's ssh
 alias rsync='rsync -e ssh-session'
@@ -191,6 +194,10 @@ fi
 if [[ -z "$TMUX" && "$-" == *i* ]]; then
     tmux attach -t default || tmux new -s default && exit
 elif [[ "$-" == *i* ]]; then
+    # https://babushk.in/posts/renew-environment-tmux.html
+    function tmux-refresh {
+        export $(tmux show-environment | rg "^(KITTY_PID|KITTY_WINDOW_ID)")
+    }
 
     # Start all plugins
     source ~/.zsh/fzf-tab/fzf-tab.zsh
