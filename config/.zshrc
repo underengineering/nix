@@ -77,11 +77,11 @@ fi
 
 function _ssh_wrapper() {
     local runtime_dir="$XDG_RUNTIME_DIR"
-    if [ -z "$KITTY_PID" ]; then
-        local control_master="ssh-%C"
-    else
-        local control_master="kssh-$KITTY_PID-%C"
-    fi
+    # if [ -z "$KITTY_PID" ]; then
+    local control_master="ssh-%C"
+    # else
+    #     local control_master="kssh-$KITTY_PID-%C"
+    # fi
 
     local control_master_path="$runtime_dir/$control_master"
 
