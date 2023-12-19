@@ -39,6 +39,7 @@ in {
       duplicacy
       eza
       fzf
+      jq
       lazygit
       p7zip
       ripgrep
@@ -64,5 +65,6 @@ in {
     ./zsh
     ./starship
     ./lazygit
+    ./tmux
   ];
 }

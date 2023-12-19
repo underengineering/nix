@@ -118,6 +118,10 @@
             enable = true;
             extraConfig = builtins.readFile "${self}/config/lazygit.yml";
           };
+          tmux = {
+            enable = true;
+            configPath = "config/tmux";
+          };
           wayland.enable = true;
           vscodium.enable = true;
           dunst = {

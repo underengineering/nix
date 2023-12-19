@@ -186,17 +186,23 @@ then
     git clone --depth 1 https://github.com/trystan2k/zsh-tab-title ~/.zsh/zsh-tab-title
 fi
 
-source ~/.zsh/fzf-tab/fzf-tab.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source ~/.zsh/zsh-fzf-history-search/zsh-fzf-history-search.zsh
-source ~/.zsh/zsh-tab-title/zsh-tab-title.plugin.zsh
-
 ####[ END PLUGINS ]####
 
-# Start direnv
-eval "$(direnv hook zsh)"
+if [[ -z "$TMUX" && "$-" == *i* ]]; then
+    tmux attach -t default || tmux new -s default && exit
+elif [[ "$-" == *i* ]]; then
 
-# Start starship
-eval "$(starship init zsh)"
+    # Start all plugins
+    source ~/.zsh/fzf-tab/fzf-tab.zsh
+    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+    source ~/.zsh/zsh-fzf-history-search/zsh-fzf-history-search.zsh
+    source ~/.zsh/zsh-tab-title/zsh-tab-title.plugin.zsh
+
+    # Start direnv
+    eval "$(direnv hook zsh)"
+
+    # Start starship
+    eval "$(starship init zsh)"
+fi
 
