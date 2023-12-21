@@ -93,7 +93,12 @@ return function()
         end,
         ---@param self ViMode
         provider = function(self)
-            return (" %%2(%s%%) "):format(self.mode_name)
+            local rec = vim.fn.reg_recording()
+            if rec ~= "" then
+                rec = "@" .. rec
+            end
+
+            return (" %%4(%s%s%%) "):format(self.mode_name, rec)
         end,
         ---@param self ViMode
         hl = function(self)
@@ -108,7 +113,7 @@ return function()
 
             return hl
         end,
-        update = { "ModeChanged" }
+        update = { "ModeChanged", "RecordingEnter", "RecordingLeave" }
     }
 
     ---@class ViModePowerline: ViMode
