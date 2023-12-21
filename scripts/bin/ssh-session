@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 
 runtime_dir="$XDG_RUNTIME_DIR"
-if [ -z "$KITTY_PID" ]; then
-    control_master="ssh-%C"
-else
-    control_master="kssh-$KITTY_PID-%C"
-fi
+# if [ -z "$KITTY_PID" ]; then
+control_master="ssh-%C"
+# else
+#     control_master="kssh-$KITTY_PID-%C"
+# fi
 
 control_master_path="$runtime_dir/$control_master"
 
