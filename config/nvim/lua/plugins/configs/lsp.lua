@@ -80,22 +80,33 @@ lspconfig.jsonls.setup {
     }
 }
 
-lsp.set_sign_icons(require("utils").diagnostic_signs)
-
-vim.diagnostic.config {
-    virtual_text = { prefix = "●" },
-    update_in_insert = true,
-    underline = true,
-    severity_sort = true,
-    float = {
-        focused = false,
-        style = "minimal",
-        border = "rounded",
-        source = "always",
-        header = "",
-        prefix = ""
+do
+    local utils = require("utils")
+    local signs = {
+        [vim.diagnostic.severity.ERROR] = utils.diagnostic_signs.error,
+        [vim.diagnostic.severity.WARN] = utils.diagnostic_signs.warn,
+        [vim.diagnostic.severity.INFO] = utils.diagnostic_signs.info,
+        [vim.diagnostic.severity.HINT] = utils.diagnostic_signs.hint,
     }
-}
+
+    vim.diagnostic.config {
+        signs = { text = signs },
+        virtual_text = { prefix = "●" },
+        update_in_insert = true,
+        underline = true,
+        severity_sort = true,
+        float = {
+            focused = false,
+            style = "minimal",
+            border = "rounded",
+            source = "always",
+            header = "",
+            prefix = ""
+        }
+    }
+
+    lsp.set_sign_icons(utils.diagnostic_signs)
+end
 
 require("rust-tools").setup {
     tools = {
