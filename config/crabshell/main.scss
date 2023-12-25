@@ -22,7 +22,7 @@
 }
 
 .distro-icon {
-     padding: 1px 7px 0px 7px;
+    padding: 1px 7px 0px 7px;
 }
 
 .workspaces {
@@ -102,19 +102,19 @@
         }
     }
 
-    .poweroff > label {
+    .poweroff>label {
         color: $red1;
     }
 
-    .restart > label {
+    .restart>label {
         color: $green1;
     }
 
-    .suspend > label {
+    .suspend>label {
         color: $blue1;
     }
 
-    .logout > label {
+    .logout>label {
         color: $aqua1;
     }
 }
@@ -150,12 +150,11 @@
         }
     }
 
-    .yes > label {
+    .yes>label {
         color: $green1;
     }
 
-    .no > label {
+    .no>label {
         color: $red1;
     }
 }
-
