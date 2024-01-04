@@ -23,12 +23,17 @@ in {
       type = types.str;
       default = "john-doe@gmail.com";
     };
+    extraConfig = mkOption {
+      description = "";
+      default = {};
+    };
   };
   config = mkIf (cfg.enable) {
     programs.git = {
       enable = true;
       userName = cfg.userName;
       userEmail = cfg.userEmail;
+      extraConfig = cfg.extraConfig;
     };
   };
 }

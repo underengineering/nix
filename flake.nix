@@ -107,6 +107,9 @@
             enable = true;
             userName = "underengineering";
             userEmail = "san4a852b@gmail.com";
+            extraConfig = {
+              core.sshCommand = "ssh-session";
+            };
           };
           delta = {
             enable = true;
