@@ -1,0 +1,116 @@
+diff --git a/src/_sass/_color-palette-default.scss b/src/_sass/_color-palette-default.scss
+index 959b600..7da3b8e 100644
+--- a/src/_sass/_color-palette-default.scss
++++ b/src/_sass/_color-palette-default.scss
+@@ -1,67 +1,68 @@
+ // Default Theme Color Palette
+ 
+ // Red
+-$red-light: #F44336;
+-$red-dark: #E53935;
++$red-light: #fb4934;
++$red-dark: #cc241d;
+ 
+ // Pink
+-$pink-light: #F06292;
+-$pink-dark: #EC407A;
++$pink-light: #d3869b;
++$pink-dark: #b16286;
+ 
+ // Purple
+-$purple-light: #BA68C8;
+-$purple-dark: #AB47BC;
++$purple-light: #d3869b;
++$purple-dark: #b16286;
+ 
+ // Blue
+-$blue-light: #3281EA;
+-$blue-dark: #1A73E8;
++$blue-light: #83a598;
++$blue-dark: #458588;
+ 
+ // Teal
+-$teal-light: #4DB6AC;
+-$teal-dark: #009688;
++$teal-light: #83a598;
++$teal-dark: #458588;
+ 
+ // Green
+-$green-light: #66BB6A;
+-$green-dark: #4CAF50;
+-$sea-light: #81C995;
+-$sea-dark: #0F9D58;
++$green-light: #b8bb26;
++$green-dark: #98971a;
++
++$sea-light: #8ec07c;
++$sea-dark: #689d6a;
+ 
+ // Yellow
+-$yellow-light: #FBC02D;
+-$yellow-dark: #FFD600;
++$yellow-light: #fabd2f;
++$yellow-dark: #d79921;
+ 
+ // Orange
+-$orange-light: #FB8C00;
+-$orange-dark: #F57C00;
++$orange-light: #fe8019;
++$orange-dark: #d65d0e;
+ 
+ // Grey
+-$grey-050: #FAFAFA;
+-$grey-100: #F2F2F2;
+-$grey-150: #EEEEEE;
+-$grey-200: #DDDDDD;
+-$grey-250: #CCCCCC;
+-$grey-300: #BFBFBF;
+-$grey-350: #A0A0A0;
+-$grey-400: #9E9E9E;
+-$grey-450: #868686;
+-$grey-500: #727272;
+-$grey-550: #555555;
+-$grey-600: #464646;
+-$grey-650: #3C3C3C;
+-$grey-700: #2C2C2C;
+-$grey-750: #242424;
+-$grey-800: #212121;
+-$grey-850: #121212;
+-$grey-900: #0F0F0F;
+-$grey-950: #030303;
++$grey-050: #fbf1c7;
++$grey-100: #fbf1c7;
++$grey-150: #ebdbb2;
++$grey-200: #ebdbb2;
++$grey-250: #d5c4a1;
++$grey-300: #d5c4a1;
++$grey-350: #bdae93;
++$grey-400: #bdae93;
++$grey-450: #a89984;
++$grey-500: #928374;
++$grey-550: #7c6f64;
++$grey-600: #665c54;
++$grey-650: #665c54;
++$grey-700: #504945;
++$grey-750: #504945;
++$grey-800: #3c3836;
++$grey-850: #3c3836;
++$grey-900: #282828;
++$grey-950: #282828;
+ 
+ // White
+-$white: #FFFFFF;
++$white: #ebdbb2;
+ 
+ // Black
+-$black: #000000;
++$black: #282828;
+ 
+ // Windows Button
+-$button-close: #fd5f51;
+-$button-max: #38c76a;
+-$button-min: #fdbe04;
++$button-close: $red-light;
++$button-max: $green-light;
++$button-min: $yellow-light;
+

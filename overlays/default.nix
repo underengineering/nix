@@ -28,6 +28,11 @@ with lib; {
           '';
       });
 
+      orchis-theme-gruvbox = prev.orchis-theme.overrideAttrs (old: {
+        tweaks = ["black" "primary"];
+        patches = [../patches/nixpkgs/orchis-theme.patch];
+      });
+
       linux_xanmod_custom_lenowo = prev.linuxPackagesFor (prev.linux_latest.override {
         structuredExtraConfig = with lib;
         with lib.kernel; {

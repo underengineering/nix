@@ -185,8 +185,8 @@
             };
             theme = {
               enable = true;
-              package = pkgs.gruvbox-gtk-theme;
-              name = "Gruvbox-Dark-BL";
+              package = pkgs.orchis-theme-gruvbox;
+              name = "Orchis-Green-Dark";
             };
           };
           wireplumber = {
