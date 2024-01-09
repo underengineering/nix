@@ -108,7 +108,7 @@ do
     lsp.set_sign_icons(utils.diagnostic_signs)
 end
 
-require("rust-tools").setup {
+vim.g.rustaceanvim = {
     tools = {
         reload_workspace_from_cargo_toml = true,
         inlay_hints = {

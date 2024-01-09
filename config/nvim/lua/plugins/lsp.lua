@@ -16,18 +16,16 @@ return {
             "SmiteshP/nvim-navic",
             "b0o/schemastore.nvim",
             {
-                "simrat39/rust-tools.nvim",
-                dependencies = {
-                    "nvim-lua/plenary.nvim",
-                    "mfussenegger/nvim-dap"
-                }
-            },
-            {
                 "folke/neodev.nvim",
                 config = true
             }
         },
         config = function() require "plugins/configs/lsp" end,
+    },
+    {
+        "mrcjkb/rustaceanvim",
+        version = "^3",
+        ft = "rust",
     },
     {
         "kosayoda/nvim-lightbulb",

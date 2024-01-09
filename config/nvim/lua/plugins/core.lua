@@ -97,6 +97,11 @@ return {
         }
     },
     {
+        "kylechui/nvim-surround",
+        event = "VeryLazy",
+        config = true
+    },
+    {
         "rmagatti/auto-session",
         dependencies = {
             "nvim-telescope/telescope.nvim"
