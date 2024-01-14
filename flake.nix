@@ -221,6 +221,10 @@
                   name = "Lenovo sound patch";
                   patch = "${self}/patches/kernel/lenovo-sound-6.6.patch";
                 }
+                {
+                  name = "BORE";
+                  patch = "${self}/patches/kernel/bore-6.7.patch";
+                }
               ];
             };
             flatpak.enable = true;
