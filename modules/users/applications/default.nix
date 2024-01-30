@@ -38,6 +38,7 @@ in {
       duf
       duplicacy
       eza
+      file
       fzf
       jq
       lazygit
