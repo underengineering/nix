@@ -48,7 +48,7 @@ in {
         ruff-lsp
 
         # C++ and C
-        clang-tools
+        clang-tools_17
 
         # Misc
         taplo
