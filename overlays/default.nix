@@ -8,7 +8,7 @@ with lib; {
   overlays = [
     inputs.neovim-nightly-overlay.overlay
     inputs.hyprland.overlays.default
-    # inputs.hyprpaper.overlays.default
+    inputs.hyprpaper.overlays.default
     (final: prev: {
       hyprland = inputs.hyprland.packages.${pkgs.system}.default.overrideAttrs (old: {
         NIX_CFLAGS_COMPILE = toString (old.NIX_CFLAGS_COMPILE or "") + " -pipe -march=native -O3 -fipa-pta";
