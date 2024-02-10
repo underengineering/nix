@@ -62,9 +62,6 @@ return {
     {
         "L3MON4D3/LuaSnip",
         event = "VeryLazy",
-        dependencies = {
-            "rafamadriz/friendly-snippets"
-        },
         config = require "plugins/configs/luasnip",
         cond = not_in_vscode
     },

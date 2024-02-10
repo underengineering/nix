@@ -57,6 +57,5 @@ local function get_snippets()
 end
 
 return function()
-    require("luasnip.loaders.from_vscode").lazy_load()
     require("luasnip").add_snippets("all", get_snippets())
 end

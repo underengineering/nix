@@ -33,7 +33,7 @@ lsp.set_server_config {
         textDocument = {
             completion = {
                 completionItem = {
-                    snippetSupport = true
+                    snippetSupport = false
                 }
             }
         }
