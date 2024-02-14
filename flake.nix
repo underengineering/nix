@@ -235,7 +235,6 @@
             bluetooth.enable = true;
             tlp.enable = true;
             chrony.enable = true;
-            pam.services.swaylock.text = "auth include login";
             unbound = {
               enable = true;
               overrideNameservers = true;
