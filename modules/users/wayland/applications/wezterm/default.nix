@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.wezterm;
+  cfg = config.modules.wezterm;
 in {
-  options.jd.wezterm = {
+  options.modules.wezterm = {
     enable = mkOption {
       description = "Enable wezterm";
       type = types.bool;

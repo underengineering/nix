@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.delta;
+  cfg = config.modules.delta;
 in {
-  options.jd.delta = {
+  options.modules.delta = {
     enable = mkOption {
       description = "Enable delta";
       type = types.bool;

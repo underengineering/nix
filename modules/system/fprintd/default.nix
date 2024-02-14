@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.fprintd;
+  cfg = config.modules.fprintd;
 in {
-  options.jd.fprintd = {
+  options.modules.fprintd = {
     enable = mkOption {
       description = "Enable fprintd";
       type = types.bool;

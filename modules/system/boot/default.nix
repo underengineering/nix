@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.boot;
+  cfg = config.modules.boot;
 in {
-  options.jd.boot = {};
+  options.modules.boot = {};
 
   config = {
     fileSystems."/" = {

@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.vscodium;
+  cfg = config.modules.vscodium;
 in {
-  options.jd.vscodium = {
+  options.modules.vscodium = {
     enable = mkOption {
       description = "Enable vscodium";
       type = types.bool;

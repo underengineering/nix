@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.pam;
+  cfg = config.modules.pam;
 in {
-  options.jd.pam = {
+  options.modules.pam = {
     services = mkOption {
       default = {};
       type = with types; attrsOf attrs;

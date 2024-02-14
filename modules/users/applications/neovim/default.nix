@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.neovim;
+  cfg = config.modules.neovim;
 in {
-  options.jd.neovim = {
+  options.modules.neovim = {
     enable = mkOption {
       description = "Enable neovim";
       type = types.bool;

@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.wireplumber;
+  cfg = config.modules.wireplumber;
 in {
-  options.jd.wireplumber = {
+  options.modules.wireplumber = {
     enable = mkOption {
       description = "Enable wireplumber configuration";
       type = types.bool;

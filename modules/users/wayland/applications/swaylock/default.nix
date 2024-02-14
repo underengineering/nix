@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.swaylock;
+  cfg = config.modules.swaylock;
 in {
-  options.jd.swaylock = {
+  options.modules.swaylock = {
     enable = mkOption {
       description = "Enable swaylock-effects";
       type = types.bool;

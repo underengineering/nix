@@ -4,9 +4,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.kitty;
+  cfg = config.modules.kitty;
 in {
-  options.jd.kitty = {
+  options.modules.kitty = {
     enable = mkOption {
       description = "Enable kitty";
       type = types.bool;

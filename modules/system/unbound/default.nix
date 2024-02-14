@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.unbound;
+  cfg = config.modules.unbound;
 in {
-  options.jd.unbound = {
+  options.modules.unbound = {
     enable = mkOption {
       description = "Enable unbound DNS client";
       type = types.bool;

@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.applications;
+  cfg = config.modules.applications;
 in {
-  options.jd.applications = {
+  options.modules.applications = {
     enable = mkOption {
       description = "Enable common applications";
       type = types.bool;

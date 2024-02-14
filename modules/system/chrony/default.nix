@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.chrony;
+  cfg = config.modules.chrony;
 in {
-  options.jd.chrony = {
+  options.modules.chrony = {
     enable = mkOption {
       description = "Enable chrony. Disables timesyncd.";
       type = types.bool;

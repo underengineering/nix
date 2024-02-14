@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.starship;
+  cfg = config.modules.starship;
 in {
-  options.jd.starship = {
+  options.modules.starship = {
     enable = mkOption {
       description = "Enable starship";
       type = types.bool;

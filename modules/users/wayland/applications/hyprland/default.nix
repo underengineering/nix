@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.hyprland;
+  cfg = config.modules.hyprland;
 in {
-  options.jd.hyprland = {
+  options.modules.hyprland = {
     enable = mkOption {
       description = "Enable hyprland";
       type = types.bool;

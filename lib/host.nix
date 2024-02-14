@@ -32,7 +32,7 @@ with utils; {
       modules = [
         {
           imports = [../modules/system] ++ sysUsers;
-          jd = systemConfig;
+          modules = systemConfig;
           environment.etc = {
             "hmsystemdata.json".text = toJSON userCfg;
           };

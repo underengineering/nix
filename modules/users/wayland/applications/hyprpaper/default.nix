@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.hyprpaper;
+  cfg = config.modules.hyprpaper;
 in {
-  options.jd.hyprpaper = {
+  options.modules.hyprpaper = {
     enable = mkOption {
       description = "Enable hyprpaper";
       type = types.bool;

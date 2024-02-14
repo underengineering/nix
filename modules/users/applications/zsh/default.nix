@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.zsh;
+  cfg = config.modules.zsh;
 in {
-  options.jd.zsh = {
+  options.modules.zsh = {
     enable = mkOption {
       description = "Enable zsh";
       type = types.bool;

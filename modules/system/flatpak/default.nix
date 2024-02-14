@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.flatpak;
+  cfg = config.modules.flatpak;
 in {
-  options.jd.flatpak = {
+  options.modules.flatpak = {
     enable = mkOption {
       description = "Enable flatpak";
       type = types.bool;

@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.tlp;
+  cfg = config.modules.tlp;
 in {
-  options.jd.tlp = {
+  options.modules.tlp = {
     enable = mkOption {
       description = "Enable TLP service";
       type = types.bool;

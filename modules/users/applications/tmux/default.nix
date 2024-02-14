@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.tmux;
+  cfg = config.modules.tmux;
 in {
-  options.jd.tmux = {
+  options.modules.tmux = {
     enable = mkOption {
       description = "Enable tmux";
       type = types.bool;

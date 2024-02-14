@@ -35,7 +35,7 @@ with builtins; {
         (import ../modules/users {inherit inputs;})
         machineModule
         {
-          jd = userConfig;
+          modules = userConfig;
           nixpkgs = {
             overlays = overlays;
             config = {

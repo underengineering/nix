@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.greetd;
+  cfg = config.modules.greetd;
 in {
-  options.jd.bluetooth = {
+  options.modules.bluetooth = {
     enable = mkOption {
       description = "Enable Bluetooth support";
       type = types.bool;

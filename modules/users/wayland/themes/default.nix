@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.themes;
+  cfg = config.modules.themes;
 in {
-  options.jd.themes = {
+  options.modules.themes = {
     enable = mkOption {
       description = "Enable themes module";
       type = types.bool;

@@ -6,9 +6,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.firefox;
+  cfg = config.modules.firefox;
 in {
-  options.jd.firefox = {
+  options.modules.firefox = {
     enable = mkOption {
       description = "Enable firefox";
       type = types.bool;

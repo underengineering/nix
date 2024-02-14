@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.ssh;
+  cfg = config.modules.ssh;
 in {
-  options.jd.ssh = {
+  options.modules.ssh = {
     enable = mkOption {
       description = "Whether to enable ssh";
       type = types.bool;

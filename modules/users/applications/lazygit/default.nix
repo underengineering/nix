@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.lazygit;
+  cfg = config.modules.lazygit;
 in {
-  options.jd.lazygit = {
+  options.modules.lazygit = {
     enable = mkOption {
       description = "Enable lazygit";
       type = types.bool;

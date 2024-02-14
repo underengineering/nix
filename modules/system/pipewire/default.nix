@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.pipewire;
+  cfg = config.modules.pipewire;
 in {
-  options.jd.pipewire = {
+  options.modules.pipewire = {
     enable = mkOption {
       description = "Enable pipewire";
       type = types.bool;

@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.wayland;
+  cfg = config.modules.wayland;
 in {
-  options.jd.wayland = {
+  options.modules.wayland = {
     enable = mkOption {
       description = "Enable wayland";
       type = types.bool;

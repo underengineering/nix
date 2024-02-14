@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.git;
+  cfg = config.modules.git;
 in {
-  options.jd.git = {
+  options.modules.git = {
     enable = mkOption {
       description = "Enable git";
       type = types.bool;

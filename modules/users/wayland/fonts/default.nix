@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.fonts;
+  cfg = config.modules.fonts;
 in {
-  options.jd.fonts = {
+  options.modules.fonts = {
     enable = mkOption {
       description = "Enable common fonts";
       type = types.bool;

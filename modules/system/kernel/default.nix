@@ -4,9 +4,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.kernel;
+  cfg = config.modules.kernel;
 in {
-  options.jd.kernel = {
+  options.modules.kernel = {
     patches = mkOption {
       description = "Kernel patches";
       type = with types; listOf attrs;

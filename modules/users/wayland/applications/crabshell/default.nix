@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.crabshell;
+  cfg = config.modules.crabshell;
 in {
-  options.jd.crabshell = {
+  options.modules.crabshell = {
     enable = mkOption {
       description = "Enable crabshell";
       type = types.bool;

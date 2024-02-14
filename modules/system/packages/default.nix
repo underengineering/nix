@@ -5,7 +5,7 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.packages;
+  cfg = config.modules.packages;
 in {
   config = {
     programs.zsh.enable = true;

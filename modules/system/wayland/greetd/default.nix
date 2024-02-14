@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.greetd;
+  cfg = config.modules.greetd;
 in {
-  options.jd.greetd = {
+  options.modules.greetd = {
     enable = mkOption {
       description = "Enable greetd";
       type = types.bool;

@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.dunst;
+  cfg = config.modules.dunst;
 in {
-  options.jd.dunst = {
+  options.modules.dunst = {
     enable = mkOption {
       description = "Enable dunst";
       type = types.bool;

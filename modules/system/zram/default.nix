@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.jd.zram;
+  cfg = config.modules.zram;
 in {
-  options.jd.zram = {
+  options.modules.zram = {
     enable = mkOption {
       description = "Enable ZRAM";
       type = types.bool;
