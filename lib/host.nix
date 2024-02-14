@@ -19,13 +19,9 @@ with utils; {
     cpuCores,
     users,
     wifi ? [],
-    gpuTempSensor ? null,
-    cpuTempSensor ? null,
   }: let
-    systemEnableModule = enableModule systemConfig;
-
     userCfg = {
-      inherit name systemConfig cpuCores gpuTempSensor cpuTempSensor;
+      inherit name systemConfig cpuCores;
     };
 
     sysUsers = map (u: user.mkSystemUser u) users;

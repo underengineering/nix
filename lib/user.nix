@@ -2,9 +2,6 @@
   inputs,
   pkgs,
   home-manager,
-  hyprland,
-  lib,
-  system,
   overlays,
   ...
 }:
