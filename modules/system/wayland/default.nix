@@ -29,13 +29,15 @@ in {
         common.default = ["gtk" "hyprland"];
       };
     };
-    programs.light.enable = true;
+
     services.xserver.gdk-pixbuf.modulePackages = with pkgs; [librsvg];
+    programs.light.enable = true;
     environment.systemPackages = with pkgs; [
       libva-utils
       vdpauinfo
       glxinfo
     ];
+
     hardware.opengl = {
       enable = true;
       driSupport = true;

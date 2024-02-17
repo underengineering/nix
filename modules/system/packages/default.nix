@@ -4,9 +4,7 @@
   lib,
   ...
 }:
-with lib; let
-  cfg = config.modules.packages;
-in {
+with lib; {
   config = {
     programs.zsh.enable = true;
     programs.wireshark.enable = true;
@@ -30,7 +28,7 @@ in {
       # Utils
       nmap
       fzf
-      linuxKernel.packages.linux_6_6.cpupower
+      config.boot.kernelPackages.cpupower
       podman-compose
     ];
   };

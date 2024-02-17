@@ -1,12 +1,4 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}:
-with lib; let
-  cfg = config.modules.boot;
-in {
+{...}: {
   options.modules.boot = {};
 
   config = {

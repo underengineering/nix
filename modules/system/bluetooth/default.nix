@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   lib,
   ...
@@ -14,7 +13,7 @@ in {
       default = false;
     };
   };
-  config = {
+  config = mkIf (cfg.enable) {
     hardware.bluetooth.enable = true;
   };
 }

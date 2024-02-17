@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   lib,
   ...
@@ -16,6 +15,5 @@ in {
   };
   config = mkIf (cfg.enable) {
     services.tlp.enable = true;
-    powerManagement.cpuFreqGovernor = "conservative";
   };
 }

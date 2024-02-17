@@ -18,7 +18,6 @@ with utils; {
     systemConfig,
     cpuCores,
     users,
-    wifi ? [],
   }: let
     userCfg = {
       inherit name systemConfig cpuCores;
@@ -52,8 +51,6 @@ with utils; {
           systemd.network.wait-online.enable = false;
 
           networking.hostName = name;
-          networking.wireless.interfaces = wifi;
-
           networking.networkmanager.enable = true;
           networking.useDHCP = false;
 
