@@ -23,6 +23,5 @@ in {
     # TODO: Configure pam.d
     home.packages = with pkgs; [swaylock-effects];
     programs.swaylock.settings = cfg.config;
-    security.pam.services.swaylock.text = "auth include login";
   };
 }

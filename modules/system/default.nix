@@ -7,6 +7,7 @@
     ./fprintd
     ./kernel
     ./packages
+    ./pam
     ./pipewire
     ./ssh
     ./tlp
