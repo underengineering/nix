@@ -163,12 +163,14 @@
             enable = true;
             extraConfig = builtins.readFile "${self}/config/hyprland.conf";
           };
-          hyprpaper = {
+          hyprpaper = let
+            wallpaper-path = "${self}/wallpapers/e7d53cc7bac3a63a79b25e1bac7b776f0678d234_s2_n1_y1.png";
+          in {
             enable = true;
             ipc = false;
-            preload = ["${self}/wallpapers/wallpaper.png"];
+            preload = [wallpaper-path];
             wallpapers = {
-              eDP-2 = "${self}/wallpapers/wallpaper.png";
+              eDP-2 = wallpaper-path;
             };
           };
           themes = {
