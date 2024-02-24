@@ -3,10 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
     hyprland = {
       url = "github:underengineering/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprlang.follows = "hyprlang";
       inputs.xdph.follows = "xdph";
+      inputs.utils.follows = "flake-utils";
     };
     hyprlang = {
       url = "github:hyprwm/hyprlang";
@@ -26,10 +29,12 @@
       url = "github:underengineering/crabshell";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
+      inputs.utils.follows = "flake-utils";
     };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
