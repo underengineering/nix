@@ -9,7 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "hyprlang";
       inputs.xdph.follows = "xdph";
-      inputs.utils.follows = "flake-utils";
     };
     hyprlang = {
       url = "github:hyprwm/hyprlang";
