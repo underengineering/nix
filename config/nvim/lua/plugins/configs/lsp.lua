@@ -53,12 +53,16 @@ lsp.setup_servers {
     "tailwindcss",
     "tsserver",
 
-    "clangd",
-    "cmake",
-    "nil_ls",
     "prismals",
     "taplo",
-    "yamlls"
+    "yamlls",
+
+    "clangd",
+    "cmake",
+
+    "nil_ls",
+
+    "zls"
 }
 
 lspconfig.lua_ls.setup {
