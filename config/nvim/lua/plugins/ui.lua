@@ -141,7 +141,7 @@ return {
     },
     {
         "akinsho/bufferline.nvim",
-        tag = "v4.2.0",
+        tag = "v4.5.2",
         event = "BufReadPre",
         dependencies = {
             "kyazdani42/nvim-web-devicons"
