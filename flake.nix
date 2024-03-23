@@ -226,11 +226,11 @@
               patches = [
                 {
                   name = "Lenovo sound patch";
-                  patch = "${self}/patches/kernel/lenovo-sound-6.6.patch";
+                  patch = "${self}/patches/kernel/lenovo-sound-6.8.patch";
                 }
                 {
                   name = "BORE";
-                  patch = "${self}/patches/kernel/bore-6.7.patch";
+                  patch = "${self}/patches/kernel/bore-6.8.patch";
                 }
               ];
             };
