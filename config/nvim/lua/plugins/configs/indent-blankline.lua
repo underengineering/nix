@@ -23,7 +23,8 @@ return function()
             enabled = true,
             show_start = true,
             show_end = false,
-            highlight = highlight
+            highlight = highlight,
+            char = "▎",
         }
     }
 end
