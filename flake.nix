@@ -8,7 +8,13 @@
       url = "github:underengineering/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "hyprlang";
+      inputs.hyprcursor.follows = "hyprcursor";
       inputs.xdph.follows = "xdph";
+    };
+    hyprcursor = {
+      url = "github:hyprwm/hyprcursor";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprlang.follows = "hyprlang";
     };
     hyprlang = {
       url = "github:hyprwm/hyprlang";
