@@ -42,6 +42,7 @@ lsp.set_server_config {
 
 lsp.setup_servers {
     "gopls",
+    "golangci_lint_ls",
 
     "pyright",
     "ruff_lsp",

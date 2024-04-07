@@ -50,6 +50,11 @@ in {
         # C++ and C
         clang-tools_17
 
+        # Golang
+        gopls
+        golangci-lint
+        golangci-lint-langserver
+
         # Misc
         taplo
         yaml-language-server
