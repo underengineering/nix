@@ -33,26 +33,6 @@ with lib; {
         patches = [../patches/nixpkgs/orchis-theme.patch];
       });
 
-      # TODO: Remove after updating nixpkgs
-      # https://github.com/kovidgoyal/kitty/commit/5a9cf825647c4d98b143dc855210ea2471392bce
-      kitty = prev.kitty.overrideAttrs (old: rec {
-        version = "0.33.1";
-        src = prev.fetchFromGitHub {
-          owner = "kovidgoyal";
-          repo = "kitty";
-          rev = "refs/tags/v${version}";
-          hash = "sha256-E6gFGgySXs2oCS4Ipevbr9aPWzF4tb4Arl4w+4lQ+wg=";
-        };
-
-        goModules =
-          (prev.buildGo122Module {
-            pname = "kitty-go-modules";
-            inherit src version;
-            vendorHash = "sha256-ypSZHJpk9wTXLH9sbmaSQB28iOIpv2nDPlgweM0Ldhs=";
-          })
-          .goModules;
-      });
-
       linux_xanmod_custom_lenowo = prev.linuxPackagesFor (prev.linux_latest.override {
         structuredExtraConfig = with lib;
         with lib.kernel; {
