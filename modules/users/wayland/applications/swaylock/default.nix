@@ -20,7 +20,6 @@ in {
     };
   };
   config = mkIf (cfg.enable) {
-    # TODO: Configure pam.d
     home.packages = with pkgs; [swaylock-effects];
     programs.swaylock.settings = cfg.config;
   };
