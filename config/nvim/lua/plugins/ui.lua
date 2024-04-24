@@ -111,10 +111,6 @@ return {
         },
     },
     {
-        "karb94/neoscroll.nvim",
-        config = require "plugins.configs.neoscroll",
-    },
-    {
         "lewis6991/gitsigns.nvim",
         cmd = "Gitsigns",
         event = "BufReadPre",
