@@ -56,8 +56,8 @@ end
 end, with_desc(opts, "Switch between neotree and oil")) ]]
 keymap.set("n", "<Leader>b", ":Neotree<CR>")
 
-keymap.set("n", "<C-k>", "<PageUp>", opts)
-keymap.set("n", "<C-j>", "<PageDown>", opts)
+keymap.set({ "n", "v" }, "<C-k>", "<PageUp>", opts)
+keymap.set({ "n", "v" }, "<C-j>", "<PageDown>", opts)
 
 keymap.set("i", "<A-h>", "<Left>", opts)
 keymap.set("i", "<A-j>", "<Down>", opts)
@@ -179,27 +179,6 @@ keymap.set("n",
     "<Leader>cp",
     ":CccPick<CR>",
     with_desc(opts, "[CCC] Pick color"))
-
--- ToggleTerm
-keymap.set("n",
-    "<Leader>ttf",
-    ":ToggleTerm direction=float<CR>",
-    with_desc(opts, "[ToggleTerm] Toggle floating terminal"))
-
-keymap.set("n",
-    "<Leader>ttt",
-    ":ToggleTerm direction=tab<CR>",
-    with_desc(opts, "[ToggleTerm] Toggle tab terminal"))
-
-keymap.set("n",
-    "<Leader>tth",
-    ":ToggleTerm direction=horizontal<CR>",
-    with_desc(opts, "[ToggleTerm] Toggle horizontal terminal"))
-
-keymap.set("n",
-    "<Leader>ttv",
-    ":ToggleTerm direction=vertical<CR>",
-    with_desc(opts, "[ToggleTerm] Toggle vertical terminal"))
 
 -- venv-selector
 keymap.set("n", "<Leader>vs", ":VenvSelect<CR>", with_desc(opts, "Select venv"))
