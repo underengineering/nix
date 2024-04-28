@@ -29,8 +29,14 @@ in {
     programs.firefox = {
       enable = true;
       package = cfg.package;
-      profiles.main = {
-        extraConfig = (builtins.readFile "${inputs.arkenfox}/user.js") + cfg.extraConfig;
+      profiles = {
+        main = {
+          extraConfig = (builtins.readFile "${inputs.arkenfox}/user.js") + cfg.extraConfig;
+        };
+        clean = {
+          id = 1;
+          extraConfig = cfg.extraConfig;
+        };
       };
     };
   };
