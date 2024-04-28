@@ -23,6 +23,7 @@ in {
     };
     home.packages = with pkgs; [
       home-manager
+      nh
 
       ffmpeg
 
