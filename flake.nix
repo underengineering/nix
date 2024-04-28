@@ -62,7 +62,15 @@
     hyprland,
     ...
   } @ inputs: let
+    system = "x86_64-linux";
+
     inherit (nixpkgs) lib;
+    pkgs = import nixpkgs {
+      inherit system;
+      inherit ((import ./overlays {inherit inputs system nixpkgs pkgs lib;})) overlays;
+      config.allowUnfree = true;
+    };
+
     util = import ./lib {
       inherit inputs system nixpkgs pkgs home-manager hyprland lib;
       overlays = pkgs.overlays;
@@ -70,14 +78,6 @@
 
     inherit (util) user;
     inherit (util) host;
-
-    pkgs = import nixpkgs {
-      inherit system;
-      inherit ((import ./overlays {inherit inputs system nixpkgs pkgs lib;})) overlays;
-      config.allowUnfree = true;
-    };
-
-    system = "x86_64-linux";
   in {
     homeManagerConfigurations = {
       mika = user.mkHMUser {
@@ -215,8 +215,7 @@
         host.mkHost
         {
           name = "lenowo";
-          # kernelPackage = pkgs.linuxKernel.packages.linux_xanmod_latest;
-          kernelPackage = pkgs.linux_xanmod_custom_lenowo;
+          kernelPackage = pkgs.linux_custom_lenowo;
           initrdMods = ["amdgpu" "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
           kernelMods = ["kvm-amd"];
           kernelParams = [
