@@ -222,8 +222,6 @@
             "mitigations=off"
             "initcall_blacklist=acpi_cpufreq"
             "amd_pstate=active"
-            # https://gitlab.freedesktop.org/mesa/mesa/-/issues/8044
-            "amd_iommu=off"
             "nowatchdog"
           ];
           systemConfig = {
