@@ -130,14 +130,13 @@ return {
         "lukas-reineke/indent-blankline.nvim",
         config = require "plugins/configs/indent-blankline",
     },
-    {
-        "lukas-reineke/virt-column.nvim",
-        event = "BufEnter",
-        config = true,
-    },
+    -- {
+    --     "lukas-reineke/virt-column.nvim",
+    --     event = "BufEnter",
+    --     config = true,
+    -- },
     {
         "akinsho/bufferline.nvim",
-        tag = "v4.5.2",
         event = "BufReadPre",
         dependencies = {
             "kyazdani42/nvim-web-devicons"

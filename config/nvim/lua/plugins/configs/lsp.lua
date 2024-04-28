@@ -1,10 +1,6 @@
 local lspconfig = require("lspconfig")
 
-local lsp = require("lsp-zero").preset {
-    float_border = "rounded",
-    manage_nvim_cmp = false
-}
-
+local lsp = require("lsp-zero")
 local navic = require("nvim-navic")
 
 local lsp_signature_cfg = {
@@ -20,7 +16,7 @@ lsp.on_attach(function(client, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
 
     if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint.enable(bufnr, true)
+        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     end
 
     if client.server_capabilities.documentSymbolProvider then
