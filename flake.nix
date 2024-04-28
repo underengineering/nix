@@ -5,30 +5,17 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     hyprland = {
-      url = "github:underengineering/Hyprland";
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprlang.follows = "hyprlang";
-      inputs.hyprcursor.follows = "hyprcursor";
       inputs.xdph.follows = "xdph";
-    };
-    hyprcursor = {
-      url = "github:hyprwm/hyprcursor";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprlang.follows = "hyprlang";
-    };
-    hyprlang = {
-      url = "github:hyprwm/hyprlang";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprlang.follows = "hyprlang";
     };
     xdph = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprlang.follows = "hyprlang";
     };
     crabshell = {
       url = "github:underengineering/crabshell";

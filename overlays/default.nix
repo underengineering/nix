@@ -7,8 +7,10 @@
 with lib; {
   overlays = [
     inputs.neovim-nightly-overlay.overlay
-    inputs.hyprland.overlays.default
+    # TODO: Uncomment when https://github.com/hyprwm/Hyprland/commit/a4f38a07d7578f0b06c09de7d04682e0aaddb12a is reverted
+    # inputs.hyprland.overlays.default
     inputs.hyprpaper.overlays.default
+    inputs.xdph.overlays.default
     (final: prev: {
       hyprland = inputs.hyprland.packages.${pkgs.system}.default.overrideAttrs (old: {
         NIX_CFLAGS_COMPILE = toString (old.NIX_CFLAGS_COMPILE or "") + " -pipe -march=native -O3 -fipa-pta";
