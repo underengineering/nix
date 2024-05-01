@@ -67,6 +67,12 @@ in {
         tailwindcss-language-server
         vscode-langservers-extracted
       ];
+      extraWrapperArgs = with pkgs; [
+        "--suffix"
+        "PATH"
+        ":"
+        "${codeium}/bin"
+      ];
     };
   };
 }

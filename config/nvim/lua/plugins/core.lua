@@ -165,4 +165,18 @@ return {
         cmd = { "IronAttach", "IronRepl", "IronReplHere", "IronRestart", "IronFocus", "IronHide", "IronWatch" },
         cond = not_in_vscode
     },
+
+    {
+        "Exafunction/codeium.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "hrsh7th/nvim-cmp",
+        },
+        config = function()
+            require("codeium").setup({
+                enable_chat = true,
+                tools = { language_server = vim.fn.exepath("codeium_language_server") }
+            })
+        end
+    }
 }

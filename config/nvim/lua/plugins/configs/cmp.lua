@@ -6,6 +6,7 @@ bordered_window.winhighlight = "Normal:Normal,NormalFloat:NormalFloat,FloatBorde
 local KIND_ICONS = {
     Text = "",
     TabNine = "󰚩",
+    Codeium = "󰚩",
     Method = "󰆧",
     Function = "󰊕",
     Constructor = "",
@@ -33,6 +34,7 @@ local KIND_ICONS = {
 }
 
 local sources = {
+    { name = "codeium",   priority = 1050 },
     { name = "nvim_lsp",  priority = 1000 },
     { name = "luasnip",   priority = 750 },
     { name = "buffer",    priority = 500 },
