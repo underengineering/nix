@@ -66,7 +66,7 @@
     inherit (util) user;
     inherit (util) host;
   in {
-    homeManagerConfigurations = {
+    homeConfigurations = {
       mika = user.mkHMUser {
         username = "mika";
         userConfig = {
