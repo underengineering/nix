@@ -46,6 +46,7 @@ in {
       p7zip
       ripgrep
       rsync
+      sing-box
       sshfs
       swayidle
       tesseract
