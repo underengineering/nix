@@ -177,6 +177,7 @@ return {
                 enable_chat = true,
                 tools = { language_server = vim.fn.exepath("codeium_language_server") }
             })
-        end
+        end,
+        cond = not_in_vscode
     }
 }
