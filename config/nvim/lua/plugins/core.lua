@@ -36,17 +36,17 @@ return {
     {
         "windwp/nvim-ts-autotag",
         event = "VeryLazy",
-        config = true
+        opts = {}
     },
     {
         "numToStr/Comment.nvim",
         event = "VeryLazy",
-        config = true
+        opts = {}
     },
     {
         "nacro90/numb.nvim",
         event = "BufReadPost",
-        config = true
+        opts = {}
     },
     {
         "L3MON4D3/LuaSnip",
@@ -65,7 +65,7 @@ return {
     {
         "folke/flash.nvim",
         event = "VeryLazy",
-        config = true
+        opts = {}
     },
     {
         "echasnovski/mini.nvim",
@@ -101,7 +101,7 @@ return {
     {
         "kwkarlwang/bufresize.nvim",
         event = "VeryLazy",
-        config = true,
+        opts = {},
         cond = not is_in_vscode
     },
     {

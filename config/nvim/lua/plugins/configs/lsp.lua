@@ -104,6 +104,7 @@ return function()
         lsp.set_sign_icons(utils.diagnostic_signs)
     end
 
+    ---@type RustaceanConfig
     vim.g.rustaceanvim = {
         tools = {
             reload_workspace_from_cargo_toml = true,

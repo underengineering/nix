@@ -92,12 +92,12 @@ return {
     {
         "folke/todo-comments.nvim",
         event = "BufReadPost",
-        config = true,
+        opts = {},
     },
     {
         "folke/ts-comments.nvim",
         event = "VeryLazy",
-        config = true,
+        opts = {},
     },
     {
         "akinsho/toggleterm.nvim",
@@ -124,7 +124,7 @@ return {
         "lewis6991/gitsigns.nvim",
         cmd = "Gitsigns",
         event = "BufReadPre",
-        config = true,
+        opts = {},
     },
     {
         "uga-rosa/ccc.nvim",
@@ -149,7 +149,7 @@ return {
     {
         "lukas-reineke/virt-column.nvim",
         event = "BufEnter",
-        config = true,
+        opts = {},
     },
     {
         "akinsho/bufferline.nvim",

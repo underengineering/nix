@@ -20,7 +20,7 @@ return {
             "b0o/schemastore.nvim",
             {
                 "folke/neodev.nvim",
-                config = true
+                opts = {}
             }
         },
         config = require "plugins/configs/lsp",
@@ -36,7 +36,7 @@ return {
         "pmizio/typescript-tools.nvim",
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
         ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-        config = true,
+        opts = {},
         cond = not is_in_vscode
     },
     {
@@ -103,18 +103,18 @@ return {
             { "gY", "<Cmd>Glance type_definitions<CR>", desc = "[Glance] Show type definitions", silent = true },
             { "gM", "<Cmd>Glance implementations<CR>",  desc = "[Glance] Show implementations",  silent = true },
         },
-        config = true,
+        opts = {},
         cond = not is_in_vscode
     },
     {
         "folke/trouble.nvim",
         cmd = { "Trouble", "TroubleClose", "TroubleRefresh", "TroubleToggle" },
         dependencies = { "nvim-lua/plenary.nvim" },
-        config = true,
+        opts = {},
     },
     {
         "smjonas/inc-rename.nvim",
         cmd = "IncRename",
-        config = true,
+        opts = {},
     },
 }
