@@ -88,13 +88,6 @@ return {
         cond = not is_in_vscode
     },
     {
-        "antosha417/nvim-lsp-file-operations",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        lazy = true
-    },
-    {
         "DNLHC/glance.nvim",
         event = "VeryLazy",
         keys = {

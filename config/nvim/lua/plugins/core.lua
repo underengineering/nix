@@ -69,10 +69,20 @@ return {
     },
     {
         "echasnovski/mini.nvim",
+        dependencies = {
+            {
+                "antosha417/nvim-lsp-file-operations",
+                dependencies = {
+                    "nvim-lua/plenary.nvim",
+                },
+                lazy = true,
+                cond = not is_in_vscode
+            },
+        },
         keys = {
             { "<Leader>b", function() MiniFiles.open() end, desc = "Open file manager", silent = true }
         },
-        config = function() require "plugins.configs.mini" end,
+        config = require "plugins.configs.mini",
         lazy = false
     },
     {
