@@ -75,11 +75,16 @@ return {
     },
     {
         "ray-x/lsp_signature.nvim",
-        event = "VeryLazy",
+        event = "BufRead",
         dependencies = {
             "neovim/nvim-lspconfig",
         },
-        lazy = true,
+        opts = {
+            bind = true,
+            handler_opts = {
+                border = "rounded"
+            }
+        },
         cond = not is_in_vscode
     },
     --[[ {

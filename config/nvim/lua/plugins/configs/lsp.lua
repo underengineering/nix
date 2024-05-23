@@ -4,16 +4,7 @@ return function()
     local lsp = require("lsp-zero")
     local navic = require("nvim-navic")
 
-    local lsp_signature_cfg = {
-        bind = true,
-        handler_opts = {
-            border = "rounded"
-        }
-    }
-
     lsp.on_attach(function(client, bufnr)
-        require "lsp_signature".on_attach(lsp_signature_cfg, bufnr)
-
         lsp.default_keymaps({ buffer = bufnr })
 
         if client.server_capabilities.inlayHintProvider then
