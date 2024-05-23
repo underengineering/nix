@@ -87,15 +87,13 @@ return {
         },
         cond = not is_in_vscode
     },
-    --[[ {
+    {
         "antosha417/nvim-lsp-file-operations",
         dependencies = {
             "nvim-lua/plenary.nvim",
-            "nvim-neo-tree/neo-tree.nvim",
         },
-        config = true,
-        cond = not is_in_vscode
-    }, ]]
+        lazy = true
+    },
     {
         "DNLHC/glance.nvim",
         event = "VeryLazy",
