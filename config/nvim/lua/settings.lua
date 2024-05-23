@@ -15,6 +15,7 @@ vim.opt.softtabstop = 0
 vim.opt.shiftwidth = 4
 
 vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.opt.timeout = true
 vim.opt.timeoutlen = 400
@@ -54,17 +55,8 @@ vim.opt.list = true
 vim.opt.listchars:append "space:·"
 vim.opt.listchars:append "tab:-->"
 
+vim.g.mapleader = " "
 vim.g.python_recommended_style = 0
-
--- Highlight on yank
-local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
-vim.api.nvim_create_autocmd("TextYankPost", {
-    callback = function()
-        vim.highlight.on_yank { higroup = "IncSearch", timeout = 400 }
-    end,
-    group = highlight_group,
-    pattern = "*",
-})
 
 vim.api.nvim_create_user_command("ForEach", function(opts)
     vim.fn.execute(('%u,%ug/^/exe "normal! %s" | noh'):format(opts.line1, opts.line2, vim.fn.escape(opts.args, '"')))
@@ -72,51 +64,4 @@ end, {
     nargs = 1,
     complete = "mapping",
     range = "%"
-})
-
-local auto_format = true
-vim.api.nvim_create_user_command("AutoFormatEnable", function()
-    auto_format = true
-end, {})
-
-vim.api.nvim_create_user_command("AutoFormatDisable", function()
-    auto_format = false
-end, {})
-
--- Autoformat
-local autoformat_group = vim.api.nvim_create_augroup("AutoFormat", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePre", {
-    callback = function()
-        if not auto_format then return end
-
-        local config = require("formatter.config")
-        local formatters = config.formatters_for_filetype(vim.bo.filetype)
-        if #formatters > 0 then
-            -- Format with formatter.nvim
-            vim.cmd "FormatWriteLock"
-
-            -- Cancel neovim's save
-            vim.bo.modified = false
-
-            -- Fix modifable flag
-            vim.bo.modifiable = true
-            return
-        end
-
-        -- Format with LSP
-        local can_format = #vim.lsp.get_clients { bufnr = 0 } > 0
-        -- Doesnt work
-        -- for _, client in ipairs(vim.lsp.get_clients { bufnr = 0 }) do
-        --     if client.server_capabilities.formatting then
-        --         can_format = true
-        --         break
-        --     end
-        -- end
-        --
-        if can_format then
-            vim.lsp.buf.format()
-        end
-    end,
-    group = autoformat_group,
-    pattern = "*",
 })

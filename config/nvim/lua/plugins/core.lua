@@ -1,5 +1,4 @@
 local is_in_vscode = require("utils").is_in_vscode
-local not_in_vscode = function() return not is_in_vscode end
 
 ---@type LazySpec
 return {
@@ -12,34 +11,32 @@ return {
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-cmdline",
             "lukas-reineke/cmp-under-comparator",
-            "saadparwaiz1/cmp_luasnip",
-            {
-                "tzachar/cmp-tabnine",
-                cond = function() -- Fix ugly errors when tabnine is not downloaded
-                    local tabnine_path = vim.fn.expand("HOME")
-                    local tabnine_conf = "/.config/TabNine/tabnine_config.json"
-                    return false and vim.fn.filereadable(tabnine_path .. tabnine_conf)
-                end,
-                build = "./install.sh"
-            },
+            "saadparwaiz1/cmp_luasnip"
         },
-        config = function() require "plugins.configs.cmp" end,
-        cond = not_in_vscode
+        config = require "plugins.configs.cmp",
+        cond = not is_in_vscode
     },
     {
-        {
-            "nvim-treesitter/nvim-treesitter",
-            dependencies = {
-                "nvim-treesitter/nvim-treesitter-textobjects",
-                {
-                    "HiPhish/rainbow-delimiters.nvim",
-                    config = require "plugins.configs.rainbow-delimiters"
-                },
-                "windwp/nvim-ts-autotag"
+        "nvim-treesitter/nvim-treesitter",
+        events = { "BufEnter", "VeryLazy" },
+        dependencies = {
+            {
+                "HiPhish/rainbow-delimiters.nvim",
+                config = require "plugins.configs.rainbow-delimiters"
             },
-            config = require "plugins.configs.treesitter",
-            cond = not_in_vscode
-        }
+        },
+        config = require "plugins.configs.treesitter",
+        cond = not is_in_vscode
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        event = "VeryLazy",
+        cond = not is_in_vscode
+    },
+    {
+        "windwp/nvim-ts-autotag",
+        event = "VeryLazy",
+        config = true
     },
     {
         "numToStr/Comment.nvim",
@@ -51,19 +48,11 @@ return {
         event = "BufReadPost",
         config = true
     },
-    -- Performance issues
-    -- {
-    --     "winston0410/range-highlight.nvim",
-    --     dependencies = {
-    --         "winston0410/cmd-parser.nvim"
-    --     },
-    --     config = true
-    -- },
     {
         "L3MON4D3/LuaSnip",
         event = "VeryLazy",
         config = require "plugins/configs/luasnip",
-        cond = not_in_vscode
+        cond = not is_in_vscode
     },
     {
         "windwp/nvim-autopairs",
@@ -71,37 +60,34 @@ return {
         opts = {
             disable_filetype = { "TelescopePrompt" },
         },
-        cond = not_in_vscode
+        cond = not is_in_vscode
     },
-    -- {
-    --     "ggandor/leap.nvim",
-    --     event = "VeryLazy",
-    --     config = require "plugins.configs.leap"
-    -- },
     {
         "folke/flash.nvim",
         event = "VeryLazy",
-        config = true,
-        keys = {
-            {
-                "s",
-                mode = { "n", "x", "o" },
-                function()
-                    require("flash").jump()
-                end,
-                desc = "Flash"
-            }
-        }
+        config = true
     },
     {
-        "kylechui/nvim-surround",
-        event = "VeryLazy",
-        config = true
+        "echasnovski/mini.nvim",
+        keys = {
+            { "<Leader>b", function() MiniFiles.open() end, desc = "Open file manager", silent = true }
+        },
+        config = function() require "plugins.configs.mini" end,
+        lazy = false
     },
     {
         "rmagatti/auto-session",
         dependencies = {
             "nvim-telescope/telescope.nvim"
+        },
+        keys = {
+            {
+                "<Leader>ts",
+                function()
+                    require("auto-session.session-lens").search_session()
+                end,
+                desc = "Lens sessions"
+            }
         },
         opts = {
             log_level = "error",
@@ -109,27 +95,14 @@ return {
             auto_restore_enabled = true,
             pre_save_cmds = { "Neotree close" }
         },
-        cond = not_in_vscode
-    },
-    {
-        "linux-cultist/venv-selector.nvim",
-        cmd = { "VenvSelect", "VenvSelectCached" },
-        dependencies = {
-            "neovim/nvim-lspconfig",
-            "nvim-telescope/telescope.nvim"
-        },
-        opts = {
-            search = false,
-            search_workspace = true,
-            name = { "venv", "env" }
-        },
-        cond = not_in_vscode
+        cond = not is_in_vscode,
+        lazy = false
     },
     {
         "kwkarlwang/bufresize.nvim",
         event = "VeryLazy",
         config = true,
-        cond = not_in_vscode
+        cond = not is_in_vscode
     },
     {
         "iamcco/markdown-preview.nvim",
@@ -140,11 +113,12 @@ return {
             vim.g.mkdp_port = "8001"
         end,
         build = "cd app && yarn install",
-        cond = not_in_vscode,
+        cond = not is_in_vscode,
         lazy = true
     },
     {
         "Vigemus/iron.nvim",
+        cmd = { "IronAttach", "IronRepl", "IronReplHere", "IronRestart", "IronFocus", "IronHide", "IronWatch" },
         config = function()
             local iron = require("iron.core")
             iron.setup {
@@ -153,7 +127,7 @@ return {
                         python = { command = "python" },
                         javascript = { command = "node" }
                     },
-                    repl_open_cmd = require('iron.view').bottom(40),
+                    repl_open_cmd = require("iron.view").bottom(40),
                     ignore_blank_lines = true,
                 },
                 keymaps = {
@@ -162,22 +136,25 @@ return {
                 }
             }
         end,
-        cmd = { "IronAttach", "IronRepl", "IronReplHere", "IronRestart", "IronFocus", "IronHide", "IronWatch" },
-        cond = not_in_vscode
+        keys = {
+            { "<Leader>rs", "<Cmd>IronRepl<CR>",    desc = "[Iron] Start Iron" },
+            { "<Leader>rr", "<Cmd>IronRestart<CR>", desc = "[Iron] Restart Iron" },
+            { "<Leader>rf", "<Cmd>IronFocus<CR>",   desc = "[Iron] Focus Iron" },
+        },
+        cond = not is_in_vscode
     },
 
     {
         "Exafunction/codeium.nvim",
+        event = "VeryLazy",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "hrsh7th/nvim-cmp",
         },
-        config = function()
-            require("codeium").setup({
-                enable_chat = true,
-                tools = { language_server = vim.fn.exepath("codeium_language_server") }
-            })
-        end,
-        cond = not_in_vscode
+        opts = {
+            enable_chat = true,
+            tools = { language_server = vim.fn.exepath("codeium_language_server") }
+        },
+        cond = not is_in_vscode
     }
 }

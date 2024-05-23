@@ -1,6 +1,18 @@
 ---@type LazySpec
 return {
     {
+        "rachartier/tiny-devicons-auto-colors.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons"
+        },
+        config = function()
+            require("tiny-devicons-auto-colors").setup({
+                colors = require("gruvbox").palette
+            })
+        end,
+    },
+    {
         "nvim-telescope/telescope.nvim",
         cmd = "Telescope",
         dependencies = {
@@ -9,9 +21,30 @@ return {
             "debugloop/telescope-undo.nvim",
             "Marskey/telescope-sg"
         },
+        keys = {
+            { "<Leader>tb", "<Cmd>Telescope buffers<CR>",     desc = "Find a buffer",                 silent = true },
+            { "<Leader>tf", "<Cmd>Telescope find_files<CR>",  desc = "Find a file",                   silent = true },
+            { "<Leader>tg", "<Cmd>Telescope live_grep<CR>",   desc = "Find in files",                 silent = true },
+            { "<Leader>ta", "<Cmd>Telescope ast_grep<CR>",    desc = "Find in files using ast-grep",  silent = true },
+            { "<Leader>td", "<Cmd>Telescope definitions<CR>", desc = "Find a definition",             silent = true },
+            { "<Leader>tu", "<Cmd>Telescope undo<CR>",        desc = "List undo history",             silent = true },
+            { "<Leader>tr", "<Cmd>Telescope resume<CR>",      desc = "Resumes last telescope search", silent = true },
+            {
+                "<Leader>t/",
+                function()
+                    local themes = require("telescope.themes")
+                    require("telescope.builtin").current_buffer_fuzzy_find(themes.get_dropdown {
+                        winblend = 10,
+                        previewer = false,
+                    })
+                end,
+                desc = "Find in current buffer",
+                silent = true
+            }
+        },
         config = require "plugins/configs/telescope",
     },
-    {
+    --[[ {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         cmd = "Neotree",
@@ -20,16 +53,17 @@ return {
             "nvim-lua/plenary.nvim",
             "kyazdani42/nvim-web-devicons",
             "MunifTanjim/nui.nvim",
+            "antosha417/nvim-lsp-file-operations"
+        },
+        keys = {
+            { "<Leader>b", "<Cmd>Neotree<CR>", desc = "Open neo-tree", silent = true }
         },
         config = require "plugins.configs.neo-tree",
-    },
+    }, ]]
     {
-        "antosha417/nvim-lsp-file-operations",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-neo-tree/neo-tree.nvim",
-        },
-        config = true
+        "MagicDuck/grug-far.nvim",
+        cmd = "GrugFar",
+        opts = {}
     },
     {
         "rebelot/heirline.nvim",
@@ -44,13 +78,6 @@ return {
     {
         "goolord/alpha-nvim",
         config = require "plugins/configs/alpha"
-    },
-    {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        opts = {
-            disable = { filetypes = { "TelescopePrompt" } },
-        },
     },
     {
         "folke/noice.nvim",
@@ -84,12 +111,18 @@ return {
         config = true,
     },
     {
+        "folke/ts-comments.nvim",
+        event = "VeryLazy",
+        config = true,
+    },
+    {
         "akinsho/toggleterm.nvim",
         cmd = "ToggleTerm",
         keys = {
-            { "<Leader>g" }
+            { "<Leader>g" },
+            { "<Leader>lp", "<Cmd>TroubleToggle<CR>", desc = "[Trouble] Toggle diagnostic view" },
         },
-        config = function() require "plugins/configs/toggleterm" end,
+        config = require "plugins/configs/toggleterm",
     },
     {
         "petertriho/nvim-scrollbar",
@@ -97,17 +130,10 @@ return {
         opts = {
             show_in_active_only = false,
             hide_if_all_visible = true,
+            excluded_filetypes = { "prompt", "TelescopePrompt", "noice", "notify" },
             handle = {
                 color = "BufferLineTabSelected"
             },
-            -- marks = {
-            --     Search = { color = palette.bright_orange },
-            --     Error  = { color = palette.bright_red },
-            --     Warn   = { color = palette.bright_yellow },
-            --     Info   = { color = palette.bright_blue },
-            --     Hint   = { color = palette.bright_aqua },
-            --     Misc   = { color = palette.bright_purple },
-            -- }
         },
     },
     {
@@ -119,6 +145,11 @@ return {
     {
         "uga-rosa/ccc.nvim",
         event = "BufReadPost",
+        keys = {
+            "<Leader>cp",
+            "<Cmd>CccPick<CR>",
+            desc = "Pick color"
+        },
         opts = {
             highlighter = {
                 auto_enable = true,
@@ -128,19 +159,40 @@ return {
     },
     {
         "lukas-reineke/indent-blankline.nvim",
+        event = "BufEnter",
         config = require "plugins/configs/indent-blankline",
     },
-    -- {
-    --     "lukas-reineke/virt-column.nvim",
-    --     event = "BufEnter",
-    --     config = true,
-    -- },
+    {
+        "lukas-reineke/virt-column.nvim",
+        event = "BufEnter",
+        config = true,
+    },
     {
         "akinsho/bufferline.nvim",
-        event = "BufReadPre",
+        event        = "VeryLazy",
         dependencies = {
             "kyazdani42/nvim-web-devicons"
         },
-        opts = require "plugins.configs.bufferline",
+        keys         = {
+            { "<C-,>",      ":BufferLineCyclePrev<CR>", desc = "Prev buffer",              silent = true },
+            { "<C-.>",      ":BufferLineCycleNext<CR>", desc = "Next buffer",              silent = true },
+            { "<C-;>",      ":BufferLineMovePrev<CR>",  desc = "Move buffer to the left",  silent = true },
+            { "<C-'>",      ":BufferLineMoveNext<CR>",  desc = "Move buffer to the right", silent = true },
+            { "<Leader>po", ":BufferLinePick<CR>",      desc = "Pick buffer to open",      silent = true },
+            { "<Leader>pc", ":BufferLinePickClose<CR>", desc = "Pick buffer to close",     silent = true },
+        },
+        opts         = {
+            options = {
+                separator_style = "thin",
+                offsets = {
+                    {
+                        filetype = "neo-tree",
+                        text = "File Explorer",
+                        highlight = "Directory",
+                        separator = true
+                    }
+                }
+            },
+        },
     }
 }

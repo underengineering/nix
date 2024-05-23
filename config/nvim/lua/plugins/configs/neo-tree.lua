@@ -1,4 +1,4 @@
-return function(_, opts)
+return function()
     vim.g.neo_tree_remove_legacy_commands = true
 
     -- require("oil").setup()
@@ -9,7 +9,6 @@ return function(_, opts)
         enable_git_status = true,
         enable_diagnostics = true,
         sort_case_insensitive = true,
-
         default_component_configs = {
             indent = {
                 indent_size = 2,

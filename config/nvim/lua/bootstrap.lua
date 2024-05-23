@@ -17,8 +17,9 @@ end
 
 bootstrap_lazy()
 
-require("keybinds")
 require("settings")
+require("keybinds")
+require("autocmds")
 
 local plugins = require("plugins")
 require("lazy").setup(plugins)

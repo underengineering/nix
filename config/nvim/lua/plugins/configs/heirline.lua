@@ -1,18 +1,20 @@
 return function()
-    local get_color = require("utils").get_color
-
     local conditions = require("heirline.conditions")
     local utils = require("heirline.utils")
 
+    local navic = require("nvim-navic")
+    local navic_lib = require("nvim-navic.lib")
+
     local palette = require("gruvbox").palette
+
+    local get_color = require("utils").get_color
+
 
     ---@class Align: StatusLine
     local Align = { provider = "%=" }
 
     ---@class Space: StatusLine
     local Space = { provider = " " }
-
-    -- "" ""
 
     ---@class ViMode: StatusLine
     ---@field names table<string, string>
@@ -349,9 +351,6 @@ return function()
         },
         hl = { bg = palette.dark2 }
     }
-
-    local navic = require("nvim-navic")
-    local navic_lib = require("nvim-navic.lib")
 
     ---@class Navic: StatusLine
     ---@field encode_scope fun(start_line:number, start_char:number, winnr:number):number

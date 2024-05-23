@@ -4,8 +4,6 @@ local opts = {
     silent = true,
 }
 
-vim.g.mapleader = " "
-
 local is_vscode = vim.g.vscode ~= nil
 local function with_desc(tbl, desc)
     local new_opts = vim.fn.deepcopy(tbl)
@@ -54,7 +52,6 @@ end
         -- TODO: Open oil
     end
 end, with_desc(opts, "Switch between neotree and oil")) ]]
-keymap.set("n", "<Leader>b", ":Neotree<CR>")
 
 keymap.set({ "n", "v" }, "<C-k>", "<PageUp>", opts)
 keymap.set({ "n", "v" }, "<C-j>", "<PageDown>", opts)
@@ -64,37 +61,9 @@ keymap.set("i", "<A-j>", "<Down>", opts)
 keymap.set("i", "<A-k>", "<Up>", opts)
 keymap.set("i", "<A-l>", "<Right>", opts)
 
-keymap.set("n", "<Leader>h", ":noh<CR>", with_desc(opts, "Clear highlights"))
+keymap.set("n", "<Leader>h", "<Cmd>noh<CR>", with_desc(opts, "Clear highlights"))
 keymap.set({ "n", "v" }, "<Leader>y", "\"+y", with_desc(opts, "Yank to the system clipboard"))
-keymap.set("n", "<Leader>Y", ":let @+=@\"<CR>", with_desc(opts, "Copy \" to system clipboard"))
-
--- Bufferline
-keymap.set("n", "<C-,>", ":BufferLineCyclePrev<CR>", opts)
-keymap.set("n", "<C-.>", ":BufferLineCycleNext<CR>", opts)
-keymap.set("n", "<C-;>", ":BufferLineMovePrev<CR>", opts)
-keymap.set("n", "<C-'>", ":BufferLineMoveNext<CR>", opts)
-keymap.set("n", "<Leader>po", ":BufferLinePick<CR>", opts)
-keymap.set("n", "<Leader>pc", ":BufferLinePickClose<CR>", opts)
-
--- Telescope
-keymap.set("n", "<Leader>tb", ":Telescope buffers<CR>", opts)
-keymap.set("n", "<Leader>tf", ":Telescope find_files<CR>", opts)
-keymap.set("n", "<Leader>tg", ":Telescope live_grep<CR>", opts)
-keymap.set("n", "<Leader>ta", ":Telescope ast_grep<CR>", opts)
-keymap.set("n", "<Leader>ts", ":Telescope treesitter<CR>", opts)
-keymap.set("n", "<Leader>td", ":Telescope definitions<CR>", opts)
-keymap.set("n", "<Leader>tu", ":Telescope undo<CR>", opts)
-keymap.set("n", "<Leader>tr", ":Telescope resume<CR>", with_desc(opts, "Resumes last telescope search"))
-keymap.set("n", "<Leader>t/", function()
-    local themes = require("telescope.themes")
-    require("telescope.builtin").current_buffer_fuzzy_find(themes.get_dropdown {
-        winblend = 10,
-        previewer = false,
-    })
-end, opts)
-keymap.set("n", "<Leader>ts", function()
-    require("auto-session.session-lens").search_session()
-end)
+keymap.set("n", "<Leader>Y", "<Cmd>let @+=@\"<CR>", with_desc(opts, "Copy \" to system clipboard"))
 
 -- LSP
 keymap.set("n",
@@ -109,7 +78,7 @@ keymap.set("n",
 
 keymap.set("n",
     "<Leader>lr",
-    function() return ":IncRename " .. vim.fn.expand("<cword>") end,
+    function() return "<Cmd>IncRename " .. vim.fn.expand("<cword>") end,
     with_desc(as_expr(opts), "[LSP] Rename"))
 
 keymap.set("n",
@@ -124,7 +93,6 @@ keymap.set("n",
 keymap.set("n",
     "<Leader>lD", function() vim.lsp.buf.declaration() end,
     with_desc(opts, "[LSP] Show declaration"))
-
 
 keymap.set("n",
     "<Leader>lg",
@@ -142,14 +110,9 @@ keymap.set("n",
 keymap.set("n",
     "<Leader>li",
     function()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
     end,
-    with_desc(opts, "[LSP] Toggle inlay hints"))
-
-keymap.set("n",
-    "<Leader>lp",
-    ":TroubleToggle<CR>",
-    with_desc(opts, "[Trouble] Toggle diagnostic view"))
+    with_desc(opts, "[LSP] Toggle inlay hints in current buffer"))
 
 -- LuaSnip
 keymap.set({ "i" }, "<C-k>", function()
@@ -174,32 +137,11 @@ keymap.set({ "i", "s" }, "<C-e>", function()
     end
 end, with_desc(opts, "[LuaSnip] Change the current choice"))
 
--- ccc
-keymap.set("n",
-    "<Leader>cp",
-    ":CccPick<CR>",
-    with_desc(opts, "[CCC] Pick color"))
-
--- venv-selector
-keymap.set("n", "<Leader>vs", ":VenvSelect<CR>", with_desc(opts, "Select venv"))
-
 if is_vscode then
-    keymap.set("n", "<Leader>w", ":call VSCodeNotify('workbench.action.files.save')<CR>", opts)
+    keymap.set("n", "<Leader>w", "<Cmd>call VSCodeNotify('workbench.action.files.save')<CR>", opts)
 else
-    keymap.set("n", "<Leader>w", ":w<CR>", opts)
+    keymap.set("n", "<Leader>w", "<Cmd>update<CR>", opts)
 end
 
--- glance.nvim
-keymap.set("n", "gD", "<CMD>Glance definitions<CR>", with_desc(opts, "[Glance] Show definitions"))
-keymap.set("n", "gR", "<CMD>Glance references<CR>", with_desc(opts, "[Glance] Show references"))
-keymap.set("n", "gY", "<CMD>Glance type_definitions<CR>", with_desc(opts, "[Glance] Show type definitions"))
-keymap.set("n", "gM", "<CMD>Glance implementations<CR>", with_desc(opts, "[Glance] Show implementations"))
-
--- iron.nvim
-keymap.set("n", "<Leader>rs", ":IronRepl<CR>", with_desc(opts, "[Iron] Start Iron"))
-keymap.set("n", "<Leader>rr", ":IronRestart<CR>", with_desc(opts, "[Iron] Restart Iron"))
-keymap.set("n", "<Leader>rf", ":IronFocus<CR>", with_desc(opts, "[Iron] Focus Iron"))
-
--- TODO: merge with opts
--- keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
--- keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", as_expr(opts))
+keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", as_expr(opts))
