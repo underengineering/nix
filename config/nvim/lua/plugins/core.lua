@@ -19,12 +19,6 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         events = { "BufEnter", "VeryLazy" },
-        dependencies = {
-            {
-                "HiPhish/rainbow-delimiters.nvim",
-                config = require "plugins.configs.rainbow-delimiters"
-            },
-        },
         config = require "plugins.configs.treesitter",
         cond = not is_in_vscode
     },
@@ -32,6 +26,11 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
         event = "VeryLazy",
         cond = not is_in_vscode
+    },
+    {
+        "HiPhish/rainbow-delimiters.nvim",
+        event = { "BufEnter", "VeryLazy" },
+        config = require "plugins.configs.rainbow-delimiters"
     },
     {
         "windwp/nvim-ts-autotag",
@@ -103,7 +102,6 @@ return {
             log_level = "error",
             auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
             auto_restore_enabled = true,
-            pre_save_cmds = { "Neotree close" }
         },
         cond = not is_in_vscode,
         lazy = false
@@ -123,8 +121,7 @@ return {
             vim.g.mkdp_port = "8001"
         end,
         build = "cd app && yarn install",
-        cond = not is_in_vscode,
-        lazy = true
+        cond = not is_in_vscode
     },
     {
         "Vigemus/iron.nvim",
