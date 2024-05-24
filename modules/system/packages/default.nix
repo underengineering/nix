@@ -6,13 +6,15 @@
 }:
 with lib; {
   config = {
+    services.keyd.enable = true;
     programs.zsh.enable = true;
     programs.wireshark.enable = true;
     programs.dconf.enable = true;
 
     virtualisation.libvirtd.enable = true;
-    systemd.services.libvirtd.wantedBy = mkForce [];
 
+    # Prevent libvirtd from starting automatically
+    systemd.services.libvirtd.wantedBy = mkForce [];
     virtualisation.podman = {
       enable = true;
       dockerCompat = true;

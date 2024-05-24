@@ -3,15 +3,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.delta;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.applications.delta;
 in {
-  options.modules.delta = {
+  options.modules.applications.delta = {
     enable = mkOption {
       description = "Enable delta";
       type = types.bool;
-      default = false;
+      default = true;
     };
     options = mkOption {
       description = "Options to configure delta";

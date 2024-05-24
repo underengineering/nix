@@ -3,15 +3,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.neovim;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.applications.neovim;
 in {
-  options.modules.neovim = {
+  options.modules.applications.neovim = {
     enable = mkOption {
       description = "Enable neovim";
       type = types.bool;
-      default = false;
+      default = true;
     };
     configPath = mkOption {
       description = "Path to the config";
@@ -26,12 +26,12 @@ in {
       package = pkgs.neovim-nightly;
       extraPackages = with pkgs; [
         # Plugin deps
+        fastStdenv
         fd
-        gcc
         nodejs
+        ripgrep
 
         # Markdown-preview
-        stdenv.cc.cc.lib
         yarn
 
         # Nix
@@ -67,6 +67,7 @@ in {
         tailwindcss-language-server
         vscode-langservers-extracted
       ];
+      # Add codeium to PATH
       extraWrapperArgs = with pkgs; [
         "--suffix"
         "PATH"

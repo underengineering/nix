@@ -1,17 +1,16 @@
-{inputs}: {
-  pkgs,
+{
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.hyprland;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.wayland.hyprland;
 in {
-  options.modules.hyprland = {
+  options.modules.wayland.hyprland = {
     enable = mkOption {
       description = "Enable hyprland";
       type = types.bool;
-      default = false;
+      default = true;
     };
     extraConfig = mkOption {
       description = "Hyprland config";

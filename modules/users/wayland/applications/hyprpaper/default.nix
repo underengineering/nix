@@ -3,15 +3,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.hyprpaper;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.wayland.hyprpaper;
 in {
-  options.modules.hyprpaper = {
+  options.modules.wayland.hyprpaper = {
     enable = mkOption {
       description = "Enable hyprpaper";
       type = types.bool;
-      default = false;
+      default = true;
     };
     ipc = mkOption {
       description = "Enable hyprpaper IPC";

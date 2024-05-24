@@ -3,15 +3,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.vscodium;
+}: let
+  inherit (lib) mkForce mkIf mkOption types;
+  cfg = config.modules.wayland.vscodium;
 in {
-  options.modules.vscodium = {
+  options.modules.wayland.vscodium = {
     enable = mkOption {
       description = "Enable vscodium";
       type = types.bool;
-      default = false;
+      default = true;
     };
   };
   config = mkIf (cfg.enable) {

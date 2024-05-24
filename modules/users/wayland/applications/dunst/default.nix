@@ -3,15 +3,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.dunst;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.wayland.dunst;
 in {
-  options.modules.dunst = {
+  options.modules.wayland.dunst = {
     enable = mkOption {
       description = "Enable dunst";
       type = types.bool;
-      default = false;
+      default = true;
     };
     iconTheme = {
       package = mkOption {

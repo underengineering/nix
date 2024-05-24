@@ -1,17 +1,16 @@
 {
-  pkgs,
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.wezterm;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.wayland.wezterm;
 in {
-  options.modules.wezterm = {
+  options.modules.wayland.wezterm = {
     enable = mkOption {
       description = "Enable wezterm";
       type = types.bool;
-      default = false;
+      default = true;
     };
     config = mkOption {
       description = "Wezterm configuration";

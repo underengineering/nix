@@ -2,15 +2,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.kitty;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.wayland.kitty;
 in {
-  options.modules.kitty = {
+  options.modules.wayland.kitty = {
     enable = mkOption {
       description = "Enable kitty";
       type = types.bool;
-      default = false;
+      default = true;
     };
     extraConfig = mkOption {
       description = "Kitty configuration";

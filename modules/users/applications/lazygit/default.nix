@@ -3,15 +3,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.lazygit;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.applications.lazygit;
 in {
-  options.modules.lazygit = {
+  options.modules.applications.lazygit = {
     enable = mkOption {
       description = "Enable lazygit";
       type = types.bool;
-      default = false;
+      default = true;
     };
     extraConfig = mkOption {
       description = "lazygit configuration";

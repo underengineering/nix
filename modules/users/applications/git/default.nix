@@ -2,15 +2,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.git;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.applications.git;
 in {
-  options.modules.git = {
+  options.modules.applications.git = {
     enable = mkOption {
       description = "Enable git";
       type = types.bool;
-      default = false;
+      default = true;
     };
     userName = mkOption {
       description = "Git username";

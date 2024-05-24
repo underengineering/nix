@@ -3,30 +3,30 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.fonts;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.wayland.fonts;
 in {
-  options.modules.fonts = {
+  options.modules.wayland.fonts = {
     enable = mkOption {
       description = "Enable common fonts";
       type = types.bool;
-      default = false;
+      default = true;
     };
   };
   config = mkIf (cfg.enable) {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
-      lexend
-      roboto
+      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
       dejavu_fonts
+      iosevka
+      lexend
       liberation_ttf
       noto-fonts
-      noto-fonts-emoji
       noto-fonts-cjk
-      iosevka
+      noto-fonts-emoji
       powerline-symbols
-      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+      roboto
     ];
   };
 }

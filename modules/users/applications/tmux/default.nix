@@ -3,15 +3,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.tmux;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.applications.tmux;
 in {
-  options.modules.tmux = {
+  options.modules.applications.tmux = {
     enable = mkOption {
       description = "Enable tmux";
       type = types.bool;
-      default = false;
+      default = true;
     };
     configPath = mkOption {
       description = "Path to the config";

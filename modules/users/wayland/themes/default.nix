@@ -3,11 +3,11 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.themes;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.wayland.themes;
 in {
-  options.modules.themes = {
+  options.modules.wayland.themes = {
     enable = mkOption {
       description = "Enable themes module";
       type = types.bool;

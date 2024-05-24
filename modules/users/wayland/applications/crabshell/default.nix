@@ -3,15 +3,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.crabshell;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.wayland.crabshell;
 in {
-  options.modules.crabshell = {
+  options.modules.wayland.crabshell = {
     enable = mkOption {
       description = "Enable crabshell";
       type = types.bool;
-      default = false;
+      default = true;
     };
     configPath = mkOption {
       description = "Path to the config";

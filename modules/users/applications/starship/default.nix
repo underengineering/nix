@@ -3,15 +3,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.starship;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.applications.starship;
 in {
-  options.modules.starship = {
+  options.modules.applications.starship = {
     enable = mkOption {
       description = "Enable starship";
       type = types.bool;
-      default = false;
+      default = true;
     };
     extraConfig = mkOption {
       description = "Starship configuration";

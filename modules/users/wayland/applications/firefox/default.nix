@@ -4,15 +4,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.firefox;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.wayland.firefox;
 in {
-  options.modules.firefox = {
+  options.modules.wayland.firefox = {
     enable = mkOption {
       description = "Enable firefox";
       type = types.bool;
-      default = false;
+      default = true;
     };
     package = mkOption {
       description = "Firefox package to use";

@@ -70,128 +70,100 @@
       mika = user.mkHMUser {
         username = "mika";
         userConfig = {
-          applications.enable = true;
-          kitty = {
+          applications = {
             enable = true;
-            extraConfig = builtins.readFile "${self}/config/kitty/kitty.conf";
-            ssh = {
-              enable = true;
-              extraConfig = builtins.readFile "${self}/config/kitty/ssh.conf";
+
+            starship.extraConfig = builtins.readFile "${self}/config/starship.toml";
+            neovim.configPath = "config/nvim";
+            zsh.initExtra = builtins.readFile "${self}/config/.zshrc";
+            git = {
+              userName = "underengineering";
+              userEmail = "san4a852b@gmail.com";
+              extraConfig = {
+                core.sshCommand = "ssh-session";
+              };
             };
-          };
-          starship = {
-            enable = true;
-            extraConfig = builtins.readFile "${self}/config/starship.toml";
-          };
-          firefox = {
-            enable = true;
-            package = pkgs.firefox-beta;
-            extraConfig = builtins.readFile "${self}/config/firefox.js";
-          };
-          crabshell = {
-            enable = true;
-            configPath = "config/crabshell";
-          };
-          neovim = {
-            enable = true;
-            configPath = "config/nvim";
-          };
-          zsh = {
-            enable = true;
-            initExtra = builtins.readFile "${self}/config/.zshrc";
-          };
-          fonts.enable = true;
-          git = {
-            enable = true;
-            userName = "underengineering";
-            userEmail = "san4a852b@gmail.com";
-            extraConfig = {
-              core.sshCommand = "ssh-session";
-            };
-          };
-          delta = {
-            enable = true;
-            options = {
+            delta.options = {
               syntax-theme = "gruvbox-dark";
             };
+            lazygit.extraConfig = builtins.readFile "${self}/config/lazygit.yml";
+            tmux.configPath = "config/tmux";
+            wireplumber.bluetoothConfig = builtins.readFile "${self}/config/wireplumber/bluetooth.lua";
           };
-          lazygit = {
+          wayland = {
             enable = true;
-            extraConfig = builtins.readFile "${self}/config/lazygit.yml";
-          };
-          tmux = {
-            enable = true;
-            configPath = "config/tmux";
-          };
-          wayland.enable = true;
-          vscodium.enable = true;
-          dunst = {
-            enable = true;
-            iconTheme = {
-              package = pkgs.gruvbox-dark-icons-gtk;
-              name = "oomox-gruvbox-dark";
-            };
-            settings = {
-              global = {
-                font = "Lexend 9";
-                corner_radius = 4;
-                frame_width = 1;
-                gap_size = 4;
 
-                foreground = "#ebdbb2";
-                background = "#3c38361f";
-                highlight = "#ebdbb2";
-              };
-              urgency_low = {
-                urgency = "low";
-                frame_color = "#458588";
-              };
-              urgency_normal = {
-                urgency = "normal";
-                frame_color = "#98971a";
-              };
-              urgency_critical = {
-                urgency = "critical";
-                frame_color = "#cc241d";
+            kitty = {
+              extraConfig = builtins.readFile "${self}/config/kitty/kitty.conf";
+              ssh = {
+                enable = true;
+                extraConfig = builtins.readFile "${self}/config/kitty/ssh.conf";
               };
             };
-          };
-          hyprland = {
-            enable = true;
-            extraConfig = builtins.readFile "${self}/config/hyprland.conf";
-          };
-          hyprpaper = let
-            wallpaper-path = "${self}/wallpapers/e7d53cc7bac3a63a79b25e1bac7b776f0678d234_s2_n1_y1.png";
-          in {
-            enable = true;
-            ipc = false;
-            preload = [wallpaper-path];
-            wallpapers = {
-              eDP-2 = wallpaper-path;
+            firefox = {
+              package = pkgs.firefox-beta;
+              extraConfig = builtins.readFile "${self}/config/firefox.js";
             };
-          };
-          themes = {
-            enable = true;
-            cursorTheme = {
+            crabshell.configPath = "config/crabshell";
+            dunst = {
+              iconTheme = {
+                package = pkgs.gruvbox-dark-icons-gtk;
+                name = "oomox-gruvbox-dark";
+              };
+              settings = {
+                global = {
+                  font = "Lexend 9";
+                  corner_radius = 4;
+                  frame_width = 1;
+                  gap_size = 4;
+
+                  foreground = "#ebdbb2";
+                  background = "#3c38361f";
+                  highlight = "#ebdbb2";
+                };
+                urgency_low = {
+                  urgency = "low";
+                  frame_color = "#458588";
+                };
+                urgency_normal = {
+                  urgency = "normal";
+                  frame_color = "#98971a";
+                };
+                urgency_critical = {
+                  urgency = "critical";
+                  frame_color = "#cc241d";
+                };
+              };
+            };
+            hyprland.extraConfig = builtins.readFile "${self}/config/hyprland.conf";
+            hyprpaper = let
+              wallpaper-path = "${self}/wallpapers/e7d53cc7bac3a63a79b25e1bac7b776f0678d234_s2_n1_y1.png";
+            in {
+              ipc = false;
+              preload = [wallpaper-path];
+              wallpapers = {
+                eDP-2 = wallpaper-path;
+              };
+            };
+            themes = {
               enable = true;
-              package = pkgs.capitaine-cursors-themed;
-              name = "Capitaine-Cursors-(Gruvbox)";
-              size = 32;
+              cursorTheme = {
+                enable = true;
+                package = pkgs.capitaine-cursors-themed;
+                name = "Capitaine-Cursors-(Gruvbox)";
+                size = 32;
+              };
+              iconTheme = {
+                enable = true;
+                package = pkgs.gruvbox-dark-icons-gtk;
+                name = "oomox-gruvbox-dark";
+              };
+              theme = {
+                enable = true;
+                package = pkgs.orchis-theme-gruvbox;
+                name = "Orchis-Green-Dark";
+              };
             };
-            iconTheme = {
-              enable = true;
-              package = pkgs.gruvbox-dark-icons-gtk;
-              name = "oomox-gruvbox-dark";
-            };
-            theme = {
-              enable = true;
-              package = pkgs.orchis-theme-gruvbox;
-              name = "Orchis-Green-Dark";
-            };
-          };
-          wireplumber = {
-            enable = true;
-            bluetoothConfig = builtins.readFile "${self}/config/wireplumber/bluetooth.lua";
           };
         };
       };

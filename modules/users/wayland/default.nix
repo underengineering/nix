@@ -3,8 +3,8 @@
   config,
   lib,
   ...
-}:
-with lib; let
+}: let
+  inherit (lib) mkIf mkOption types;
   cfg = config.modules.wayland;
 in {
   options.modules.wayland = {
@@ -15,8 +15,6 @@ in {
     };
   };
   config = mkIf (cfg.enable) {
-    services.syncthing.enable = true;
-    systemd.user.services.syncthing.Install.WantedBy = mkForce [];
     programs.mpv = {
       enable = true;
       config = {
@@ -36,10 +34,9 @@ in {
       };
     };
 
-    home.file.Downloads.source = config.lib.file.mkOutOfStoreSymlink "/tmp/Downloads";
-
     # https://www.freedesktop.org/software/systemd/man/latest/tmpfiles.d.html
     systemd.user.tmpfiles.rules = ["d /tmp/Downloads 0700 - - - -"];
+    home.file.Downloads.source = config.lib.file.mkOutOfStoreSymlink "/tmp/Downloads";
 
     home.packages = with pkgs; [
       looking-glass-client

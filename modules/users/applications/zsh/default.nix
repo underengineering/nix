@@ -2,15 +2,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.zsh;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.applications.zsh;
 in {
-  options.modules.zsh = {
+  options.modules.applications.zsh = {
     enable = mkOption {
       description = "Enable zsh";
       type = types.bool;
-      default = false;
+      default = true;
     };
     initExtra = mkOption {
       description = "Extra commands that should be added to .zshrc.";

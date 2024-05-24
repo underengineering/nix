@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./dunst
-    (import ./hyprland {inherit inputs;})
+    ./hyprland
     ./kitty
     ./swaylock
     ./wezterm

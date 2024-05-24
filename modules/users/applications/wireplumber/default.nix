@@ -2,15 +2,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.wireplumber;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.applications.wireplumber;
 in {
-  options.modules.wireplumber = {
+  options.modules.applications.wireplumber = {
     enable = mkOption {
       description = "Enable wireplumber configuration";
       type = types.bool;
-      default = false;
+      default = true;
     };
     mainConfig = mkOption {
       description = "Wireplumber config file";

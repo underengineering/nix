@@ -17,27 +17,37 @@ in {
   config = mkIf (cfg.enable) {
     # Manage bash with home-manager
     programs.bash.enable = true;
+
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;
     };
+
+    services.syncthing.enable = true;
+    systemd.user.services.syncthing.Install.WantedBy = mkForce [];
+
     home.packages = with pkgs; [
+      # Nix tools
       home-manager
       nh
 
+      #  Media tools
       ffmpeg
 
+      # Network tools
+      duplicacy
+      rsync
+      sing-box
+      sshfs
       wireguard-tools
-
-      distrobox
 
       # CLI tools
       ast-grep
       binutils
       btop
+      distrobox
       du-dust
       duf
-      duplicacy
       eza
       file
       fzf
@@ -45,9 +55,6 @@ in {
       lazygit
       p7zip
       ripgrep
-      rsync
-      sing-box
-      sshfs
       swayidle
       tesseract
       unar
@@ -64,10 +71,12 @@ in {
   };
   imports = [
     ./delta
-    ./neovim
-    ./zsh
-    ./starship
+    ./git
     ./lazygit
+    ./neovim
+    ./starship
     ./tmux
+    ./wireplumber
+    ./zsh
   ];
 }

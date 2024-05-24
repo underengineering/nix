@@ -3,15 +3,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.swaylock;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.wayland.swaylock;
 in {
-  options.modules.swaylock = {
+  options.modules.wayland.swaylock = {
     enable = mkOption {
       description = "Enable swaylock-effects";
       type = types.bool;
-      default = false;
+      default = true;
     };
     config = mkOption {
       description = "Swaylock config";
