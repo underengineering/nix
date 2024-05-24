@@ -1,9 +1,17 @@
 return function()
     local utils = require("utils")
 
+    -- mini.surround
     require("mini.surround").setup()
 
+    -- mini.splitjoin
+    require("mini.splitjoin").setup()
+
+    -- mini.operators
+    require("mini.operators").setup()
+
     if not utils.is_in_vscode then
+        -- mini.files
         require("mini.files").setup()
 
         local modules = {
