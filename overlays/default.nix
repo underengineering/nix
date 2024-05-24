@@ -36,6 +36,7 @@ with lib; {
       });
 
       linux_custom_lenowo = prev.linuxPackagesFor (prev.linux_latest.override {
+        stdenv = prev.fastStdenv;
         structuredExtraConfig = with lib;
         with lib.kernel; {
           # Google's BBRv3 TCP congestion Control
