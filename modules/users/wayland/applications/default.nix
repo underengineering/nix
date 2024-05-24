@@ -9,7 +9,6 @@
     ./hyprland
     ./kitty
     ./swaylock
-    ./wezterm
     (import ./crabshell {inherit inputs;})
     ./hyprpaper
     ./vscodium
