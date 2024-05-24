@@ -2,15 +2,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.ssh;
+}: let
+  inherit (lib) mkIf mkMerge mkOption types;
+  cfg = config.modules.applications.ssh;
 in {
-  options.modules.ssh = {
+  options.modules.applications.ssh = {
     enable = mkOption {
       description = "Whether to enable ssh";
       type = types.bool;
-      default = false;
+      default = true;
     };
     type = mkOption {
       description = "Whether is ssh client or server";

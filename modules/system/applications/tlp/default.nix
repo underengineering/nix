@@ -2,15 +2,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.tlp;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.applications.tlp;
 in {
-  options.modules.tlp = {
+  options.modules.applications.tlp = {
     enable = mkOption {
       description = "Enable TLP service";
       type = types.bool;
-      default = false;
+      default = true;
     };
   };
   config = mkIf (cfg.enable) {

@@ -184,44 +184,41 @@
             "nowatchdog"
           ];
           systemConfig = {
-            kernel = {
-              patches = [
-                {
-                  name = "Lenovo sound patch";
-                  patch = "${self}/patches/kernel/lenovo-sound-6.8.patch";
-                }
-                {
-                  name = "BORE";
-                  patch = "${self}/patches/kernel/bore-6.8.patch";
-                }
-              ];
+            system = {
+              kernel = {
+                patches = [
+                  {
+                    name = "Lenovo sound patch";
+                    patch = "${self}/patches/kernel/lenovo-sound-6.8.patch";
+                  }
+                  {
+                    name = "BORE";
+                    patch = "${self}/patches/kernel/bore-6.8.patch";
+                  }
+                ];
+              };
+              pam.services.swaylock.text = "auth include login";
             };
-            flatpak.enable = true;
-            zram.enable = true;
-            pipewire.enable = true;
-            wayland.enable = true;
-            bluetooth.enable = true;
-            tlp.enable = true;
-            chrony.enable = true;
-            pam.services.swaylock.text = "auth include login";
-            unbound = {
+            wayland = {
               enable = true;
-              overrideNameservers = true;
-              forward-zone = [
-                {
-                  name = ".";
-                  forward-addr = [
-                    "94.228.168.12@853#dns.libpcap.ru"
-                    "1.1.1.1@853"
-                    "1.0.0.1@853"
-                  ];
-                  forward-tls-upstream = true;
-                }
-              ];
             };
-            greetd = {
-              enable = true;
-              command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t -c Hyprland";
+            applications = {
+              bluetooth.enable = true;
+              greetd.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t -c Hyprland";
+              unbound = {
+                overrideNameservers = true;
+                forward-zone = [
+                  {
+                    name = ".";
+                    forward-addr = [
+                      "94.228.168.12@853#dns.libpcap.ru"
+                      "1.1.1.1@853"
+                      "1.0.0.1@853"
+                    ];
+                    forward-tls-upstream = true;
+                  }
+                ];
+              };
             };
           };
           users = [

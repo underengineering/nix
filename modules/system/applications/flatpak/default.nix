@@ -2,15 +2,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.flatpak;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.applications.flatpak;
 in {
-  options.modules.flatpak = {
+  options.modules.applications.flatpak = {
     enable = mkOption {
       description = "Enable flatpak";
       type = types.bool;
-      default = false;
+      default = true;
     };
   };
   config = mkIf (cfg.enable) {

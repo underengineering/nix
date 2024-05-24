@@ -2,15 +2,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.pipewire;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.applications.pipewire;
 in {
-  options.modules.pipewire = {
+  options.modules.applications.pipewire = {
     enable = mkOption {
       description = "Enable pipewire";
       type = types.bool;
-      default = false;
+      default = true;
     };
   };
   config = mkIf (cfg.enable) {

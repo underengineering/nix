@@ -1,18 +1,7 @@
 {...}: {
   imports = [
-    ./bluetooth
-    ./boot
-    ./chrony
-    ./flatpak
-    ./fprintd
-    ./kernel
-    ./packages
-    ./pam
-    ./pipewire
-    ./ssh
-    ./tlp
-    ./unbound
+    ./applications
+    ./system
     ./wayland
-    ./zram
   ];
 }

@@ -2,15 +2,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.unbound;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.applications.unbound;
 in {
-  options.modules.unbound = {
+  options.modules.applications.unbound = {
     enable = mkOption {
       description = "Enable unbound DNS client";
       type = types.bool;
-      default = false;
+      default = true;
     };
     forward-zone = mkOption {
       description = "Forward zones";

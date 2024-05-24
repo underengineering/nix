@@ -2,11 +2,11 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.kernel;
+}: let
+  inherit (lib) mkOption types;
+  cfg = config.modules.system.kernel;
 in {
-  options.modules.kernel = {
+  options.modules.system.kernel = {
     patches = mkOption {
       description = "Kernel patches";
       type = with types; listOf attrs;

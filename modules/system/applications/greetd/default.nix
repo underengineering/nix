@@ -2,15 +2,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.greetd;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.applications.greetd;
 in {
-  options.modules.greetd = {
+  options.modules.applications.greetd = {
     enable = mkOption {
       description = "Enable greetd";
       type = types.bool;
-      default = false;
+      default = true;
     };
     command = mkOption {
       description = "Command to run";

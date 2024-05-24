@@ -2,15 +2,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.zram;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.system.zram;
 in {
-  options.modules.zram = {
+  options.modules.system.zram = {
     enable = mkOption {
       description = "Enable ZRAM";
       type = types.bool;
-      default = false;
+      default = true;
     };
     algorithm = mkOption {
       description = "Compression algorithm";

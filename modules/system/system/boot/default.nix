@@ -1,6 +1,5 @@
 {...}: {
   options.modules.boot = {};
-
   config = {
     fileSystems."/" = {
       device = "/dev/disk/by-label/NIXROOT";

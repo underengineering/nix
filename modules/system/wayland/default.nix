@@ -3,8 +3,8 @@
   config,
   lib,
   ...
-}:
-with lib; let
+}: let
+  inherit (lib) mkIf mkOption types;
   cfg = config.modules.wayland;
 in {
   options.modules.wayland = {
@@ -48,7 +48,4 @@ in {
       ];
     };
   };
-  imports = [
-    ./greetd
-  ];
 }

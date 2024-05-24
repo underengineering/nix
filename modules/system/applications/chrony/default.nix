@@ -2,15 +2,15 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.chrony;
+}: let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.modules.applications.chrony;
 in {
-  options.modules.chrony = {
+  options.modules.applications.chrony = {
     enable = mkOption {
       description = "Enable chrony. Disables timesyncd.";
       type = types.bool;
-      default = false;
+      default = true;
     };
   };
   config = mkIf (cfg.enable) {

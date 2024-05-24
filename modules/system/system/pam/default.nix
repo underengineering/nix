@@ -1,13 +1,12 @@
 {
-  pkgs,
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.modules.pam;
+}: let
+  inherit (lib) mkOption types;
+  cfg = config.modules.system.pam;
 in {
-  options.modules.pam = {
+  options.modules.system.pam = {
     services = mkOption {
       default = {};
       type = with types; attrsOf attrs;
