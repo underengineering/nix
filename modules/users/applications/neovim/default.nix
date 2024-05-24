@@ -23,7 +23,7 @@ in {
     programs.neovim = {
       enable = true;
       defaultEditor = true;
-      package = pkgs.neovim-nightly;
+      package = pkgs.neovim;
       extraPackages = with pkgs; [
         # Plugin deps
         fastStdenv

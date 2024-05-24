@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkIf mkOption types;
+  inherit (lib) attrsets mkIf mkOption strings types;
   cfg = config.modules.wayland.hyprpaper;
 in {
   options.modules.wayland.hyprpaper = {
