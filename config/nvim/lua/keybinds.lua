@@ -78,7 +78,7 @@ keymap.set("n",
 
 keymap.set("n",
     "<Leader>lr",
-    function() return "<Cmd>IncRename " .. vim.fn.expand("<cword>") end,
+    function() return ":IncRename " .. vim.fn.expand("<cword>") end,
     with_desc(as_expr(opts), "[LSP] Rename"))
 
 keymap.set("n",
