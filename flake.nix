@@ -193,7 +193,7 @@
                   }
                   {
                     name = "BORE";
-                    patch = "${self}/patches/kernel/bore-6.8.patch";
+                    patch = "${self}/patches/kernel/bore-6.9.patch";
                   }
                 ];
               };
