@@ -35,7 +35,6 @@ return function()
         auto_install = false,
         sync_install = is_headless,
         highlight = { enable = true },
-        autotag = { enable = true },
         textobjects = {
             select = {
                 enable = true,
