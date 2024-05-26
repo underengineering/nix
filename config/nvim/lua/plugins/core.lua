@@ -162,6 +162,14 @@ return {
             enable_chat = true,
             tools = { language_server = vim.fn.exepath("codeium_language_server") }
         },
+        config = function(_, opts)
+            local update = require("codeium.update")
+            update.validate = function(callback)
+                callback(nil)
+            end
+
+            require("codeium").setup(opts)
+        end,
         cond = not is_in_vscode
     }
 }
