@@ -18,12 +18,16 @@ return {
             { "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
             "SmiteshP/nvim-navic",
             "b0o/schemastore.nvim",
-            {
-                "folke/neodev.nvim",
-                opts = {}
-            }
         },
         config = require "plugins/configs/lsp",
+        cond = not is_in_vscode
+    },
+    {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            enabled = true,
+        },
         cond = not is_in_vscode
     },
     {
