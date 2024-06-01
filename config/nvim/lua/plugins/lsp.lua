@@ -44,11 +44,6 @@ return {
         cond = not is_in_vscode
     },
     {
-        "kosayoda/nvim-lightbulb",
-        opts = { autocmd = { enabled = true } },
-        cond = not is_in_vscode
-    },
-    {
         "mhartington/formatter.nvim",
         cmd = { "Format", "FormatLock", "FormatWrite", "FormatWriteLock" },
         config = function()
