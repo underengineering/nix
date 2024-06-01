@@ -44,31 +44,36 @@ return {
         cond = not is_in_vscode
     },
     {
-        "mhartington/formatter.nvim",
-        cmd = { "Format", "FormatLock", "FormatWrite", "FormatWriteLock" },
+        "stevearc/conform.nvim",
+        event = { "BufWritePre" },
+        cmd = { "ConformInfo", "AutoFormatEnable", "AutoFormatDisable" },
         config = function()
-            require("formatter").setup {
-                logging = false,
-                filetype = {
-                    python = {
-                        require("formatter.filetypes.python").ruff
-                    },
-                    javascript = {
-                        require("formatter.filetypes.typescript").prettier
-                    },
-                    typescript = {
-                        require("formatter.filetypes.typescript").prettier
-                    },
-                    typescriptreact = {
-                        require("formatter.filetypes.typescript").prettier
-                    },
-                    nix = {
-                        require("formatter.filetypes.nix").alejandra
-                    },
-                    rust = {
-                        require("formatter.filetypes.rust").rustfmt
-                    }
+            local auto_format = true
+            vim.api.nvim_create_user_command("AutoFormatEnable", function()
+                auto_format = true
+            end, {})
+
+            vim.api.nvim_create_user_command("AutoFormatDisable", function()
+                auto_format = false
+            end, {})
+
+
+            require("conform").setup {
+                formatters_by_ft = {
+                    python = { "ruff" },
+                    javascript = { { "prettierd", "prettier" } },
+                    typescript = { { "prettierd", "prettier" } },
+                    javascriptreact = { { "prettierd", "prettier" } },
+                    typescriptreact = { { "prettierd", "prettier" } },
+                    nix = { "alejandra" },
+                    rust = { "rustfmt" },
+                    lua = {}
                 },
+                format_on_save = function()
+                    ---@diagnostic disable-next-line: return-type-mismatch
+                    if not auto_format then return nil end
+                    return { timeout_ms = 2000, lsp_fallback = true }
+                end
             }
         end
     },
