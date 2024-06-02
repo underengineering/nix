@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-with lib; {
+}: {
   overlays = [
     inputs.neovim-nightly-overlay.overlays.default
     # TODO: Uncomment when https://github.com/hyprwm/Hyprland/commit/a4f38a07d7578f0b06c09de7d04682e0aaddb12a is reverted
@@ -82,7 +81,6 @@ with lib; {
 
           # Reduce debug info
           DEBUG_INFO_REDUCED = mkForce yes;
-
           # Disable ms surface HID
           CONFIG_SURFACE_AGGREGATOR = no;
 
@@ -136,5 +134,7 @@ with lib; {
         ignoreConfigErrors = true;
       });
     })
+    (import ./pkgs {inherit pkgs lib;})
+    .overlay
   ];
 }

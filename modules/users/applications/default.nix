@@ -51,6 +51,7 @@ in {
       eza
       file
       fzf
+      fzf-runner
       jq
       lazygit
       p7zip
