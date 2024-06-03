@@ -59,7 +59,7 @@ return {
 
             require("conform").setup {
                 formatters_by_ft = {
-                    python = { "ruff" },
+                    python = { "ruff_organize_imports", "ruff-lsp" },
                     javascript = { { "prettierd", "prettier" } },
                     typescript = { { "prettierd", "prettier" } },
                     javascriptreact = { { "prettierd", "prettier" } },
