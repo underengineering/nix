@@ -1,12 +1,11 @@
 return function()
+    local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
     local lspconfig = require("lspconfig")
-
-    local lsp = require("lsp-zero")
     local navic = require("nvim-navic")
 
-    lsp.on_attach(function(client, bufnr)
-        lsp.default_keymaps({ buffer = bufnr })
-
+    ---@param client vim.lsp.Client
+    ---@param bufnr integer
+    local function on_attach(client, bufnr)
         if client.server_capabilities.inlayHintProvider then
             vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
         end
@@ -14,21 +13,9 @@ return function()
         if client.server_capabilities.documentSymbolProvider then
             navic.attach(client, bufnr)
         end
-    end)
+    end
 
-    lsp.set_server_config {
-        capabilities = {
-            textDocument = {
-                completion = {
-                    completionItem = {
-                        snippetSupport = true
-                    }
-                }
-            }
-        }
-    }
-
-    lsp.setup_servers {
+    for _, server_name in ipairs {
         "gopls",
         "golangci_lint_ls",
 
@@ -40,6 +27,7 @@ return function()
         "html",
         "svelte",
         "tailwindcss",
+        "tsserver",
 
         "prismals",
         "taplo",
@@ -51,11 +39,17 @@ return function()
         "nil_ls",
 
         "zls"
-    }
 
-    lspconfig.svelte.setup {
-        cmd = { "pnpm", "svelteserver", "--stdio" }
-    }
+    } do
+        lspconfig[server_name].setup {
+            on_attach = on_attach,
+            capabilities = lsp_capabilities
+        }
+    end
+
+    -- lspconfig.svelte.setup {
+    --     cmd = { "pnpm", "svelteserver", "--stdio" }
+    -- }
 
     lspconfig.lua_ls.setup {
         settings = {
@@ -98,10 +92,8 @@ return function()
                 source = true,
                 header = "",
                 prefix = ""
-            }
+            },
         }
-
-        lsp.set_sign_icons(utils.diagnostic_signs)
     end
 
     ---@type RustaceanConfig
@@ -123,7 +115,7 @@ return function()
         },
         hover_actions = {
             border = {
-                { "╭", "FloatBorder" },
+                { "╭", "FlatBorder" },
                 { "─", "FloatBorder" },
                 { "╮", "FloatBorder" },
                 { "│", "FloatBorder" },

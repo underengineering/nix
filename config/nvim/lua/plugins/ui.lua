@@ -53,7 +53,6 @@ return {
         "rebelot/heirline.nvim",
         config = require "plugins/configs/heirline",
         dependencies = {
-            "VonHeikemen/lsp-zero.nvim", -- For icons
             "kyazdani42/nvim-web-devicons",
             "SmiteshP/nvim-navic",
             "lewis6991/gitsigns.nvim",
