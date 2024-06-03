@@ -217,6 +217,8 @@
             };
             wayland = {
               enable = true;
+
+              applications.hyprland.enable = true;
             };
             applications = {
               bluetooth.enable = true;

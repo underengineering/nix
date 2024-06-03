@@ -48,4 +48,7 @@ in {
       ];
     };
   };
+  imports = [
+    ./applications
+  ];
 }
