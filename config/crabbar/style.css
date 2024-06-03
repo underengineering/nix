@@ -1,0 +1,103 @@
+@define-color bg #282828;
+@define-color bg0 #282828;
+@define-color bg1 #3c3836;
+@define-color bg2 #504945;
+@define-color bg3 #665c54;
+@define-color bg4 #7c6f64;
+@define-color gray #928374;
+
+@define-color fg #ebdbb2;
+@define-color fg0 #fbf1c7;
+@define-color fg1 #ebdbb2;
+@define-color fg2 #d5c4a1;
+@define-color fg3 #bdae93;
+@define-color fg4 #a89984;
+
+@define-color red0 #cc241d;
+@define-color red1 #fb4934;
+
+@define-color green0 #98971a;
+@define-color green1 #b8bb26;
+
+@define-color yellow0 #d79921;
+@define-color yellow1 #fabd2f;
+
+@define-color blue0 #458588;
+@define-color blue1 #83a598;
+
+@define-color purple0 #b16286;
+@define-color purple1 #d3869b;
+
+@define-color aqua0 #689d6a;
+@define-color aqua1 #8ec07c;
+
+@define-color orange0 #d65d0e;
+@define-color orange1 #fe8019;
+
+* {
+    all: unset;
+
+    font-family: Lexend, Symbols Nerd Font Mono;
+    font-size: 14px;
+    font-weight: 500;
+    color: @fg;
+}
+
+.bar {
+    padding: 0px 10px 0px 10px;
+    background-color: transparent;
+}
+
+.widget {
+    padding: 4px 7px 4px 7px;
+
+    background-color: @bg0;
+    border-radius: 8px;
+}
+
+.distro-icon {
+    padding: 1px 7px 0px 7px;
+}
+
+.workspaces {
+    padding: 0;
+}
+
+.workspace {
+    padding: 0px 10px 0px 10px;
+    background-color: @bg;
+    border-radius: 8px;
+}
+
+.workspace.active {
+    background-color: @bg1;
+    border-bottom: 2px solid @aqua0;
+}
+
+.active-window {
+    border-bottom: 2px solid @green0;
+}
+
+.network {
+    border-bottom: 2px solid @purple0;
+}
+
+.battery {
+    border-bottom: 2px solid @blue0;
+}
+
+.cpu {
+    border-bottom: 2px solid @red0;
+}
+
+.memory {
+    border-bottom: 2px solid @orange0;
+}
+
+.sound {
+    border-bottom: 2px solid @green0;
+}
+
+.layout {
+    border-bottom: 2px solid @yellow0;
+}

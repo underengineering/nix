@@ -6,6 +6,7 @@
 }: {
   overlays = [
     inputs.fzf-runner.overlays.default
+    inputs.crabbar.overlays.default
     inputs.neovim-nightly-overlay.overlays.default
     # TODO: Uncomment when https://github.com/hyprwm/Hyprland/commit/a4f38a07d7578f0b06c09de7d04682e0aaddb12a is reverted
     # inputs.hyprland.overlays.default

@@ -5,12 +5,13 @@
   ...
 }: {
   imports = [
+    (import ./firefox {inherit inputs;})
+    ./crabbar
     ./dunst
     ./hyprland
+    ./hyprpaper
     ./kitty
     ./swaylock
-    ./hyprpaper
     ./vscodium
-    (import ./firefox {inherit inputs;})
   ];
 }

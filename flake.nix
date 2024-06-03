@@ -8,6 +8,10 @@
       url = "github:underengineering/fzf-runner";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    crabbar = {
+      url = "github:underengineering/crabbar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -91,6 +95,21 @@
           wayland = {
             enable = true;
 
+            crabbar = {
+              config = {
+                margins = {
+                  top = 2;
+                };
+                image_path = "${self}/config/crabbar/nix-snowflake.svg";
+                network_name = "wlp4s0";
+                battery_name = "BAT0";
+                layout_map = {
+                  "English (US)" = "EN";
+                  "Russian" = "RU";
+                };
+              };
+              cssConfig = builtins.readFile "${self}/config/crabbar/style.css";
+            };
             kitty = {
               extraConfig = builtins.readFile "${self}/config/kitty/kitty.conf";
               ssh = {
