@@ -32,8 +32,8 @@
         patches = [../patches/nixpkgs/orchis-theme.patch];
       });
 
-      linux_custom_lenowo = prev.linuxPackagesFor (prev.linux_latest.override {
-        stdenv = prev.fastStdenv;
+      linux_custom_lenowo = pkgs.linuxPackagesFor (pkgs.linux_latest.override {
+        stdenv = pkgs.fastStdenv;
         structuredExtraConfig = with lib;
         with lib.kernel; {
           # Google's BBRv3 TCP congestion Control
