@@ -1,8 +1,10 @@
+use fork::Fork;
 use std::{
     env,
     error::Error,
     fs::ReadDir,
     io::Write,
+    os::unix::process::CommandExt,
     path::{Path, PathBuf},
     process::{Command, Stdio},
 };
@@ -83,26 +85,29 @@ fn main() -> Result<(), Box<dyn Error>> {
         }
     }
 
-    let mut fzf = Command::new("fzf")
-        .stdin(Stdio::piped())
-        .stdout(Stdio::piped())
-        .args(["--delimiter", ";", "--with-nth", "2.."])
-        .spawn()?;
+    let output = {
+        let mut fzf = Command::new("fzf")
+            .stdin(Stdio::piped())
+            .stdout(Stdio::piped())
+            .args(["--delimiter", ";", "--with-nth", "2.."])
+            .spawn()?;
 
-    {
-        let mut stdin = fzf.stdin.take().expect("Failed to open fzf stdin");
-        for (idx, app) in applications.iter().enumerate() {
-            if app.no_display {
-                continue;
+        {
+            let mut stdin = fzf.stdin.take().expect("Failed to open fzf stdin");
+            for (idx, app) in applications.iter().enumerate() {
+                if app.no_display {
+                    continue;
+                }
+
+                stdin
+                    .write_all(format!("{};{}\n", idx, app.name).as_bytes())
+                    .expect("Failed to write to fzf stdin");
             }
-
-            stdin
-                .write_all(format!("{};{}\n", idx, app.name).as_bytes())
-                .expect("Failed to write to fzf stdin");
         }
-    }
 
-    let output = fzf.wait_with_output()?;
+        fzf.wait_with_output()?
+    };
+
     let output = String::from_utf8_lossy(&output.stdout);
     let (choice_index, _) = output.split_once(';').ok_or("Delimiter not found")?;
     let choice_index = choice_index.parse::<usize>()?;
@@ -116,12 +121,14 @@ fn main() -> Result<(), Box<dyn Error>> {
             Arg::Text(text) => Some(text.as_str()),
             Arg::Field(_) => None,
         });
-        Command::new(arg0)
-            .stdin(Stdio::null())
-            .stdout(Stdio::null())
-            .stderr(Stdio::null())
-            .args(clean_args)
-            .spawn()?;
+        if let Ok(Fork::Child) = fork::daemon(false, false) {
+            Command::new(arg0)
+                .stdin(Stdio::null())
+                .stdout(Stdio::null())
+                .stderr(Stdio::null())
+                .args(clean_args)
+                .exec();
+        }
     } else {
         eprintln!("Invalid first argument: {arg0:?}");
         std::process::exit(1);
