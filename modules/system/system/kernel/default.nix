@@ -9,7 +9,7 @@ in {
   options.modules.system.kernel = {
     patches = mkOption {
       description = "Kernel patches";
-      type = with types; listOf attrs;
+      type = with types; listOf (attrsOf (either str path));
       default = [];
     };
   };
