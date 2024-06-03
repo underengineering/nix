@@ -21,12 +21,6 @@
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    crabshell = {
-      url = "github:underengineering/crabshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
-      inputs.utils.follows = "flake-utils";
-    };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -108,7 +102,6 @@
               package = pkgs.firefox-beta;
               extraConfig = builtins.readFile "${self}/config/firefox.js";
             };
-            crabshell.configPath = "config/crabshell";
             dunst = {
               iconTheme = {
                 package = pkgs.gruvbox-dark-icons-gtk;

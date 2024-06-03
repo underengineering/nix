@@ -9,7 +9,6 @@
     ./hyprland
     ./kitty
     ./swaylock
-    (import ./crabshell {inherit inputs;})
     ./hyprpaper
     ./vscodium
     (import ./firefox {inherit inputs;})
