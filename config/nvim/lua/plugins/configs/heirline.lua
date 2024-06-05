@@ -2,12 +2,8 @@ return function()
     local conditions = require("heirline.conditions")
     local utils = require("heirline.utils")
 
-    local navic = require("nvim-navic")
-    local navic_lib = require("nvim-navic.lib")
-
-    local palette = require("gruvbox").palette
-
     local get_color = require("utils").get_color
+    local palette = require("gruvbox").palette
 
 
     ---@class Align: StatusLine
@@ -146,8 +142,6 @@ return function()
     ---@field status_dict GitSignsInfo
     ---@field has_changes boolean
     local Git = {
-        condition = function() return vim.b.gitsigns_status_dict and conditions.is_git_repo() end,
-
         ---@param self Git
         init = function(self)
             self.status_dict = vim.b.gitsigns_status_dict
@@ -162,55 +156,74 @@ return function()
             hl = { bold = true }
         },
         {
-            ---@param self Git
-            provider = function(self)
-                if self.has_changes then return "(" end
-            end
-        },
-        {
-            ---@param self Git
-            provider = function(self)
-                if (self.status_dict.added or 0) > 0 then
+            {
+                provider = " ("
+            },
+            {
+                ---@param self Git
+                provider = function(self)
                     return " " .. self.status_dict.added
+                end,
+                ---@param self Git
+                condition = function(self) return self.status_dict.added > 0 end,
+                hl = "GitSignsAdd",
+            },
+            {
+                provider = " ",
+
+                ---@param self Git
+                condition = function(self)
+                    return self.status_dict.added > 0 and self.status_dict.removed > 0
                 end
-            end,
-            hl = "GitSignsAdd",
-        },
-        {
-            ---@param self Git
-            provider = function(self)
-                if (self.status_dict.removed or 0) > 0 then
-                    return "  " .. self.status_dict.removed
+            },
+            {
+                ---@param self Git
+                provider = function(self)
+                    return " " .. self.status_dict.removed
+                end,
+                ---@param self Git
+                condition = function(self) return self.status_dict.removed > 0 end,
+                hl = "GitSignsDelete",
+            },
+            {
+                provider = " ",
+
+                ---@param self Git
+                condition = function(self)
+                    return (self.status_dict.added > 0 or self.status_dict.removed > 0) and
+                        self.status_dict.changed > 0
                 end
-            end,
-            hl = "GitSignsDelete",
-        },
-        {
+            },
+            {
+                ---@param self Git
+                provider = function(self)
+                    return " " .. self.status_dict.changed
+                end,
+                ---@param self Git
+                condition = function(self) return self.status_dict.changed > 0 end,
+                hl = "GitSignsChange",
+            },
+            {
+                provider = ")"
+            },
             ---@param self Git
-            provider = function(self)
-                if (self.status_dict.changed or 0) > 0 then
-                    return "  " .. self.status_dict.changed
-                end
-            end,
-            hl = "GitSignsChange",
+            condition = function(self) return self.has_changes end
         },
-        {
-            ---@param self Git
-            provider = function(self)
-                if self.has_changes then return ")" end
-            end
-        },
-        hl = { fg = palette.neutral_yellow, bg = palette.dark1 }
+        hl = { fg = palette.neutral_yellow, bg = palette.dark1 },
+        update = { "User", pattern = "GitSignsUpdate" },
+        ---@param self Git
+        condition = function(self) return self.status_dict and conditions.is_git_repo() end,
     }
 
     ---@class FileNameBlock: StatusLine
     ---@field file_name string
     local FileNameBlock = {
         ---@param self FileNameBlock
-        init = function(self)
+        init   = function(self)
             self.file_name = vim.api.nvim_buf_get_name(0)
         end,
-        hl = { bg = palette.dark1 }
+        hl     = { bg = palette.dark1 },
+        update = "BufEnter"
     }
 
     ---@class FileIcon: FileNameBlock
@@ -257,7 +270,7 @@ return function()
             condition = function()
                 return vim.bo.modified
             end,
-            provider = "[+]",
+            provider = " 󰷫",
             hl = { fg = palette.bright_green },
         },
         {
@@ -298,7 +311,6 @@ return function()
     ---@field info number
     ---@field hints number
     local Diagnostics = {
-        condition = conditions.has_diagnostics,
         static = {
             error_icon = diagnostic_icons.error,
             warn_icon = diagnostic_icons.warn,
@@ -312,13 +324,6 @@ return function()
             self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
             self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
         end,
-        on_click = {
-            callback = function()
-                require("trouble").toggle { mode = "document_diagnostics" }
-            end,
-            name = "heirline_diagnostics",
-        },
-        update = { "DiagnosticChanged", "BufEnter" },
         { provider = "", hl = { fg = palette.dark2, bg = palette.dark1 } },
         Space,
         {
@@ -349,107 +354,9 @@ return function()
             end,
             hl = { fg = get_color("DiagnosticHint", "fg#") }
         },
-        hl = { bg = palette.dark2 }
-    }
-
-    ---@class Navic: StatusLine
-    ---@field encode_scope fun(start_line:number, start_char:number, winnr:number):number
-    ---@field decode_scope fun(value:number):number,number,number
-    ---@field child table?
-    local Navic = {
-        static = {
-            ---@param start_line number
-            ---@param start_char number
-            ---@param winnr number
-            ---@return number
-            encode_scope = function(start_line, start_char, winnr)
-                return bit.bor(bit.lshift(start_line, 16), bit.lshift(start_char, 6), winnr)
-            end,
-            ---@param value number
-            ---@return number, number, number
-            decode_scope = function(value)
-                local start_line = bit.rshift(value, 16)
-                local start_char = bit.band(bit.rshift(value, 60), 1023)
-                local winnr = bit.band(value, 63)
-                return start_line, start_char, winnr
-            end
-        },
-        condition = function()
-            if not navic.is_available() then return false end
-
-            local bufnr = vim.api.nvim_get_current_buf()
-            local ctx = navic_lib.get_context_data(bufnr)
-            if not ctx or #ctx <= 1 then return false end
-
-            return true
-        end,
-        ---@param self Navic
-        init = function(self)
-            local data = navic.get_data() or {}
-            local children = {
-            }
-
-            -- Create a child for each context
-            for idx, ctx in ipairs(data) do
-                local minwid = self.encode_scope(ctx.scope.start.line,
-                    ctx.scope.start.character,
-                    self.winnr)
-
-                local hl = utils.get_highlight("NavicIcons" .. ctx.type)
-                local child = {
-                    {
-                        provider = ctx.icon,
-                        hl = { fg = hl.fg }
-                    },
-                    {
-                        -- Escape %'s
-                        provider = ctx.name:gsub("%%", "%%%%"),
-                        on_click = {
-                            minwid = minwid,
-                            callback = function()
-                                local start_line, start_char, winnr = self.decode_scope(minwid)
-                                local win_id = vim.fn.win_getid(winnr)
-                                if win_id == nil then
-                                    return
-                                end
-
-                                vim.api.nvim_win_set_cursor(win_id, { start_line, start_char })
-                            end,
-                            name = "heirline_navic",
-                        },
-                        hl = { fg = palette.light0 }
-                    }
-                }
-
-                -- Add a separator if needed
-                if idx < #data then
-                    child[#child + 1] = {
-                        provider = " > ",
-                        hl = { fg = palette.light0 }
-                    }
-                end
-
-                children[idx] = child
-            end
-
-
-            if #children > 0 then
-                table.insert(children, 1, Space)
-                children[#children + 1] = Space
-            end
-
-            self.child = self:new(children, 1)
-        end,
-        { provider = "", hl = { fg = palette.dark1, bg = palette.dark4 } },
-        {
-            ---@param self Navic
-            provider = function(self)
-                return self.child:eval()
-            end,
-        },
-        { provider = "", hl = { fg = palette.dark1, bg = palette.dark4 } },
-        hl = { bg = palette.dark1 },
-        update = "CursorMoved"
+        hl = { bg = palette.dark2 },
+        condition = conditions.has_diagnostics,
+        update = { "DiagnosticChanged", "BufEnter" },
     }
 
     ---@class ActiveLsp: StatusLine
@@ -478,7 +385,7 @@ return function()
         },
         Space,
         hl = { fg = palette.light0, bg = palette.dark1 },
-        -- update = { "LspAttach", "LspDetach" },
+        update = { "LspAttach", "LspDetach" },
     }
 
     ---@class Ruler: StatusLine
@@ -499,8 +406,7 @@ return function()
         { provider = "", hl = { fg = palette.dark1 } },
 
         Align,
-        Navic,
-        Align,
+        -- Align,
 
         -- Right
         ActiveLsp,
