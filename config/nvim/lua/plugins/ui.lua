@@ -54,7 +54,6 @@ return {
         config = require "plugins/configs/heirline",
         dependencies = {
             "kyazdani42/nvim-web-devicons",
-            "SmiteshP/nvim-navic",
             "lewis6991/gitsigns.nvim",
         },
     },

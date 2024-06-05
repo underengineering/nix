@@ -3,19 +3,10 @@ local is_in_vscode = require("utils").is_in_vscode
 ---@type LazySpec
 return {
     {
-        "SmiteshP/nvim-navic",
-        opts = {
-            highlight = true
-        },
-        lazy = true,
-        cond = not is_in_vscode
-    },
-    {
         "neovim/nvim-lspconfig",
         cmd = { "LspInfo", "LspInstall", "LspStart" },
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            "SmiteshP/nvim-navic",
             "b0o/schemastore.nvim",
         },
         config = require "plugins/configs/lsp",
