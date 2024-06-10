@@ -223,7 +223,7 @@ return function()
             self.file_name = vim.api.nvim_buf_get_name(0)
         end,
         hl     = { bg = palette.dark1 },
-        update = "BufEnter"
+        update = { "BufEnter", "BufModifiedSet" }
     }
 
     ---@class FileIcon: FileNameBlock
