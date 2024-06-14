@@ -48,6 +48,7 @@ in {
     ./chrony
     ./flatpak
     ./greetd
+    ./keyd
     ./pipewire
     ./ssh
     ./tlp
