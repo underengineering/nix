@@ -26,7 +26,7 @@ in {
       package = pkgs.neovim;
       extraPackages = with pkgs; [
         # Plugin deps
-        fastStdenv
+        fastStdenv.cc
         fd
         nodejs
         ripgrep
