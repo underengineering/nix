@@ -1,4 +1,5 @@
 local is_in_vscode = require("utils").is_in_vscode
+local is_windows = require("utils").is_windows
 
 ---@type LazySpec
 return {
@@ -170,6 +171,6 @@ return {
 
             require("codeium").setup(opts)
         end,
-        cond = not is_in_vscode
+        cond = not is_in_vscode and not is_windows
     }
 }

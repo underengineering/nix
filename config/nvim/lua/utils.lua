@@ -1,6 +1,7 @@
 local M = {}
 
 M.is_in_vscode = vim.g.vscode ~= nil
+M.is_windows = vim.fn.has("windows") == 1
 
 ---@return string The color
 function M.get_color(group, attr)
