@@ -15,6 +15,18 @@
     (final: prev: {
       hyprland = inputs.hyprland.packages.${pkgs.system}.default;
 
+      # TODO: Remove when tmux is updated in nixpkgs
+      # https://github.com/tmux/tmux/commit/3823fa2c577d440649a84af660e4d3b0c095d248
+      tmux = prev.tmux.overrideAttrs ({...}: {
+        src = pkgs.fetchFromGitHub {
+          owner = "tmux";
+          repo = "tmux";
+          rev = "c07e856d244d07ab2b65e72328fb9fe20747794b";
+          hash = "sha256-99hdAskEByqD4fjl2wrth9QfSkPXkN7o2A9e+BOH6ug=";
+        };
+        patches = [];
+      });
+
       # Cursor names must be without spaces to be parsed correctly
       capitaine-cursors-themed = prev.capitaine-cursors-themed.overrideAttrs ({preInstall ? "", ...}: {
         preInstall =
