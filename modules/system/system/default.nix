@@ -3,6 +3,7 @@
     ./boot
     ./kernel
     ./pam
+    ./udev
     ./zram
   ];
 }

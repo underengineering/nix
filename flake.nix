@@ -213,6 +213,7 @@
                 ];
               };
               pam.services.swaylock.text = "auth include login";
+              udev.extraRules = builtins.readFile "${self}/config/udev/60-steam-input.rules";
             };
             wayland = {
               enable = true;
