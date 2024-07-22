@@ -74,6 +74,26 @@ return function()
                 -- * selection_mode: eg 'v'
                 -- and should return true of false
                 include_surrounding_whitespace = true,
+            },
+            move = {
+                enable = true,
+                set_jumps = true,
+                goto_next_start = {
+                    ["]m"] = "@function.outer",
+                    ["]]"] = "@class.outer",
+                },
+                goto_next_end = {
+                    ["]M"] = "@function.outer",
+                    ["]["] = "@class.outer",
+                },
+                goto_previous_start = {
+                    ["[m"] = "@function.outer",
+                    ["[["] = "@class.outer",
+                },
+                goto_previous_end = {
+                    ["[M"] = "@function.outer",
+                    ["[]"] = "@class.outer",
+                },
             }
         },
         incremental_selection = {
