@@ -8,12 +8,10 @@
     inputs.fzf-runner.overlays.default
     inputs.crabbar.overlays.default
     inputs.neovim-nightly-overlay.overlays.default
-    # TODO: Uncomment when https://github.com/hyprwm/Hyprland/commit/a4f38a07d7578f0b06c09de7d04682e0aaddb12a is reverted
-    # inputs.hyprland.overlays.default
-    inputs.hyprpaper.overlays.default
-    inputs.xdph.overlays.default
     (final: prev: {
       hyprland = inputs.hyprland.packages.${pkgs.system}.default;
+      hyprpaper = inputs.hyprpaper.packages.${pkgs.system}.default;
+      xdg-desktop-portal-hyprland = inputs.xdph.packages.${pkgs.system}.default;
 
       # TODO: Remove when tmux is updated in nixpkgs
       # https://github.com/tmux/tmux/commit/3823fa2c577d440649a84af660e4d3b0c095d248

@@ -22,7 +22,8 @@ in {
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [
-        xdg-desktop-portal-hyprland
+        # Hyprland module does this automatically
+        # xdg-desktop-portal-hyprland
         xdg-desktop-portal-gtk
       ];
       config = {

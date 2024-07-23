@@ -208,7 +208,7 @@
                   }
                   {
                     name = "BORE";
-                    patch = ./patches/kernel/bore-6.9.patch;
+                    patch = ./patches/kernel/bore-6.10.patch;
                   }
                 ];
               };
