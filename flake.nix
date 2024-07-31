@@ -223,20 +223,7 @@
             applications = {
               bluetooth.enable = true;
               greetd.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t -c Hyprland";
-              unbound = {
-                overrideNameservers = true;
-                forward-zone = [
-                  {
-                    name = ".";
-                    forward-addr = [
-                      "94.228.168.12@853#dns.libpcap.ru"
-                      "1.1.1.1@853"
-                      "1.0.0.1@853"
-                    ];
-                    forward-tls-upstream = true;
-                  }
-                ];
-              };
+              blocky.config = ./config/blocky.yaml;
             };
           };
           users = [

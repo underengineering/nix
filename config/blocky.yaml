@@ -1,0 +1,40 @@
+connectIPVersion: v4
+
+upstream:
+  default:
+    - https://dns.libpcap.ru/dns-query
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.quad9.net/dns-query
+
+bootstrapDns:
+  upstream: https://dns.libpcap.ru/dns-query
+  ips:
+    - 94.228.168.12
+
+blocking:
+  startStrategy: fast
+  blackLists:
+    ads:
+      - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+      - https://adaway.org/hosts.txt
+      - https://v.firebog.net/hosts/AdguardDNS.txt
+      - https://v.firebog.net/hosts/Admiral.txt
+      - https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt
+      - https://v.firebog.net/hosts/Prigent-Ads.txt
+      - https://v.firebog.net/hosts/Easylist.txt
+
+      - https://v.firebog.net/hosts/RPiList-Malware.txt
+      - https://v.firebog.net/hosts/RPiList-Phishing.txt
+    privacy:
+      - https://v.firebog.net/hosts/Easyprivacy.txt
+      - https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt
+      - https://hostfiles.frogeye.fr/firstparty-trackers-hosts.txt
+      - |
+        /(\.|^)allawnos\.com$/
+        /(\.|^)heytapmobile\.com$/
+
+  clientGroupsBlock:
+    default:
+      - ads
+      - privacy
+

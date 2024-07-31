@@ -10,7 +10,7 @@ in {
     enable = mkOption {
       description = "Enable unbound DNS client";
       type = types.bool;
-      default = true;
+      default = false;
     };
     forward-zone = mkOption {
       description = "Forward zones";

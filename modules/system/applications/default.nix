@@ -44,6 +44,7 @@ in {
     ];
   };
   imports = [
+    ./blocky
     ./bluetooth
     ./chrony
     ./flatpak
