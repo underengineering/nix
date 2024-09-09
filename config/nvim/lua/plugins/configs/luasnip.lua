@@ -21,7 +21,8 @@ local function get_snippets()
     local conds_expand = require("luasnip.extras.conditions.expand")
 
     return {
-        s("flake", fmt([[
+        nix = {
+            s("flake", fmt([[
            {{
               inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
               inputs.flake-utils.url = "github:numtide/flake-utils";
@@ -38,24 +39,28 @@ local function get_snippets()
                     buildInputs = [];
                   }};
                 }});
-            }}
-        ]], {})),
-        s("tormsc", fmt([[
+            }}]], {}))
+        },
+        typescript = {
+            s("tormsc", fmt([[
             import {{ Column, Entity }} from "typeorm";
 
             @Entity()
             export class {entity_name} {{
                 @Column()
                 {field_name}: {field_type};
-            }}
-        ]], {
-            entity_name = i(1, "entityName"),
-            field_name = i(2, "fieldName"),
-            field_type = i(3, "fieldType"),
-        }))
+            }}]], {
+                entity_name = i(1, "entityName"),
+                field_name = i(2, "fieldName"),
+                field_type = i(3, "fieldType"),
+            }))
+        }
     }
 end
 
 return function()
-    require("luasnip").add_snippets("all", get_snippets())
+    local ls = require("luasnip")
+    for ft, snippets in pairs(get_snippets()) do
+        ls.add_snippets(ft, snippets)
+    end
 end
