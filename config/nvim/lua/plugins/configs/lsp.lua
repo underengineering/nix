@@ -22,7 +22,7 @@ return function()
         "html",
         "svelte",
         "tailwindcss",
-        "tsserver",
+        "ts_ls",
 
         "prismals",
         "taplo",
