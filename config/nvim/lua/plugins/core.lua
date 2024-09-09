@@ -152,9 +152,8 @@ return {
         },
         cond = not is_in_vscode
     },
-
     {
-        "Exafunction/codeium.nvim",
+        "underengineering/codeium.nvim",
         event = "VeryLazy",
         dependencies = {
             "nvim-lua/plenary.nvim",
