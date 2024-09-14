@@ -106,9 +106,6 @@ alias ssh=_ssh_wrapper
 # Use control master for rsync's ssh
 alias rsync='rsync -e ssh-session'
 
-# alias vpnsh='sudo ip netns exec ${1:-protected} sudo -u $USER -i'
-alias wine="WINEARCH=win64 WINEPREFIX=${HOME}/.wine /usr/bin/wine"
-
 function rust-musl-builder {
     sudo docker run --rm -it \
         -v $(pwd):/volume    \
