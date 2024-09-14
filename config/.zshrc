@@ -8,9 +8,6 @@ export WORDCHARS=${WORDCHARS/\/}
 setopt autocd autopushd pushdignoredups
 zstyle ':completion:*' menu select
 
-setopt no_share_history hist_ignore_dups
-unsetopt share_history
-
 # Disable stupid bell when hitting tab
 unsetopt beep
 
@@ -18,6 +15,8 @@ unsetopt beep
 HISTFILE=~/.zsh_history
 HISTSIZE=8192
 SAVEHIST=8192
+setopt no_share_history hist_ignore_dups inc_append_history
+unsetopt share_history
 ####[ END OPTIONS ]####
 
 ####[ KEYBINDS ]####
