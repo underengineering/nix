@@ -13,21 +13,6 @@
       hyprpaper = inputs.hyprpaper.packages.${pkgs.system}.default;
       xdg-desktop-portal-hyprland = inputs.xdph.packages.${pkgs.system}.default;
 
-      vscode-langservers-extracted = prev.vscode-langservers-extracted.overrideAttrs (old: {
-        buildPhase = let
-          extensions = "../resources/app/extensions";
-        in ''
-          npx babel ${extensions}/css-language-features/server/dist/node \
-            --out-dir lib/css-language-server/node/
-          npx babel ${extensions}/html-language-features/server/dist/node \
-            --out-dir lib/html-language-server/node/
-          npx babel ${extensions}/json-language-features/server/dist/node \
-            --out-dir lib/json-language-server/node/
-          cp -r ${pkgs.vscode-extensions.dbaeumer.vscode-eslint}/share/vscode/extensions/dbaeumer.vscode-eslint/server/out \
-            lib/eslint-language-server
-        '';
-      });
-
       # Cursor names must be without spaces to be parsed correctly
       capitaine-cursors-themed = prev.capitaine-cursors-themed.overrideAttrs ({preInstall ? "", ...}: {
         preInstall =
