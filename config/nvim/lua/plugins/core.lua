@@ -75,7 +75,7 @@ return {
         "echasnovski/mini.nvim",
         dependencies = {
             {
-                "antosha417/nvim-lsp-file-operations",
+                "underengineering/nvim-lsp-file-operations",
                 dependencies = {
                     "nvim-lua/plenary.nvim",
                 },
