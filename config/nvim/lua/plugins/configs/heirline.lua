@@ -395,7 +395,7 @@ return function()
         -- %c = column number
         -- %P = percentage through file of displayed window
         provider = " %7(%l/%3L%):%2c %P ",
-        hl = { bg = palette.dark3 }
+        hl = { fg = palette.light0, bg = palette.dark3 }
     }
 
     local status_line = {
