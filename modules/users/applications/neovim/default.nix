@@ -43,7 +43,7 @@ in {
 
         # Python
         black
-        nodePackages_latest.pyright
+        basedpyright
         ruff
         ruff-lsp
 

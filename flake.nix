@@ -11,6 +11,7 @@
     crabbar = {
       url = "github:underengineering/crabbar";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";

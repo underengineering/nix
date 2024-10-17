@@ -40,7 +40,7 @@ in {
 
     home.packages = with pkgs; [
       looking-glass-client
-      qbittorrent-qt5
+      qbittorrent
       ungoogled-chromium
       virt-manager
       wireshark
