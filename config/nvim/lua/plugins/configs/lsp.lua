@@ -22,7 +22,6 @@ return function()
         "html",
         "svelte",
         "tailwindcss",
-        "ts_ls",
 
         "prismals",
         "taplo",
