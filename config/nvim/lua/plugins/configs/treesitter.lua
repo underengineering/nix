@@ -7,6 +7,7 @@ if true then
         "bash",
         "markdown",
         "markdown_inline",
+        "sql",
 
         "toml",
         "json",
