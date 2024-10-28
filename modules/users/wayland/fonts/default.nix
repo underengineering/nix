@@ -23,7 +23,7 @@ in {
       lexend
       liberation_ttf
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
       powerline-symbols
       roboto
