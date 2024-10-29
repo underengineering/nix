@@ -125,7 +125,7 @@ return {
         opts = {},
     },
     {
-        "uga-rosa/ccc.nvim",
+        "underengineering/ccc.nvim",
         event = "BufReadPost",
         keys = {
             "<Leader>cp",
@@ -142,6 +142,7 @@ return {
     {
         "lukas-reineke/indent-blankline.nvim",
         event = "BufEnter",
+        commit = "e7a4442e055ec953311e77791546238d1eaae507",
         config = require "plugins/configs/indent-blankline",
     },
     {
