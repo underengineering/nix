@@ -72,7 +72,7 @@ return function()
     cmp.setup {
         active = true,
         performance = {
-            debounce = 60,
+            debounce = 30,
             throttle = 30,
             fetching_timeout = 500,
             confirm_resolve_timeout = 80,
