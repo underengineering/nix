@@ -30,12 +30,17 @@
   left: [
     (binary_expression
       left: [
-        ((await_expression (identifier) @_name))
-        (identifier) @_name
+        (await_expression (identifier) @_name)
+        (identifier)
       ])
   ]
   (#eq? @_name "sql")
-  right: (template_string) @injection.content
+  right: [
+    (template_string) @injection.content
+    (call_expression
+      function: (member_expression
+                  object: (template_string) @injection.content))
+  ]
   (#offset! @injection.content 0 1 0 -1)
   (#set! injection.include-children)
   (#set! injection.language "sql"))
