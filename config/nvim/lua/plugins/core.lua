@@ -4,9 +4,11 @@ local is_windows = require("utils").is_windows
 ---@type LazySpec
 return {
     {
-        "yioneko/nvim-cmp",
-        event = "InsertEnter",
-        branch = "perf",
+        "stevearc/profile.nvim"
+    },
+    {
+        "iguanacucumber/magazine.nvim",
+        name = "nvim-cmp",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
@@ -157,10 +159,11 @@ return {
     },
     {
         "underengineering/codeium.nvim",
+        enabled = false,
         event = "VeryLazy",
         dependencies = {
             "nvim-lua/plenary.nvim",
-            "yioneko/nvim-cmp",
+            "iguanacucumber/magazine.nvim",
         },
         opts = {
             enable_chat = true,
