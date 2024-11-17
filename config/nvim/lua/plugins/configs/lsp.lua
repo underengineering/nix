@@ -15,7 +15,7 @@ return function()
         "golangci_lint_ls",
 
         "pyright",
-        "ruff_lsp",
+        "ruff",
 
         "cssls",
         "eslint",
