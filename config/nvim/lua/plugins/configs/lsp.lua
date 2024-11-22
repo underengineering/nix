@@ -14,7 +14,7 @@ return function()
         "gopls",
         "golangci_lint_ls",
 
-        "pyright",
+        "basedpyright",
         "ruff",
 
         "cssls",
