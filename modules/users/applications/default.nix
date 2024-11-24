@@ -72,6 +72,7 @@ in {
   };
   imports = [
     ./delta
+    ./gdb
     ./git
     ./lazygit
     ./neovim
