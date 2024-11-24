@@ -204,12 +204,8 @@
               kernel = {
                 patches = [
                   {
-                    name = "Lenovo sound patch";
-                    patch = ./patches/kernel/lenovo-sound-6.8.patch;
-                  }
-                  {
                     name = "BORE";
-                    patch = ./patches/kernel/bore-6.11.patch;
+                    patch = ./patches/kernel/bore-6.12.patch;
                   }
                 ];
               };
