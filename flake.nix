@@ -14,7 +14,7 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      url = "git+https://github.com/hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.xdph.follows = "xdph";
     };
@@ -22,9 +22,14 @@
       url = "github:hyprwm/hyprpaper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprutils-0_2_6 = {
+      url = "github:hyprwm/hyprutils?rev=b26f33cc1c8a7fd5076e19e2cce3f062dca6351c";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     xdph = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprutils.follows = "hyprutils-0_2_6";
     };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
