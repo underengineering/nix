@@ -11,7 +11,7 @@ upstream:
 bootstrapDns:
   upstream: https://dns.libpcap.ru/dns-query
   ips:
-    - 94.228.168.12
+    - 109.120.140.7
 
 blocking:
   startStrategy: fast
