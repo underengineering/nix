@@ -83,6 +83,7 @@
             starship.extraConfig = builtins.readFile "${self}/config/starship.toml";
             neovim.configPath = "config/nvim";
             zsh.initExtra = builtins.readFile "${self}/config/.zshrc";
+            gdb.extraConfig = builtins.readFile "${self}/config/.gdbinit";
             git = {
               userName = "underengineering";
               userEmail = "san4a852b@gmail.com";
