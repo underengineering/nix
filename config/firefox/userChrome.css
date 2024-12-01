@@ -1,0 +1,64 @@
+:root,
+#screenshots-component * {
+    /* accent color */
+    --shy-accent-color: #b8bb26;
+
+    /* window border thickness and size of many margins */
+    --margin: 0.8rem;
+
+    /* rounded corners radius of most elements */
+    --rounding: 11.5px;
+    --big-rounding: 15px;
+    --bigger-rounding: 20px;
+    --giant-rounding: 30px;
+
+    /* animations time */
+    --trans-dur: 0.25s;
+
+    /* width of some elements. 1vw is one hundredth of the screen width */
+    --sdbr-wdt: 300px;
+
+    --navbar-wdt: 60vw;
+
+    --findbar-wdt: 70vw;
+
+    /* intensity of blur (new tab) */
+    --blur-radius: 10px;
+
+    /* brightness of inactive window elements */
+    --inactive-opct: 0.7;
+
+    /* transparency of indicator bars showing the position of hidden panels */
+    --hide-bar-opct: 0.2;
+
+    &:-moz-window-inactive {
+        --hide-bar-opct: 0.1;
+    }
+
+    /* how much shorter these bars than panels */
+    --hide-bar-wdt-pad: 10px;
+
+    /* size of the panel hitbox outside the window border */
+    --panel-hide-ldg: 1px;
+
+    /* f11 fullscreen   */
+    &:not([inFullscreen="true"]) {
+        --panel-hide-ldg: 0px;
+
+        /* maximized window */
+        &[sizemode="normal"]:not([titlepreface*="‍"]) {
+            --panel-hide-ldg: 9px;
+            /* floating window  */
+        }
+    }
+
+    /* colors */
+    --shadow-col: #00000020;
+    /* color of the translucent outline that imitates a shadow     */
+    --private-col: #6e00bc80;
+    /* private mode outline color                                  */
+    --debug-col: transparent;
+    /* rgba(0, 0, 255, 0.2); color of hidden panels hover hitboxes */
+    --debug-col-2: transparent;
+    /* rgba(0, 255, 0, 0.2); color of window dragging hitboxes     */
+}
