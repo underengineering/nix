@@ -17,11 +17,11 @@ in {
   config = mkIf (cfg.enable) {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
-      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
       dejavu_fonts
       iosevka
       lexend
       liberation_ttf
+      nerd-fonts.symbols-only
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-emoji

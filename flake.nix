@@ -23,7 +23,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprutils-0_2_6 = {
-      url = "github:hyprwm/hyprutils?rev=b26f33cc1c8a7fd5076e19e2cce3f062dca6351c";
+      url = "github:hyprwm/hyprutils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     xdph = {
@@ -45,6 +45,10 @@
     };
     arkenfox = {
       url = "github:arkenfox/user.js";
+      flake = false;
+    };
+    shyfox = {
+      url = "github:Naezr/ShyFox";
       flake = false;
     };
   };
@@ -125,7 +129,8 @@
             };
             firefox = {
               package = pkgs.firefox-beta;
-              extraConfig = builtins.readFile "${self}/config/firefox.js";
+              extraConfig = builtins.readFile "${self}/config/firefox/user.js";
+              extraUserChrome = builtins.readFile "${self}/config/firefox/userChrome.css";
             };
             dunst = {
               iconTheme = {
