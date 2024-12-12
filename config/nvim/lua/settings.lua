@@ -8,7 +8,7 @@ vim.opt.relativenumber = true
 vim.opt.undofile = true
 
 vim.opt.autoindent = true
-vim.opt.smartindent = true
+vim.opt.smartindent = false
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 0
