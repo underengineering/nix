@@ -46,9 +46,6 @@
           HZ_250 = yes;
           HZ_1000 = no;
 
-          # Optimize for AMD
-          MNATIVE_AMD = yes;
-
           # Disable AMDGPU CIK support
           CONFIG_DRM_AMDGPU_CIK = no;
 

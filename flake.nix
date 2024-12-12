@@ -215,6 +215,10 @@
               kernel = {
                 patches = [
                   {
+                    name = "X86_64_NATIVE";
+                    patch = ./patches/kernel/native.patch;
+                  }
+                  {
                     name = "BORE";
                     patch = ./patches/kernel/bore-6.12.patch;
                   }
