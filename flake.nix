@@ -22,14 +22,9 @@
       url = "github:hyprwm/hyprpaper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprutils-0_2_6 = {
-      url = "github:hyprwm/hyprutils";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     xdph = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprutils.follows = "hyprutils-0_2_6";
     };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
