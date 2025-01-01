@@ -19,6 +19,7 @@ in {
     programs.zsh.enable = true;
     programs.wireshark.enable = true;
     programs.dconf.enable = true;
+    programs.nix-ld.enable = true;
 
     virtualisation.libvirtd.enable = true;
 
