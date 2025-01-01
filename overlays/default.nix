@@ -81,8 +81,10 @@
           # Disable SELinux
           SECURITY_SELINUX = no;
 
-          # Reduce debug info
-          DEBUG_INFO_REDUCED = mkForce yes;
+          # NOTE: Required by bpf-restrict-fs
+          # # Reduce debug info
+          # DEBUG_INFO_REDUCED = mkForce yes;
+
           # Disable ms surface HID
           CONFIG_SURFACE_AGGREGATOR = no;
 
