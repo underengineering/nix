@@ -39,7 +39,6 @@ in {
     home.file.Downloads.source = config.lib.file.mkOutOfStoreSymlink "/tmp/Downloads";
 
     home.packages = with pkgs; [
-      looking-glass-client
       qbittorrent
       ungoogled-chromium
       virt-manager
