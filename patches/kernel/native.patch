@@ -7,7 +7,7 @@ index 5b773b347..7729d575b 100644
  #    https://gcc.gnu.org/bugzilla/show_bug.cgi?id=53383
  #
 -KBUILD_CFLAGS += -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx
-+KBUILD_CFLAGS += -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -mno-avx2 -O3 -fno-tree-vectorize -march=native -mpopcnt -fivopts -fmodulo-sched
++KBUILD_CFLAGS += -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -mno-avx2 -O3 -fno-tree-vectorize -march=native -mpopcnt
  KBUILD_RUSTFLAGS += --target=$(objtree)/scripts/target.json
  KBUILD_RUSTFLAGS += -Ctarget-feature=-sse,-sse2,-sse3,-ssse3,-sse4.1,-sse4.2,-avx,-avx2
 
