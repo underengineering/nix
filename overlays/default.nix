@@ -13,6 +13,15 @@
       hyprpaper = inputs.hyprpaper.packages.${pkgs.system}.default;
       xdg-desktop-portal-hyprland = inputs.xdph.packages.${pkgs.system}.default;
 
+      tmux = prev.tmux.overrideAttrs (old: {
+        src = pkgs.fetchFromGitHub {
+          owner = "tmux";
+          repo = "tmux";
+          rev = "e75f3a0060971bd9bcd3ff90ef4a6614b05b0963";
+          hash = "sha256-UzstlZZK2obnYlKqK2xibVZbGaGBJ2yyjdV6FjE4lM0=";
+        };
+      });
+
       # Cursor names must be without spaces to be parsed correctly
       capitaine-cursors-themed = prev.capitaine-cursors-themed.overrideAttrs ({preInstall ? "", ...}: {
         preInstall =
