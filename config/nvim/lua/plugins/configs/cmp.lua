@@ -45,19 +45,67 @@ return function()
         { name = "crates" },
     }
 
-    -- Stolen from https://github.com/AlexvZyl/.dotfiles/blob/b4c7969ca50277b0d81fc93cfc9ccebf14aaca49/.config/nvim/lua/alex/lang/completion/ui.lua#L6
-    local function format(_, item)
-        local MAX_LABEL_WIDTH = 50
-        local function pad(max, len)
-            return (" "):rep(max - len)
+    local function pad(max, len)
+        return (" "):rep(max - len)
+    end
+
+    -- Stolen from https://github.com/ditsuke/nvim-config/blob/f4e73301a80834ec8c834fcb680e69ed1c09b085/lua/ditsuke/plugins/editor/cmp.lua#L46
+    ---@param completion lsp.CompletionItem
+    ---@param source cmp.Source
+    local function get_lsp_completion_context(completion, source)
+        local src = source.source
+        if src == nil then return end
+
+        local client = src.client
+        if client == nil then return end
+
+        local source_name = client.config.name
+        if source_name == "tsserver" then
+            return completion.detail
+        elseif source_name == "pyright" or source_name == "vtsls" then
+            if completion.labelDetails ~= nil then
+                return completion.labelDetails.description
+            end
+        elseif source_name == "gopls" then
+            return completion.detail
+        elseif source_name == "rust-analyzer" then
+            local detail = completion.labelDetails.detail
+            if detail ~= nil then
+                -- Trim (use )
+                return detail:sub(6, -2)
+            end
+            -- else
+            -- print(source_name, vim.inspect(completion))
         end
+    end
+
+    -- Stolen from https://github.com/AlexvZyl/.dotfiles/blob/b4c7969ca50277b0d81fc93cfc9ccebf14aaca49/.config/nvim/lua/alex/lang/completion/ui.lua#L6
+    ---@param entry cmp.Entry
+    ---@param item vim.CompletedItem
+    local function format(entry, item)
+        local MAX_LABEL_WIDTH = 50
+
+        local ctx = get_lsp_completion_context(entry.completion_item, entry.source)
 
         -- Limit content width.
         local content = item.abbr
         if #content > MAX_LABEL_WIDTH then
+            ---@diagnostic disable-next-line: param-type-mismatch
             item.abbr = vim.fn.strcharpart(content, 0, MAX_LABEL_WIDTH) .. "…"
         else
-            item.abbr = content .. pad(MAX_LABEL_WIDTH, #content)
+            item.abbr = content
+        end
+
+        if ctx then
+            local max_ctx_width = math.min(30, MAX_LABEL_WIDTH - #item.abbr - 3 - 2)
+            if #ctx > max_ctx_width then
+                ctx = ctx:sub(1, max_ctx_width) .. "..."
+            end
+
+            -- Right-align ctx
+            item.abbr = item.abbr .. (" "):rep(math.max(2, MAX_LABEL_WIDTH - #item.abbr - #ctx)) .. ctx
+        elseif #content < MAX_LABEL_WIDTH then
+            item.abbr = item.abbr .. pad(MAX_LABEL_WIDTH, #content)
         end
 
         -- Replace kind with icons.
