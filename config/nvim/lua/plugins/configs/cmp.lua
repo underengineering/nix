@@ -85,8 +85,6 @@ return function()
     local function format(entry, item)
         local MAX_LABEL_WIDTH = 50
 
-        local ctx = get_lsp_completion_context(entry.completion_item, entry.source)
-
         -- Limit content width.
         local content = item.abbr
         if #content > MAX_LABEL_WIDTH then
@@ -96,16 +94,20 @@ return function()
             item.abbr = content
         end
 
-        if ctx then
-            local max_ctx_width = math.min(30, MAX_LABEL_WIDTH - #item.abbr - 3 - 2)
+
+        local abbr_len = vim.fn.strdisplaywidth(item.abbr)
+        local ctx = get_lsp_completion_context(entry.completion_item, entry.source)
+        if ctx ~= nil then
+            local max_ctx_width = math.min(30, MAX_LABEL_WIDTH - abbr_len - 1 - 2)
             if #ctx > max_ctx_width then
-                ctx = ctx:sub(1, max_ctx_width) .. "..."
+                ctx = vim.fn.strcharpart(ctx, 0, max_ctx_width - 1) .. "…"
             end
 
             -- Right-align ctx
-            item.abbr = item.abbr .. (" "):rep(math.max(2, MAX_LABEL_WIDTH - #item.abbr - #ctx)) .. ctx
+            local align = MAX_LABEL_WIDTH - abbr_len - vim.fn.strdisplaywidth(ctx)
+            item.abbr = item.abbr .. (" "):rep(align) .. ctx
         elseif #content < MAX_LABEL_WIDTH then
-            item.abbr = item.abbr .. pad(MAX_LABEL_WIDTH, #content)
+            item.abbr = item.abbr .. pad(MAX_LABEL_WIDTH, abbr_len)
         end
 
         -- Replace kind with icons.
