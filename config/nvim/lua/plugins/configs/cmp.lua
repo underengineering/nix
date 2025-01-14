@@ -129,7 +129,7 @@ return function()
             async_budget = 5,
             max_view_entries = 100
         },
-        preselect = "item",
+        preselect = "None",
         snippet = {
             expand = function(args)
                 require("luasnip").lsp_expand(args.body)
