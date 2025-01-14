@@ -125,6 +125,7 @@ return function()
             debounce = 30,
             throttle = 30,
             fetching_timeout = 500,
+            filtering_context_budget = 5,
             confirm_resolve_timeout = 80,
             async_budget = 5,
             max_view_entries = 100
