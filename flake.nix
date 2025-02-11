@@ -72,7 +72,7 @@
     inherit (util) user;
     inherit (util) host;
   in {
-    homeConfigurations = {
+    homeConfigurations = rec {
       mika = user.mkHMUser {
         username = "mika";
         userConfig = {
@@ -189,9 +189,68 @@
           };
         };
       };
+      mika-pc = lib.recursiveUpdate mika {
+        userConfig = {
+          applications = {
+            enable = true;
+
+            starship.extraConfig = builtins.readFile "${self}/config/starship.toml";
+            neovim.configPath = "config/nvim";
+            zsh.initExtra = builtins.readFile "${self}/config/.zshrc";
+            gdb.extraConfig = builtins.readFile "${self}/config/.gdbinit";
+            git = {
+              userName = "underengineering";
+              userEmail = "san4a852b@gmail.com";
+              extraConfig = {
+                core.sshCommand = "ssh-session";
+              };
+            };
+            delta.options = {
+              syntax-theme = "gruvbox-dark";
+            };
+            lazygit.extraConfig = builtins.readFile "${self}/config/lazygit.yml";
+            tmux.configPath = "config/tmux";
+          };
+          wayland.enable = false;
+        };
+      };
     };
 
     nixosConfigurations = {
+      pc =
+        host.mkHost
+        {
+          name = "pcpc";
+          kernelPackage = pkgs.linux_latest;
+          initrdMods = ["amdgpu" "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
+          kernelMods = ["kvm-intel"];
+          kernelParams = [
+            "mitigations=off"
+            "nowatchdog"
+          ];
+          systemConfig = {
+            system = {
+              pam.services.swaylock.text = "auth include login";
+              udev.extraRules = builtins.readFile "${self}/config/udev/60-steam-input.rules";
+            };
+            wayland.enable = true;
+            applications = {
+              blocky.config = ./config/blocky.yaml;
+              greetd.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t -c Hyprland";
+              ssh.withServer = true;
+              tlp.enable = false;
+            };
+          };
+          users = [
+            {
+              name = "mika";
+              groups = ["audio" "video" "wheel" "wireshark" "libvirtd"];
+              uid = 1000;
+              shell = pkgs.zsh;
+            }
+          ];
+          cpuCores = 16;
+        };
       lenowo =
         host.mkHost
         {

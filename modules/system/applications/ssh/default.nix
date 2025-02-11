@@ -12,14 +12,14 @@ in {
       type = types.bool;
       default = true;
     };
-    type = mkOption {
-      description = "Whether is ssh client or server";
-      type = types.enum ["client" "server"];
-      default = "client";
+    withServer = mkOption {
+      description = "Enable openssh service";
+      type = types.bool;
+      default = false;
     };
   };
   config = mkMerge [
-    (mkIf (cfg.type == "server") {
+    (mkIf (cfg.withServer) {
       services.openssh.openFirewall = true;
       services.openssh = {
         enable = true;
