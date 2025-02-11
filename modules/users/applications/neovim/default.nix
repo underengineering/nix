@@ -24,10 +24,14 @@ in {
       enable = true;
       defaultEditor = true;
       package = pkgs.neovim;
+      extraLuaPackages = luaPackages: [
+        luaPackages.magick
+      ];
       extraPackages = with pkgs; [
         # Plugin deps
         fastStdenv.cc
         fd
+        imagemagick
         nodejs
         ripgrep
 

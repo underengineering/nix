@@ -14,9 +14,8 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland";
+      url = "git+https://github.com/hyprwm/Hyprland?rev=a4b7d1c2d7538068ab4832a66f86801f5f75cc65";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.xdph.follows = "xdph";
     };
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
@@ -35,7 +34,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
+      url = "github:underengineering/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     arkenfox = {
@@ -274,7 +273,7 @@
                   }
                   {
                     name = "BORE";
-                    patch = ./patches/kernel/bore-6.12.patch;
+                    patch = ./patches/kernel/bore-6.13.patch;
                   }
                 ];
               };
