@@ -1,5 +1,42 @@
 return function()
-    local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local opts = {
+        servers = {
+            lua_ls = {
+                settings = {
+                    Lua = {
+                        workspace = {
+                            checkThirdParty = false
+                        },
+                        telemetry = {
+                            enable = false
+                        }
+                    }
+                }
+            },
+            svelte = {
+                capabilities = {
+                    workspace = {
+                        didChangeWatchedFiles = { dynamicRegistration = true }
+                    }
+                }
+            },
+            jsonls = {
+                settings = {
+                    json = {
+                        schemas = require("schemastore").json.schemas(),
+                        validate = { enable = true }
+                    }
+                }
+            }
+        }
+    }
+
+    local lsp_capabilities = vim.tbl_deep_extend(
+        "force",
+        vim.lsp.protocol.make_client_capabilities(),
+        require("cmp_nvim_lsp").default_capabilities()
+    )
+
     local lspconfig = require("lspconfig")
 
     ---@param client vim.lsp.Client
@@ -23,46 +60,32 @@ return function()
         "svelte",
         "tailwindcss",
 
-        "prismals",
-        "taplo",
-        "yamlls",
-
         "clangd",
         "cmake",
 
+        "zls",
         "nil_ls",
+        "lua_ls",
 
-        "zls"
-
+        "prismals",
+        "taplo",
+        "yamlls",
+        "jsonls"
     } do
-        lspconfig[server_name].setup {
-            on_attach = on_attach,
-            capabilities = lsp_capabilities
-        }
+        local server_opts = vim.tbl_deep_extend(
+            "force",
+            {
+                on_attach = on_attach,
+                capabilities = lsp_capabilities
+            },
+            opts.servers[server_name] or {}
+        )
+        lspconfig[server_name].setup(server_opts)
     end
 
     -- lspconfig.svelte.setup {
     --     cmd = { "pnpm", "svelteserver", "--stdio" }
     -- }
-
-    lspconfig.lua_ls.setup {
-        settings = {
-            Lua = {
-                telemetry = {
-                    enable = false
-                }
-            }
-        }
-    }
-
-    lspconfig.jsonls.setup {
-        settings = {
-            json = {
-                schemas = require("schemastore").json.schemas(),
-                validate = { enable = true }
-            }
-        }
-    }
 
     do
         local utils = require("utils")
@@ -90,6 +113,7 @@ return function()
         }
     end
 
+    ---@module "rustaceanvim"
     ---@type RustaceanConfig
     vim.g.rustaceanvim = {
         tools = {

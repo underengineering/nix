@@ -139,10 +139,14 @@ return {
             }
         },
     },
+    -- {
+    --     "3rd/image.nvim",
+    --     build = false,
+    --     opts = {}
+    -- },
     {
         "lukas-reineke/indent-blankline.nvim",
         event = "BufEnter",
-        commit = "e7a4442e055ec953311e77791546238d1eaae507",
         config = require "plugins/configs/indent-blankline",
     },
     {
