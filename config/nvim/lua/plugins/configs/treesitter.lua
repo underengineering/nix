@@ -8,6 +8,7 @@ if true then
         "markdown",
         "markdown_inline",
         "sql",
+        "slint",
 
         "toml",
         "json",

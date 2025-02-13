@@ -70,7 +70,8 @@ return function()
         "prismals",
         "taplo",
         "yamlls",
-        "jsonls"
+        "jsonls",
+        "slint_lsp",
     } do
         local server_opts = vim.tbl_deep_extend(
             "force",

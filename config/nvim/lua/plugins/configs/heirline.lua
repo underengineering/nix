@@ -385,7 +385,7 @@ return function()
         },
         Space,
         hl = { fg = palette.light0, bg = palette.dark1 },
-        update = { "LspAttach", "LspDetach" },
+        update = { "LspAttach", "LspDetach", "BufEnter" },
     }
 
     ---@class Ruler: StatusLine
