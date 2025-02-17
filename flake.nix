@@ -14,7 +14,7 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?rev=a4b7d1c2d7538068ab4832a66f86801f5f75cc65";
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprpaper = {

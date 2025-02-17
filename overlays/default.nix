@@ -17,18 +17,9 @@
         src = pkgs.fetchFromGitHub {
           owner = "tmux";
           repo = "tmux";
-          rev = "58392d29da8f35ab3d943efd9a412f3ce6cc2cec";
-          hash = "sha256-HdH+ODyV4zWSdWjkxbyOIdcDzv0N3rtOAt0EUN2GyjU=";
+          rev = "9a377485becdd34dda695f38cb73ee5082d9088b";
+          hash = "sha256-WLcV5ybiZCs+CBCIXUUDRf6YuNOFsiCL0WDLZmlR/5U=";
         };
-      });
-
-      basedpyright = prev.basedpyright.overrideAttrs (old: {
-        postInstall =
-          old.postInstall
-          + ''
-            # Remove dangling symlinks created during installation (remove -delete to just see the files, or -print '%l\n' to see the target
-            find -L $out -type l -print -delete
-          '';
       });
 
       # Cursor names must be without spaces to be parsed correctly
@@ -65,6 +56,11 @@
               HZ = freeform "1000";
               HZ_250 = no;
               HZ_1000 = yes;
+
+              # Lazy preemption
+              PREEMPT_DYNAMIC = no;
+              PREEMPT_VOLUNTARY = mkForce no;
+              PREEMPT_LAZY = yes;
 
               # Disable AMDGPU CIK support
               CONFIG_DRM_AMDGPU_CIK = no;
