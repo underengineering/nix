@@ -69,10 +69,13 @@ return function()
         elseif source_name == "gopls" then
             return completion.detail
         elseif source_name == "rust-analyzer" then
-            local detail = completion.labelDetails.detail
-            if detail ~= nil then
-                -- Trim (use )
-                return detail:sub(6, -2)
+            local label_details = completion.labelDetails
+            if label_details ~= nil then
+                local detail = label_details.detail
+                if detail ~= nil then
+                    -- Trim (use )
+                    return detail:sub(6, -2)
+                end
             end
             -- else
             -- print(source_name, vim.inspect(completion))
