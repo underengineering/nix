@@ -9,6 +9,7 @@ if true then
         "markdown_inline",
         "sql",
         "slint",
+        "wgsl",
 
         "toml",
         "json",
