@@ -13,12 +13,22 @@
       hyprpaper = inputs.hyprpaper.packages.${pkgs.system}.default;
       xdg-desktop-portal-hyprland = inputs.xdph.packages.${pkgs.system}.default;
 
+      # ????????????????????????????????????????????
+      # https://github.com/nix-community/neovim-nightly-overlay/blob/4be99133c03920579de8c3fe7c05ff1de60a7fbe/flake/packages/neovim.nix#L91C7-L91C21
+      # ERROR: pattern @NVIM_VERSION_PRERELEASE@ doesn't match anything in file 'cmake.config/versiondef.h.in'
+      neovim-unwrapped = prev.neovim-unwrapped.overrideAttrs (old: {
+        preConfigure = ''
+          ${(builtins.replaceStrings ["substituteInPlace"] ["echo"]
+            old.preConfigure)}
+        '';
+      });
+
       tmux = prev.tmux.overrideAttrs (old: {
         src = pkgs.fetchFromGitHub {
           owner = "tmux";
           repo = "tmux";
-          rev = "9a377485becdd34dda695f38cb73ee5082d9088b";
-          hash = "sha256-WLcV5ybiZCs+CBCIXUUDRf6YuNOFsiCL0WDLZmlR/5U=";
+          rev = "096c4b3e63ebdcd4127a6fa9933365d4c9c194ba";
+          hash = "sha256-BhQE0wFzxDcSkq+Ub/2gPpN/CUnOcLeDNG76RHs2OEk=";
         };
       });
 

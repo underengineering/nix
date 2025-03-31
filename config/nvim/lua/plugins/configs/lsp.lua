@@ -67,7 +67,6 @@ return function()
         "nil_ls",
         "lua_ls",
 
-        "prismals",
         "taplo",
         "yamlls",
         "jsonls",

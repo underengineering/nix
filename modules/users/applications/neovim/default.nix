@@ -64,7 +64,6 @@ in {
         yaml-language-server
 
         # Web
-        nodePackages_latest."@prisma/language-server"
         nodePackages_latest.prettier
         nodePackages_latest.svelte-language-server
         nodePackages_latest.typescript-language-server

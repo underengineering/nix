@@ -34,7 +34,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim-nightly-overlay = {
-      url = "github:underengineering/neovim-nightly-overlay";
+      url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     arkenfox = {
@@ -273,7 +273,7 @@
                   }
                   {
                     name = "BORE";
-                    patch = ./patches/kernel/bore-6.13.patch;
+                    patch = ./patches/kernel/bore-6.14.patch;
                   }
                 ];
               };
