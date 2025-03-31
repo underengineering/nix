@@ -10,15 +10,19 @@ return {
             require("gruvbox").setup(opts)
             vim.cmd "colorscheme gruvbox"
         end,
+        ---@type GruvboxConfig
         opts = {
+            dim_inactive = false,
+            transparent_mode = false,
             contrast = "",
             italic = {
                 strings = false,
                 comments = false,
                 operators = false,
-                folds = false
+                folds = false,
+                emphasis = true,
             }
-        }
+        },
     },
     --[[ {
         "rebelot/kanagawa.nvim",
