@@ -23,12 +23,25 @@
         '';
       });
 
+      qt6Packages = prev.qt6Packages.overrideScope (_: kprev: {
+        qt6gtk2 = kprev.qt6gtk2.overrideAttrs (_: {
+          version = "0.5-unstable-2025-03-04";
+          src = final.fetchFromGitLab {
+            domain = "opencode.net";
+            owner = "trialuser";
+            repo = "qt6gtk2";
+            rev = "d7c14bec2c7a3d2a37cde60ec059fc0ed4efee67";
+            hash = "sha256-6xD0lBiGWC3PXFyM2JW16/sDwicw4kWSCnjnNwUT4PI=";
+          };
+        });
+      });
+
       tmux = prev.tmux.overrideAttrs (old: {
         src = pkgs.fetchFromGitHub {
           owner = "tmux";
           repo = "tmux";
-          rev = "096c4b3e63ebdcd4127a6fa9933365d4c9c194ba";
-          hash = "sha256-BhQE0wFzxDcSkq+Ub/2gPpN/CUnOcLeDNG76RHs2OEk=";
+          rev = "f0a85d04695bcdc84d6dfbf5f9d3f9757a148365";
+          hash = "sha256-rzZwWD1GgYv7vb4SLMp7nk8+Xtz0gw0g1MgigMaGUqY=";
         };
       });
 
