@@ -1,9 +1,10 @@
 ; https://github.com/nvim-treesitter/nvim-treesitter/blob/bab7b0f20bd3e805b77231a77f516c7d69382693/queries/ecma/injections.scm#L9
+; await sql<>``
 (call_expression
   function: [
     (non_null_expression
-     (await_expression
-       (instantiation_expression
+     (instantiation_expression
+       (await_expression
          (identifier) @_name)))
     (non_null_expression
       (instantiation_expression
@@ -26,6 +27,7 @@
   (#set! injection.include-children)
   (#set! injection.language "sql"))
 
+; await sql``
 (binary_expression
   left: [
     (binary_expression
