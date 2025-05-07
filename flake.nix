@@ -220,7 +220,7 @@
         host.mkHost
         {
           name = "pcpc";
-          kernelPackage = pkgs.linux_latest;
+          kernelPackage = pkgs.linuxPackages_latest;
           initrdMods = ["amdgpu" "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
           kernelMods = ["kvm-intel"];
           kernelParams = [
