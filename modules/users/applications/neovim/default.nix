@@ -49,7 +49,6 @@ in {
         black
         basedpyright
         ruff
-        ruff-lsp
 
         # C++ and C
         clang-tools_17

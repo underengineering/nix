@@ -7,41 +7,18 @@
   overlays = [
     inputs.fzf-runner.overlays.default
     inputs.crabbar.overlays.default
-    inputs.neovim-nightly-overlay.overlays.default
     (final: prev: {
       hyprland = inputs.hyprland.packages.${pkgs.system}.default;
       hyprpaper = inputs.hyprpaper.packages.${pkgs.system}.default;
       xdg-desktop-portal-hyprland = inputs.xdph.packages.${pkgs.system}.default;
-
-      # ????????????????????????????????????????????
-      # https://github.com/nix-community/neovim-nightly-overlay/blob/4be99133c03920579de8c3fe7c05ff1de60a7fbe/flake/packages/neovim.nix#L91C7-L91C21
-      # ERROR: pattern @NVIM_VERSION_PRERELEASE@ doesn't match anything in file 'cmake.config/versiondef.h.in'
-      neovim-unwrapped = prev.neovim-unwrapped.overrideAttrs (old: {
-        preConfigure = ''
-          ${(builtins.replaceStrings ["substituteInPlace"] ["echo"]
-            old.preConfigure)}
-        '';
-      });
-
-      qt6Packages = prev.qt6Packages.overrideScope (_: kprev: {
-        qt6gtk2 = kprev.qt6gtk2.overrideAttrs (_: {
-          version = "0.5-unstable-2025-03-04";
-          src = final.fetchFromGitLab {
-            domain = "opencode.net";
-            owner = "trialuser";
-            repo = "qt6gtk2";
-            rev = "d7c14bec2c7a3d2a37cde60ec059fc0ed4efee67";
-            hash = "sha256-6xD0lBiGWC3PXFyM2JW16/sDwicw4kWSCnjnNwUT4PI=";
-          };
-        });
-      });
+      neovim = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 
       tmux = prev.tmux.overrideAttrs (old: {
         src = pkgs.fetchFromGitHub {
           owner = "tmux";
           repo = "tmux";
-          rev = "f0a85d04695bcdc84d6dfbf5f9d3f9757a148365";
-          hash = "sha256-rzZwWD1GgYv7vb4SLMp7nk8+Xtz0gw0g1MgigMaGUqY=";
+          rev = "faf2a448904f4865386319fa11a30ff54d5843f8";
+          hash = "sha256-KMkar/jRj3fNBmpRhMqe3wUqghhAcYZctQ1O5NYCrAg=";
         };
       });
 
