@@ -7,8 +7,12 @@ return {
             "nvim-tree/nvim-web-devicons"
         },
         config = function()
+            local colors = {}
+            for _, v in pairs(require("gruvbox").palette) do
+                colors[#colors + 1] = v
+            end
             require("tiny-devicons-auto-colors").setup({
-                colors = require("gruvbox").palette
+                colors = colors
             })
         end,
     },
