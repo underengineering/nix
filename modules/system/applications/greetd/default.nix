@@ -21,7 +21,6 @@ in {
     services.greetd = {
       enable = true;
       restart = true;
-      vt = 7;
       settings.default_session = {
         command = cfg.command;
         user = "greeter";

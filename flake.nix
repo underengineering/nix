@@ -273,7 +273,7 @@
                   }
                   {
                     name = "BORE";
-                    patch = ./patches/kernel/bore-6.14.patch;
+                    patch = ./patches/kernel/bore-6.15.patch;
                   }
                 ];
               };

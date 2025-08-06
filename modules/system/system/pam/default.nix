@@ -21,5 +21,13 @@ in {
   };
   config = {
     security.pam.services = cfg.services;
+    security.pam.loginLimits = [
+      {
+        domain = "*";
+        item = "memlock";
+        type = "-";
+        value = "8388608";
+      }
+    ];
   };
 }

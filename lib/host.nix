@@ -42,9 +42,9 @@ with utils; {
             amd.updateMicrocode = true;
           };
 
-          systemd.extraConfig = ''
-            DefaultTimeoutStopSec=15s
-          '';
+          systemd.settings.Manager = {
+            DefaultTimeoutStopSec = "15s";
+          };
           systemd.user.extraConfig = ''
             DefaultTimeoutStopSec=15s
           '';
