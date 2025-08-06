@@ -30,6 +30,8 @@ in {
   config = mkIf (cfg.enable) {
     programs.git = {
       enable = true;
+      lfs.enable = true;
+
       userName = cfg.userName;
       userEmail = cfg.userEmail;
       extraConfig = cfg.extraConfig;
