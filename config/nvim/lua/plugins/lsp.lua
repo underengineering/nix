@@ -5,7 +5,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         cmd = { "LspInfo", "LspInstall", "LspStart" },
-        event = { "BufReadPre", "BufNewFile" },
+        event = { "BufReadPre", "BufEnter", "BufNewFile" },
         dependencies = {
             "b0o/schemastore.nvim",
         },
@@ -22,8 +22,8 @@ return {
     },
     {
         "mrcjkb/rustaceanvim",
-        version = "^5",
-        ft = "rust",
+        version = "^6",
+        lazy = false,
         cond = not is_in_vscode
     },
     {

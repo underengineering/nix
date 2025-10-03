@@ -37,8 +37,6 @@ return function()
         require("cmp_nvim_lsp").default_capabilities()
     )
 
-    local lspconfig = require("lspconfig")
-
     ---@param client vim.lsp.Client
     ---@param bufnr integer
     local function on_attach(client, bufnr)
@@ -80,7 +78,8 @@ return function()
             },
             opts.servers[server_name] or {}
         )
-        lspconfig[server_name].setup(server_opts)
+        vim.lsp.config(server_name, server_opts)
+        vim.lsp.enable(server_name)
     end
 
     -- lspconfig.svelte.setup {
@@ -114,7 +113,7 @@ return function()
     end
 
     ---@module "rustaceanvim"
-    ---@type RustaceanConfig
+    ---@type rustaceanvim.Config
     vim.g.rustaceanvim = {
         tools = {
             reload_workspace_from_cargo_toml = true,
