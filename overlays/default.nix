@@ -13,6 +13,15 @@
       xdg-desktop-portal-hyprland = inputs.xdph.packages.${pkgs.system}.default;
       neovim = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 
+      tmux = prev.tmux.overrideAttrs (old: {
+        src = pkgs.fetchFromGitHub {
+          owner = "tmux";
+          repo = "tmux";
+          rev = "3e28777ecbc8de3df803d5d7429a5ecd35f61553";
+          hash = "sha256-EIytv4wIxLnvTE9fXIJIbrxABAaEHnHpQ9irc3bRxSI=";
+        };
+      });
+
       # Cursor names must be without spaces to be parsed correctly
       capitaine-cursors-themed = prev.capitaine-cursors-themed.overrideAttrs ({preInstall ? "", ...}: {
         preInstall =

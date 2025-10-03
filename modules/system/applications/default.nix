@@ -20,6 +20,10 @@ in {
     programs.wireshark.enable = true;
     programs.dconf.enable = true;
     programs.nix-ld.enable = true;
+    programs.nekoray = {
+      enable = true;
+      tunMode.enable = true;
+    };
 
     virtualisation.libvirtd.enable = true;
 

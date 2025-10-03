@@ -37,7 +37,6 @@ in {
       # Network tools
       duplicacy
       rsync
-      hiddify-app
       sshfs
       wireguard-tools
 

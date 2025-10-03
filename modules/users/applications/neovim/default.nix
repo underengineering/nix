@@ -51,7 +51,7 @@ in {
         ruff
 
         # C++ and C
-        clang-tools_17
+        clang-tools
 
         # Golang
         gopls
