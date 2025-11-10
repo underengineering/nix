@@ -103,8 +103,68 @@ function _ssh_wrapper() {
 # fi
 alias ssh=_ssh_wrapper
 
-# Use control master for rsync's ssh
-alias rsync='rsync -e ssh-session'
+function rsync() {
+    local original_args=("$@")
+    local has_delete=0
+    local dry_run_args=()
+    local final_args=()
+
+    # Check if --delete flag is present
+    for arg in "$@"; do
+        if [[ "$arg" == "--delete"* ]]; then
+            has_delete=1
+            break
+        fi
+    done
+
+    # If --delete is present, add --dry-run and prompt for confirmation
+    if [[ $has_delete -eq 1 ]]; then
+        echo "⚠️  WARNING: --delete flag detected! Running in dry-run mode first..."
+
+        # Build arguments with --dry-run
+        dry_run_args=("--dry-run" "$@")
+
+        # Run dry-run first
+        echo "📋 Dry-run output:"
+        echo "========================================"
+        command rsync "${dry_run_args[@]}"
+        echo "========================================"
+
+        # Wait 5 seconds
+        echo "⏰ Waiting 5 seconds for you to review the changes..."
+        for i in {5..1}; do
+            echo -n "$i... "
+            sleep 1
+        done
+        echo ""
+
+        # Generate random number between 1000-9999
+        local random_num=$(( RANDOM % 9000 + 1000 ))
+        local expected_response="yes$random_num"
+
+        # Prompt for validation
+        echo ""
+        echo "❓ To proceed with the actual sync (including deletions), please type:"
+        echo "   $expected_response"
+        echo -n "👉 Your response: "
+
+        local user_response
+        read user_response
+
+        if [[ "$user_response" != "$expected_response" ]]; then
+            echo "❌ Validation failed! Aborting operation."
+            return 1
+        fi
+
+        echo "✅ Validation successful! Proceeding with actual rsync..."
+
+        # Run the actual command without --dry-run
+        command rsync -e ssh-session "$@"
+    else
+        # No --delete flag, run normally
+        command rsync -e ssh-session "$@"
+    fi
+}
 
 function rust-musl-builder {
     sudo docker run --rm -it \
