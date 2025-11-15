@@ -853,15 +853,15 @@
     "shyfox": {
       "flake": false,
       "locked": {
-        "lastModified": 1737445154,
-        "narHash": "sha256-y/Md0VR8h4n4+xzqfVNy7ARf/NG45T440dpHvC5KkkA=",
-        "owner": "Naezr",
+        "lastModified": 1763248311,
+        "narHash": "sha256-YO+yr8MDXKy8BQ7UL2WhY7PCnrfH4B6vYJvVt1M7QGk=",
+        "owner": "underengineering",
         "repo": "ShyFox",
-        "rev": "aaec12fb0e88eb422467bc84276991ca564de82b",
+        "rev": "866c6ff778bdbf5135866319f35244f556804099",
         "type": "github"
       },
       "original": {
-        "owner": "Naezr",
+        "owner": "underengineering",
         "repo": "ShyFox",
         "type": "github"
       }

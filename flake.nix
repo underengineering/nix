@@ -42,7 +42,7 @@
       flake = false;
     };
     shyfox = {
-      url = "github:Naezr/ShyFox";
+      url = "github:underengineering/ShyFox";
       flake = false;
     };
   };
