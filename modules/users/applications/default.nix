@@ -45,7 +45,7 @@ in {
       binutils
       btop
       distrobox
-      du-dust
+      dust
       duf
       eza
       file

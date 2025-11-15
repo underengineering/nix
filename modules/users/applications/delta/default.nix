@@ -26,8 +26,9 @@ in {
   config = mkIf (cfg.enable) {
     # In case git is not enabled
     home.packages = [pkgs.delta];
-    programs.git.delta = {
+    programs.delta = {
       enable = true;
+      enableGitIntegration = true;
       options = cfg.options;
     };
   };

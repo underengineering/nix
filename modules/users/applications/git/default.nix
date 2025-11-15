@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkIf mkOption types;
+  inherit (lib) mkIf mkMerge mkOption types;
   cfg = config.modules.applications.git;
 in {
   options.modules.applications.git = {
@@ -32,9 +32,15 @@ in {
       enable = true;
       lfs.enable = true;
 
-      userName = cfg.userName;
-      userEmail = cfg.userEmail;
-      extraConfig = cfg.extraConfig;
+      settings = mkMerge [
+        {
+          user = {
+            name = cfg.userName;
+            email = cfg.userEmail;
+          };
+        }
+        cfg.extraConfig
+      ];
     };
   };
 }

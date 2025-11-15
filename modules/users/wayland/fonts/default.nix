@@ -24,7 +24,7 @@ in {
       nerd-fonts.symbols-only
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       powerline-symbols
       roboto
     ];

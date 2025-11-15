@@ -36,14 +36,14 @@ in {
     environment.systemPackages = with pkgs; [
       libva-utils
       vdpauinfo
-      glxinfo
+      mesa-demos
     ];
 
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
       ];
     };
