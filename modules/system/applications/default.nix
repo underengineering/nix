@@ -20,7 +20,7 @@ in {
     programs.wireshark.enable = true;
     programs.dconf.enable = true;
     programs.nix-ld.enable = true;
-    programs.nekoray = {
+    programs.throne = {
       enable = true;
       tunMode.enable = true;
     };
