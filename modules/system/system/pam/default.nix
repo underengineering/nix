@@ -28,6 +28,19 @@ in {
         type = "-";
         value = "8388608";
       }
+      # TODO:
+      {
+        domain = "mika";
+        item = "nofile";
+        type = "soft";
+        value = "524288";
+      }
+      {
+        domain = "mika";
+        item = "nofile";
+        type = "hard";
+        value = "524288";
+      }
     ];
   };
 }
