@@ -27,6 +27,21 @@ return function()
                         validate = { enable = true }
                     }
                 }
+            },
+            yamlls = {
+                settings = {
+                    yaml = {
+                        format = {
+                            enable = true
+                        },
+                        schemaStore = {
+                            enable = true
+                        },
+                        schemas = {
+                            kubernetes = "*.yaml",
+                        }
+                    }
+                }
             }
         }
     }
