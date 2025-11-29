@@ -45,6 +45,9 @@
             stdenv = pkgs.fastStdenv;
             structuredExtraConfig = with lib;
             with lib.kernel; {
+              # Compile with -march=native
+              X86_NATIVE_CPU = yes;
+
               # Google's BBRv3 TCP congestion Control
               TCP_CONG_BBR = yes;
               DEFAULT_BBR = yes;
@@ -63,23 +66,23 @@
               PREEMPT_LAZY = yes;
 
               # Disable AMDGPU CIK support
-              CONFIG_DRM_AMDGPU_CIK = no;
+              DRM_AMDGPU_CIK = lib.mkForce no;
 
               # Disable radeon drivers
-              CONFIG_DRM_RADEON = no;
-              CONFIG_FB_RADEON = no;
-              CONFIG_FB_RADEON_I2C = no;
-              CONFIG_FB_RADEON_BACKLIGHT = no;
+              DRM_RADEON = no;
+              FB_RADEON = no;
+              FB_RADEON_I2C = no;
+              FB_RADEON_BACKLIGHT = no;
 
               # Disable ngreedia drivers
-              CONFIG_NET_VENDOR_NVIDIA = no;
-              CONFIG_I2C_NVIDIA_GPU = no;
-              CONFIG_FB_NVIDIA = no;
-              CONFIG_FB_NVIDIA_I2C = no;
-              CONFIG_FB_NVIDIA_BACKLIGHT = no;
-              CONFIG_HID_NVIDIA_SHIELD = no;
-              CONFIG_TYPEC_NVIDIA_ALTMODE = no;
-              CONFIG_NVIDIA_WMI_EC_BACKLIGHT = no;
+              NET_VENDOR_NVIDIA = no;
+              I2C_NVIDIA_GPU = no;
+              FB_NVIDIA = no;
+              FB_NVIDIA_I2C = lib.mkForce no;
+              FB_NVIDIA_BACKLIGHT = no;
+              HID_NVIDIA_SHIELD = no;
+              TYPEC_NVIDIA_ALTMODE = no;
+              NVIDIA_WMI_EC_BACKLIGHT = no;
 
               # Disable mitigations
               SPECULATION_MITIGATIONS = no;
@@ -90,7 +93,7 @@
               # DEBUG_INFO_REDUCED = mkForce yes;
 
               # Disable ms surface HID
-              CONFIG_SURFACE_AGGREGATOR = no;
+              SURFACE_AGGREGATOR = no;
 
               # Disable unused wlan vendors
               WLAN_VENDOR_ADMTEK = no;
