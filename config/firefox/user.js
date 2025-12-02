@@ -123,3 +123,60 @@ user_pref("privacy.resistFingerprinting.letterboxing", false);
 user_pref("browser.display.use_system_colors", true);
 
 user_pref("_user.js.parrot", "SUCCESS: Custom JS loaded");
+
+/* * * * * BETTERFOX * * * * */
+
+// PREF: Font rendering cache in Skia (32MB)
+// Increases font cache size to improve performance on text-heavy websites.
+// Especially beneficial for sites with many font faces or complex typography.
+// [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1239151#c2
+user_pref("gfx.content.skia-font-cache-size", 32); // 32 MB; default=5; Chrome=20
+
+// PREF: GPU-accelerated Canvas2D
+// Uses Accelerated Canvas2D for hardware acceleration of Canvas2D.
+// This provides a consistent acceleration architecture across all platforms
+// by utilizing WebGL instead of relying upon Direct2D.
+// [WARNING] May cause issues on some Windows machines using integrated GPUs [2] [3]
+// Add to your overrides if you have a dedicated GPU.
+// [NOTE] Higher values will use more memory.
+// [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1741501
+// [2] https://github.com/yokoffing/Betterfox/issues/153
+// [3] https://github.com/yokoffing/Betterfox/issues/198
+//user_pref("gfx.canvas.accelerated", true); // [DEFAULT FF133+]
+user_pref("gfx.canvas.accelerated.cache-items", 16384); // [default=8192 FF135+]; Chrome=4096
+user_pref("gfx.canvas.accelerated.cache-size", 1024); // default=256; Chrome=512
+//user_pref("gfx.canvas.max-size", 32767); // DEFAULT=32767
+
+// PREF: memory cache
+// The "automatic" size selection (default) is based on a decade-old table
+// that only contains settings for systems at or below 8GB of system memory [1].
+// Waterfox G6 allows it to go above 8GB machines [3].
+// Value can be up to the max size of an unsigned 64-bit integer.
+// -1 = Automatically decide the maximum memory to use to cache decoded images,
+// messages, and chrome based on the total amount of RAM
+// For machines with 8GB+ RAM, that equals 32768 kb = 32 MB
+// [1] https://kb.mozillazine.org/Browser.cache.memory.capacity#-1
+// [2] https://searchfox.org/mozilla-central/source/netwerk/cache2/CacheObserver.cpp#94-125
+// [3] https://github.com/WaterfoxCo/Waterfox/commit/3fed16932c80a2f6b37d126fe10aed66c7f1c214
+user_pref("browser.cache.memory.capacity", 131072); // 128 MB RAM cache; alt=65536 (65 MB RAM cache); default=32768
+user_pref("browser.cache.memory.max_entry_size", 20480); // 20 MB max entry; default=5120 (5 MB)
+
+// PREF: image cache
+user_pref("image.cache.size", 10485760); // (cache images up to 10MiB in size) [DEFAULT 5242880]
+user_pref("image.mem.decode_bytes_at_a_time", 65536); // default=16384; alt=32768; chunk size for calls to the image decoders
+//user_pref("image.mem.max_decoded_image_kb", 512000); // 500MB [HIDDEN OR REMOVED?]
+
+// PREF: increase the absolute number of HTTP connections
+// [1] https://kb.mozillazine.org/Network.http.max-connections
+// [2] https://kb.mozillazine.org/Network.http.max-persistent-connections-per-server
+// [3] https://www.reddit.com/r/firefox/comments/11m2yuh/how_do_i_make_firefox_use_more_of_my_900_megabit/jbfmru6/
+user_pref("network.http.max-connections", 1000); // default=900
+user_pref("network.http.max-persistent-connections-per-server", 10); // default=6; download connections; anything above 10 is excessive
+user_pref("network.http.max-urgent-start-excessive-connections-per-host", 5); // default=3
+//user_pref("network.http.max-persistent-connections-per-proxy", 48); // default=32
+user_pref("network.http.request.max-start-delay", 5); // default=10
+//user_pref("network.websocket.max-connections", 200); // DEFAULT
+
+// PREF: increase DNS cache
+// [1] https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency
+user_pref("network.dnsCacheEntries", 800); // default=800
