@@ -247,7 +247,7 @@ fi
 
 ####[ END PLUGINS ]####
 
-if [[ -z "$TMUX" && "$-" == *i* ]]; then
+if [[ -z "$TMUX" && "$-" == *i* && "$TERM_PROGRAM" != "vscode" ]]; then
     tmux attach -t default || tmux new -s default && exit
 elif [[ "$-" == *i* ]]; then
     # https://babushk.in/posts/renew-environment-tmux.html
