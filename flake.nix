@@ -283,7 +283,7 @@
             };
             applications = {
               bluetooth.enable = true;
-              greetd.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t -c Hyprland";
+              greetd.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t -c start-hyprland";
               blocky.config = ./config/blocky.yaml;
             };
           };

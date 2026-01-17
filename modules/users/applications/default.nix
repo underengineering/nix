@@ -45,8 +45,8 @@ in {
       binutils
       btop
       distrobox
-      dust
       duf
+      dust
       eza
       file
       fzf
@@ -75,6 +75,7 @@ in {
     ./git
     ./lazygit
     ./neovim
+    ./opencode
     ./starship
     ./tmux
     ./wireplumber
