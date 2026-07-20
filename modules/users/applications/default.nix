@@ -64,7 +64,7 @@ in {
 
       # Various interpreters
       luajit
-      nodePackages.pnpm
+      pnpm
       nodejs
       python3
     ];
@@ -75,7 +75,6 @@ in {
     ./git
     ./lazygit
     ./neovim
-    ./opencode
     ./starship
     ./tmux
     ./wireplumber

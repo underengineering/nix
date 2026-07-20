@@ -32,7 +32,6 @@ in {
     };
 
     programs.gdk-pixbuf.modulePackages = with pkgs; [librsvg];
-    programs.light.enable = true;
     environment.systemPackages = with pkgs; [
       libva-utils
       vdpauinfo

@@ -19,6 +19,8 @@ in {
     };
   };
   config = mkIf (cfg.enable) {
+    # TODO: wat da heeel
+    xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
     xdg.configFile.nvim.source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix/${cfg.configPath}";
     programs.neovim = {
       enable = true;
@@ -63,18 +65,11 @@ in {
         yaml-language-server
 
         # Web
-        nodePackages_latest.prettier
-        nodePackages_latest.svelte-language-server
-        nodePackages_latest.typescript-language-server
+        prettier
+        svelte-language-server
+        typescript-language-server
         tailwindcss-language-server
         vscode-langservers-extracted
-      ];
-      # Add codeium to PATH
-      extraWrapperArgs = with pkgs; [
-        "--suffix"
-        "PATH"
-        ":"
-        "${codeium}/bin"
       ];
     };
   };

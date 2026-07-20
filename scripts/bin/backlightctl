@@ -2,10 +2,10 @@
 
 case $1 in
     "+"*)
-        light -A "${1:1}"
+        brightnessctl s "${1:1}%+"
         ;;
     "-"*)
-        light -U "${1:1}"
+        brightnessctl s "${1:1}%-"
         ;;
     *)
         echo "Usage: backlightctl [+-]{brightness}"
@@ -13,6 +13,8 @@ case $1 in
         ;;
 esac
 
-brightness=$(light)
-notify-send -r 10001 -i brightnesssettings -h int:value:$brightness "Brightness: $brightness%"
+brightness=$(brightnessctl g)
+brightness_max=$(brightnessctl m)
+brightness_perc=$(($brightness * 100 / $brightness_max))
+notify-send -r 10001 -i brightnesssettings -h int:value:$brightness_perc "Brightness: $brightness_perc%"
 

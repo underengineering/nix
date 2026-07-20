@@ -75,6 +75,7 @@ in {
       dconf
     ];
     home.pointerCursor = mkIf (cfg.cursorTheme.enable) {
+      enable = true;
       gtk.enable = true;
       x11.enable = true;
       package = cfg.cursorTheme.package;
@@ -94,7 +95,8 @@ in {
     };
     qt = {
       enable = true;
-      platformTheme.name = "gtk";
+      # TODO?: if gtk3 then qt loads BOTH gtk3 and gtk2 -> crash
+      platformTheme.name = "gtk2";
       style.name = "gtk2";
     };
   };

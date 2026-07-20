@@ -38,6 +38,7 @@ in {
       programs.firefox = {
         enable = true;
         package = cfg.package;
+        configPath = ".mozilla/firefox";
         profiles = {
           ${mainProfileName} = {
             extraConfig = (builtins.readFile "${inputs.arkenfox}/user.js") + cfg.extraConfig;

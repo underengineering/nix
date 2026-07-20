@@ -235,7 +235,7 @@
             wayland.enable = true;
             applications = {
               blocky.config = ./config/blocky.yaml;
-              greetd.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t -c Hyprland";
+              greetd.command = "${pkgs.tuigreet}/bin/tuigreet -r -t -c Hyprland";
               ssh.withServer = true;
               tlp.enable = false;
             };
@@ -269,7 +269,7 @@
                 patches = [
                   {
                     name = "BORE";
-                    patch = ./patches/kernel/bore-6.17.patch;
+                    patch = ./patches/kernel/bore-7.1.patch;
                   }
                 ];
               };
@@ -283,7 +283,7 @@
             };
             applications = {
               bluetooth.enable = true;
-              greetd.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t -c start-hyprland";
+              greetd.command = "${pkgs.tuigreet}/bin/tuigreet -r -t -c start-hyprland";
               blocky.config = ./config/blocky.yaml;
             };
           };

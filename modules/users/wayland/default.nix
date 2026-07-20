@@ -44,6 +44,7 @@ in {
       virt-manager
       wireshark
 
+      brightnessctl
       grim
       slurp
       swappy

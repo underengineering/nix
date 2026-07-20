@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   lib,
   ...
@@ -15,10 +14,7 @@ in {
     };
   };
   config = mkIf (cfg.enable) {
-    programs.vscode = {
-      enable = true;
-      package = pkgs.vscodium;
-    };
+    programs.vscodium.enable = true;
     xdg.desktopEntries.codium = {
       name = "VSCodium";
       genericName = "Text Editor";
