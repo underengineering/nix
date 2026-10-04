@@ -22,7 +22,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     xdph = {
-      url = "github:hyprwm/xdg-desktop-portal-hyprland";
+      # TODO: see https://github.com/nix-community/home-manager/blob/833540099ef43cbeb28b1e3f3c21901961edb48e/modules/services/window-managers/hyprland/default.nix#L100
+      url = "github:hyprwm/xdg-desktop-portal-hyprland?rev=ba31964ee42b56bcb0d3b78a64ead5d8a1c3c6f6";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rust-overlay = {
@@ -122,7 +123,6 @@
               };
             };
             firefox = {
-              package = pkgs.firefox-beta;
               extraConfig = builtins.readFile "${self}/config/firefox/user.js";
               extraUserChrome = builtins.readFile "${self}/config/firefox/userChrome.css";
             };
@@ -156,7 +156,7 @@
                 };
               };
             };
-            hyprland.extraConfig = builtins.readFile "${self}/config/hyprland.conf";
+            hyprland.extraConfig = builtins.readFile "${self}/config/hyprland.lua";
             hyprpaper = let
               wallpaper-path = "${self}/wallpapers/e7d53cc7bac3a63a79b25e1bac7b776f0678d234_s2_n1_y1.png";
             in {
@@ -254,7 +254,7 @@
         host.mkHost
         {
           name = "lenowo";
-          kernelPackage = pkgs.linux_custom_lenowo;
+          kernelPackage = pkgs.linuxPackages_latest;
           initrdMods = ["amdgpu" "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
           kernelMods = ["kvm-amd"];
           kernelParams = [
@@ -265,14 +265,14 @@
           ];
           systemConfig = {
             system = {
-              kernel = {
-                patches = [
-                  {
-                    name = "BORE";
-                    patch = ./patches/kernel/bore-7.1.patch;
-                  }
-                ];
-              };
+              # kernel = {
+              #   patches = [
+              #     {
+              #       name = "BORE";
+              #       patch = ./patches/kernel/bore-7.2.patch;
+              #     }
+              #   ];
+              # };
               pam.services.swaylock.text = "auth include login";
               udev.extraRules = builtins.readFile "${self}/config/udev/60-steam-input.rules";
             };

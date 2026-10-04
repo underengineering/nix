@@ -22,6 +22,7 @@ in {
   config = mkIf (cfg.enable) {
     wayland.windowManager.hyprland = {
       enable = true;
+      configType = "lua";
       extraConfig = cfg.extraConfig;
     };
   };

@@ -96,8 +96,9 @@ in {
     qt = {
       enable = true;
       # TODO?: if gtk3 then qt loads BOTH gtk3 and gtk2 -> crash
-      platformTheme.name = "gtk2";
-      style.name = "gtk2";
+      # NOTE: gtk2 deprecated
+      platformTheme.name = "gtk3";
+      style.name = "gtk3";
     };
   };
 }
