@@ -11,7 +11,7 @@ upstream:
 bootstrapDns:
   - upstream: https://dns.libpcap.ru/dns-query
     ips:
-      - 109.120.140.7
+      - 45.9.120.43
   - upstream: https://dns.cloudflare.com/dns-query
     ips:
       - 1.1.1.1
